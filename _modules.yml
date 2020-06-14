@@ -1,0 +1,12 @@
+config:
+    renderer: markdown
+
+modules:
+  workshop-environment:
+    name: Your Workshop Environment
+  getting-started-mlops:
+    name: Getting Started with ML Ops
+  building-the-first-model:
+    name: Build the First Model
+  exploring-openshift:
+    name: Exploring OpenShift
