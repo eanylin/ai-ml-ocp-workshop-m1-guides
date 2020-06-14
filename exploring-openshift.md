@@ -19,11 +19,11 @@ The eclipse che url is `{{  ECLIPSE_CHE_URL }}`
 
 The git url is `{{  GIT_URL }}`
 
-The che user name is `{{  CHE_USER_NAME }}`
+The che user name is `{{  USER_ID }}`
 
 The che user password is `{{  CHE_USER_PASSWORD }}`
 
-The openshift user name is `{{  OPENSHIFT_USER_NAME }}`
+The openshift user name is `{{  USER_ID }}`
 
 The openshift user password is `{{  OPENSHIFT_USER_PASSWORD }}`
 
