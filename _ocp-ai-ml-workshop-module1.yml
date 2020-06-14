@@ -5,18 +5,15 @@ content:
   url: https://raw.githubusercontent.com/eanylin/ocp-al-ml-workshop-m1-guides.git/master
 
 vars:
-  vars:
-  ROUTE_SUBDOMAIN:
   MASTER_URL:
   CONSOLE_URL:
   ECLIPSE_CHE_URL:
-  KEYCLOAK_URL:
   GIT_URL:
   CHE_USER_NAME:
   CHE_USER_PASSWORD:
   OPENSHIFT_USER_NAME:
   OPENSHIFT_USER_PASSWORD:
-  RHAMT_URL:
+  ROUTE_SUBDOMAIN:
 
 modules:
   activate:
