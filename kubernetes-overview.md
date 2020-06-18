@@ -58,9 +58,10 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
   - Provides declarative updates for Pods and ReplicaSets
   - Used in different scenarios, e.g.
     - Create a Deployment to rollout a ReplicaSet
-      - ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not
-    - Rollback to an earlier Deployment revision if the current state of the Deployment is not stable. Each rollback updates the revision of the Deployment.
-    - Scale up the Deployment to facilitate more load.
+      * ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not
+    - Rollback to an earlier Deployment revision if the current state of the Deployment is not stable
+      * Each rollback updates the revision of the Deployment
+    - Scale up the Deployment to facilitate more load
     - Clean up ReplicaSets
 
 * [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
