@@ -2,10 +2,12 @@ config:
     renderer: markdown
 
 modules:
-  workshop-environment:
-    name: Your Workshop Environment
   kubernetes-overview:
     name: Kubernetes Overview
+  intro-to-openshift-ui:
+    name: Introduction to OpenShift UI
+  workshop-environment:
+    name: Your Workshop Environment
   getting-started-mlops:
     name: Getting Started with ML Ops
   building-the-first-model:

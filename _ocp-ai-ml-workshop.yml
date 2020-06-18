@@ -17,8 +17,9 @@ vars:
 
 modules:
   activate:
-  - workshop-environment
   - kubernetes-overview
+  - intro-to-openshift-ui
+  - workshop-environment
   - getting-started-mlops
   - building-the-first-model
   - exploring-openshift
