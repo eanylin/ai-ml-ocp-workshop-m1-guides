@@ -57,8 +57,8 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
 * [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
   - Provides declarative updates for Pods and ReplicaSets
   - Used in different scenarios, e.g.
-    - Create a Deployment to rollout a ReplicaSet. 
-      - ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not.
+    - Create a Deployment to rollout a ReplicaSet
+      - ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not
     - Rollback to an earlier Deployment revision if the current state of the Deployment is not stable. Each rollback updates the revision of the Deployment.
     - Scale up the Deployment to facilitate more load.
     - Clean up ReplicaSets
@@ -88,7 +88,6 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
   - Tracks successful completions of pods
   - When a specified number of successful completions is reached, the task, i.e, Job is complete
   - Deleting a Job will clean up the Pods it created
-
 
 Architecture
 ============
