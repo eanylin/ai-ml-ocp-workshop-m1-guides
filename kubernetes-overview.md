@@ -50,6 +50,7 @@ The basic Kubernetes object include:
   - Kubernetes supports multiple virtual clusters backed by the same physical cluster
   - These virtual clusters are called namespaces and are a way to divide cluster resources between multiple users via [resource quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
 
+---
 
 Kubernetes also contains higher-level abstractions that rely on controllers to build upon the basic objects to provide additional functionality and convenience features. These include:
 
