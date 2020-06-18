@@ -15,12 +15,12 @@ The Control Plane maintains a record of all of the Kubernetes Objects in the sys
 
 The Kubernetes Control Plane consists of a collection of processes running within the cluster:
 
-* Kubernetes Master
+* Master
   - A collection of 3 processes that run on a single node, designated as the master node in the cluster. The processes are [kube-apiserver](https://kubernetes.io/docs/admin/kube-apiserver/), [kube-controller-manager](https://kubernetes.io/docs/admin/kube-controller-manager/) and [kube-scheduler](https://kubernetes.io/docs/admin/kube-scheduler/)
   - Responsible for maintaining the desired state of the cluster
 
 * Node
-  - Machines (VMs, physical servers, etc) that run the applications and cloud workflows.
+  - Machines (VMs, physical servers, etc) that run the applications and cloud workflows
   - Nodes are controlled by Kubernetes Master
   - Runs 2 processes, i.e. [kubelet](https://kubernetes.io/docs/admin/kubelet/) and [kube-proxy](https://kubernetes.io/docs/admin/kube-proxy/)
   - kubelet allows the node to communicate with the Kubernetes Master
@@ -56,8 +56,9 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
 
 * [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
   - Provides declarative updates for Pods and ReplicaSets
-  - Can be used in different scenarios, such as
-    - Create a Deployment to rollout a ReplicaSet. The ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not.
+  - Used in different scenarios, e.g.
+    - Create a Deployment to rollout a ReplicaSet. 
+      - ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not.
     - Rollback to an earlier Deployment revision if the current state of the Deployment is not stable. Each rollback updates the revision of the Deployment.
     - Scale up the Deployment to facilitate more load.
     - Clean up ReplicaSets
@@ -84,9 +85,9 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
 
 * [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
   - Creates one or more Pods and ensures that a specified number of them successfully terminate
-  - Job tracks successful completions of pods
-  - When a specified number of successful completions is reached, the task (ie, Job) is complete
-  - Deleting a Job will clean up the Pods it created. 
+  - Tracks successful completions of pods
+  - When a specified number of successful completions is reached, the task, i.e, Job is complete
+  - Deleting a Job will clean up the Pods it created
 
 
 Architecture
