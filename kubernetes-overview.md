@@ -50,13 +50,43 @@ The basic Kubernetes object include:
   - Kubernetes supports multiple virtual clusters backed by the same physical cluster
   - These virtual clusters are called namespaces and are a way to divide cluster resources between multiple users via [resource quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
 
+
 Kubernetes also contains higher-level abstractions that rely on controllers to build upon the basic objects to provide additional functionality and convenience features. These include:
 
 * [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+  - Provides declarative updates for Pods and ReplicaSets
+  - Can be used in different scenarios, such as
+    - Create a Deployment to rollout a ReplicaSet. The ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not.
+    - Rollback to an earlier Deployment revision if the current state of the Deployment is not stable. Each rollback updates the revision of the Deployment.
+    - Scale up the Deployment to facilitate more load.
+    - Clean up ReplicaSets
+
 * [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
+  - Ensures that all or some Nodes run a copy of the Pod
+  - Pods are added and garbage collected as nodes are added/removed from the cluster
+  - Deleting a DaemonSet will clean up all the Pods that it created
+  - Common use cases include the following:   
+    - Running cluster storage daemon on every node
+    - Running logs collection daemon on every node
+    - Running node monitoring daemon on every node
+
 * [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
+  - Workload API object used to manage stateful applications
+  - Manages deployment scaling of a set of Pods and provides *guarantees* about the ordering and *uniqueness* of these Pods
+  - Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods
+  - Pods are created from the same spec but are not interchangeable, i.e. each has a persistent identifer that it maintains across any rescheduling  
+
 * [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+  - Maintain a stable set of replica Pods running at any given time
+  - It is used to guarantee the availability of a specified number of identical Pods
+  - A ReplicaSet is linked to its Pods via the Pods' [metadata.ownerReferences](https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/#owners-and-dependents) field, which specifies what resource the current object is owned by
+
 * [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+  - Creates one or more Pods and ensures that a specified number of them successfully terminate
+  - Job tracks successful completions of pods
+  - When a specified number of successful completions is reached, the task (ie, Job) is complete
+  - Deleting a Job will clean up the Pods it created. 
+
 
 Architecture
 ============
