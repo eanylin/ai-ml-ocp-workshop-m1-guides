@@ -4,6 +4,8 @@ config:
 modules:
   workshop-environment:
     name: Your Workshop Environment
+  kubernetes-overview:
+    name: Kubernetes Overview
   getting-started-mlops:
     name: Getting Started with ML Ops
   building-the-first-model:
