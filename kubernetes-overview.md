@@ -9,7 +9,7 @@ This module provides a brief overview on the core concepts in Kubernetes, based 
 Control Plane
 =============
 
-To work with Kubernetes, you use *Kubernetes API objects* to describe the *desired* state of your cluster. This includes describing the applications, workloads, container images, number of replicas, network, disk resources and more for the desired end state.
+Kubernetes API objects are used to describe the *desired* state of the Kubernetes cluster. This includes describing the desired end state of the applications, workloads, container images, number of replicas, network, disk resources, etc.
 
 The Control Plane maintains a record of all of the Kubernetes Objects in the system and runs continuous control loops to manage the state of all the objects. At any given point in time, the control loops will respond to changes in the cluster and work to make the actual state of all the objects match the desired state.
 
@@ -32,9 +32,23 @@ Kubernetes Objects
 The basic Kubernetes object include:
 
 * [Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
+  - A Pod is the smallest unit in the Kubernetes object model that can be created or deploy. It represents processes running on the cluster.
+  - A Pod encapsulates an application's container(s), storages resources, unique network identity (IP address) as well as options that govern how the container(s) should run
+
 * [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+  - An abstract way to expose an application running on a set of Pods as a network service
+  - An abstraction which defines a logic set of Pods and a policy by which to access them
+  - The set of Pods that are targeted by a Service is usually determined by a [selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+
 * [Volume](https://kubernetes.io/docs/concepts/storage/volumes/)
+  - On-disk files in a Container are ephemeral, which is not idea for non-trivial applications when running in Containers
+  - Kubernetes volume allows data to be preserved across Container restarts
+  - It has an explicit lifetime, i.e. the same as the Pod that encloses it
+  - There is support for different types of [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes), such as awsElasticBlock, cephfs, etc
+  
 * [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+  - Kubernetes supports multiple virtual clusters backed by the same physical cluster
+  - These virtual clusters are called namespaces and are a way to divide cluster resources between multiple users via [resource quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
 
 Kubernetes also contains higher-level abstractions that rely on controllers to build upon the basic objects to provide additional functionality and convenience features. These include:
 
