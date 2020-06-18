@@ -6,9 +6,9 @@ The name Kubernetes originates from Greek, meaning helmsman or pilot. Google ope
 
 This module provides a brief overview on the core concepts in Kubernetes, based on the documentation in [kubernetes.io](https://kubernetes.io/docs/home/).
 
-Control Plane
-=============
 
+Kubernetes Control Plane
+========================
 Kubernetes API objects are used to describe the *desired* state of the Kubernetes cluster. This includes describing the desired end state of the applications, workloads, container images, number of replicas, network, disk resources, etc.
 
 The Control Plane maintains a record of all of the Kubernetes Objects in the system and runs continuous control loops to manage the state of all the objects. At any given point in time, the control loops will respond to changes in the cluster and work to make the actual state of all the objects match the desired state.
@@ -26,9 +26,9 @@ The Kubernetes Control Plane consists of a collection of processes running withi
   - kubelet allows the node to communicate with the Kubernetes Master
   - kube-proxy is a network proxy which reflects Kubernetes networking services on each node
 
+
 Kubernetes Objects
 ==================
-
 The basic Kubernetes object include:
 
 * [Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
@@ -90,6 +90,56 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
   - When a specified number of successful completions is reached, the task, i.e, Job is complete
   - Deleting a Job will clean up the Pods it created
 
-Architecture
-============
+
+Kubernetes Cluster Architecture
+===============================
 ![k8s_architecture]({% image_path kubernetes-components.png %})
+
+
+Containers
+==========
+Containers are a technology for packaging the complied code for an application along with the dependencies it needs at run time. The standardization from having dependencies included means that we will always get the same behavior for the container no matter where we run it. Containers decouple applications from the underlying infrastructure, which makes it easy to deploy in different private/public clouds or operating system (OS).
+
+
+Container Images
+----------------
+A container image represents binary data that encapsulates an application and all its software depencies. It is an executable software bundle that can run standalone and one that makes very well defined assumptions about its runtime environment.
+
+The container image of an application is typically pushed to a registry before it is referred to in a Pod.
+
+Container is immutable by design, i.e. you cannot change the code of a container that is already running. If you have a containerized application and want to make changes, you need to build a new container that includes the change, then recreate the container to start from the updated image.
+
+
+Container Runtimes
+------------------
+The container runtime is the software that is responsible for running containers.
+
+Kubernetes supports several container runtimes:
+
+* [CRI-O](https://cri-o.io/#what-is-cri-o)
+* [containerd](https://containerd.io/docs/)
+* [Docker](https://docs.docker.com/engine/)
+* Any other implementation of the [Kubernetes CRI](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-node/container-runtime-interface.md) (Container Runtime Interface)
+
+
+Containers vs Virtual Machines
+------------------------------
+Linux containers and virtual machines (VMs) are packaged computing environments that combine various IT components and isolate them from the rest of the system. Their main differences are in terms of scale and portability.
+
+Containers are typically measured by the megabyte. They do not package anything bigger than an application and all the files necessary to run, and are often used to package single functions that perform specific tasks (known as a microservice). The lightweight nature of containers and their shared OS makes them very easy to move across multiple environments.
+
+VMs are typically measured by the gigabyte. They usually contain their own OS, allowing them to perform multiple resource-intensive functions at once. The increased resources available to VMs allow them to abstract, split, duplicate, and emulate entire servers, OSs, desktops, databases, and networks. 
+
+Compared to VMs, containers are best used to: 
+
+* Build cloud-native apps
+* Package microservices
+* Instill DevOps or CI/CD practices
+* Move scalable IT projects across a diverse IT footprint that shares the same OS
+
+Compared to containers, VMs are best used to:
+
+* House traditional, legacy, and monolothic workloads
+* Isolate risky development cycles
+* Provision infrastructural resources (such as networks, servers, and data)
+* Run a different OS inside another OS (such as running Unix on Linux)
