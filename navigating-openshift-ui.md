@@ -1,5 +1,5 @@
-Introduction to OpenShift UI
-============================
+Navigating OpenShift Web Console
+================================
 
 This module provides a brief overview of the OpenShift Web Console.
 

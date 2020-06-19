@@ -4,8 +4,8 @@ config:
 modules:
   kubernetes-overview:
     name: Kubernetes Overview
-  intro-to-openshift-ui:
-    name: Introduction to OpenShift UI
+  navigating-openshift-ui:
+    name: Navigating OpenShift Web Console
   workshop-environment:
     name: Your Workshop Environment
   getting-started-mlops:
