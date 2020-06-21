@@ -191,7 +191,7 @@ Go to the `Workloads` tab and select *Config Maps* to view the Config Maps for t
 ![django_configmaps]({% image_path django-configmaps.png %})
 
 
-### Persistent Volume and Persistent Volume Claim ###
+### Persistent Volume and Claim ###
 A `PersistentVolume` object is a storage resource in an OpenShift Container Platform cluster. Storage is provisioned by cluster administrator by creating `PersistentVolume` objects from sources such as GCE Persistent Disk, AWS Elastic Block Store (EBS), and NFS mounts.
 
 Storage can be made available by laying claims to the resource. We can make a request for storage resources using a `PersistentVolumeClaim` object; the claim is paired with a volume that generally matches our request.
