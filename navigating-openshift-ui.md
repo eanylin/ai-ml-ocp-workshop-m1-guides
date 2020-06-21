@@ -22,7 +22,7 @@ Proceed to create a new project by selecting `Create Project`
 
 ![openshift_create_new_project]({% image_path openshift-create-new-project.png %})
 
-Upon creating a project you will be left on the overview page for the new project.
+Upon creating a project you will be brought to the overview page for the new project.
 
 If you want to get to a list of all the projects that are available, you can select `Home->Projects` from the side menu on the left. You can click on the hamburger menu item button on the top left corner of the web console if you do not see the side menu.
 
@@ -67,8 +67,6 @@ Next, we will scroll down to the *General* settings. We can see that the setting
 Upon hitting the `Create` button, we will get redirected to the *Topology* overview of the project.
 
 The topology overview provides a visual representation of the application you have deployed.
-
-![django_application_topology_view]({% image_path django-application-topology-view.png %})
 
 The Git icon shown to the lower right of the ring can be clicked on to take us to the hosted Git repository from which the source code for the application was built.
 
@@ -172,7 +170,7 @@ Go to the `Workloads` tab and select *Replication Controllers* to view the Repli
 
 ![django_replication_controllers]({% image_path django-replication-controllers.png %})
 
-![django_replication_overview]({% image_path django-replication-overview.png %})
+![django_replication_controllers_overview]({% image_path django-replication-controllers-overview.png %})
 
 
 ### Secrets ###
@@ -188,7 +186,7 @@ The `ConfigMap` object provides mechanisms to inject containers with configurati
 
 The `ConfigMap` API object holds key-value pairs of configuration data that can be consumed in pods or used to store configuration data for system components such as controllers. `ConfigMap` is similar to secrets, but designed to more conveniently support working with strings that do not contain sensitive information.
 
-Go to the `Workloads` tab and select *Config Maps* to view the Config Maps for this project. In this case, we can see the CA certificates as config maps.
+Go to the `Workloads` tab and select *Config Maps* to view the Config Maps for this project. In this case, we can see the *CA certificates* as config maps.
 
 ![django_configmaps]({% image_path django-configmaps.png %})
 
