@@ -3,6 +3,10 @@ Navigating OpenShift Web Console
 
 This module provides a brief overview of the OpenShift Web Console.
 
+The web console url will be `{{  CONSOLE_URL }}`
+
+Your openshift user name is `{{  USER_ID }}` and password is `{{  OPENSHIFT_USER_PASSWORD }}`
+
 
 Logging into An OpenShift Cluster
 =================================
