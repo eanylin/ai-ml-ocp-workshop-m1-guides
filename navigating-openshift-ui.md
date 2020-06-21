@@ -5,7 +5,7 @@ This module provides a brief overview of the OpenShift Web Console.
 
 
 Logging into An OpenShift Cluster
-=================================
+---------------------------------
 
 The OpenShift cluster web console login page prompts user for their Username and Password
 
@@ -17,7 +17,7 @@ We will be presented with a `Welcome to OpenShift` message and the option of cre
 
 
 Creating a New Project
-======================
+----------------------
 Proceed to create a new project by selecting `Create Project`
 
 ![openshift_create_new_project]({% image_path openshift-create-new-project.png %})
@@ -30,7 +30,7 @@ If you want to get to a list of all the projects that are available, you can sel
 
 
 Accessing Project
-=================
+-----------------
 Click on `myproject` and we will get to the `Overview` page of the project
 
 ![myproject_overview_page]({% image_path myproject-overview-page.png %})
@@ -41,7 +41,7 @@ Next, select the `Developer` perspective for the project instead of the `Adminst
 
 
 Deploying Application Using Web Console
-=======================================
+---------------------------------------
 Proceed to select *From Catalog*. This will bring us to the Developer Catalog.
 
 ![openshift_developer_catalog]({% image_path openshift-developer-catalog.png %})
@@ -102,14 +102,13 @@ Clicking on the URL link will bring us to the Django application that was just d
 
 
 Administrator View
-==================
+------------------
 Select the `Adminstrator` perspective for the project from the left hand side menu
 
 ![openshift_administrator_view]({% image_path openshift-administrator-view.png %})
 
 
-Pods
-----
+### Pods ###
 OpenShift Container Platform leverages the Kubernetes concept of a pod, which is one or more containers deployed together on one host, and the smallest compute unit that can be defined, deployed, and managed.
 
 Pods are the rough equivalent of a machine instance (physical or virtual) to a container. Each pod is allocated its own internal IP address, therefore owning its entire port space, and containers within pods can share their local storage and networking.
@@ -123,8 +122,7 @@ Go to the `Workloads` tab and select *Pods* to view the pods in this project.
 ![django_pods]({% image_path django-pods.png %})
 
 
-Services
---------
+### Services ###
 A Kubernetes service serves as an internal load balancer. It identifies a set of replicated pods in order to proxy the connections it receives to them. Backing pods can be added to or removed from a service arbitrarily while the service remains consistently available, enabling anything that depends on the service to refer to it at a consistent address. The default service clusterIP addresses are from the OpenShift Container Platform internal network and they are used to permit pods to access each other.
 
 Services are assigned an IP address and port pair that, when accessed, proxy to an appropriate backing pod. A service uses a label selector to find all the containers running that provide a certain network service on a certain port.
@@ -134,15 +132,13 @@ Like pods, services are REST objects. Go to the `Networking` tab and select *Ser
 ![django_services]({% image_path django-services.png %})
 
 
-Routes
-------
+### Routes ###
 An OpenShift route is a way to expose a service by giving it an externally-reachable hostname like `www.example.com`. A defined route and the endpoints identified by its service can be consumed by a router to provide named connectivity that allows external clients to reach your applications.
 
 ![django_routes]({% image_path django-routes.png %})
 
 
-Deployments and DeploymentConfigs
----------------------------------
+### Deployments and DeploymentConfigs ###
 Deployments and DeploymentConfigs in OpenShift Container Platform are API objects that provide two similar but different methods for fine-grained management over common user applications. A DeploymentConfig or a Deployment describes the desired state of a particular component of the application as a Pod template.
 
 DeploymentConfigs involve one or more ReplicationControllers, which contain a point-in-time record of the state of a DeploymentConfig as a Pod template. Similarly, Deployments involve one or more ReplicaSets, a successor of ReplicationControllers.
@@ -163,8 +159,7 @@ Go to the `Workloads` tab and select *Deployment Configs* to view the Deployment
 ![django_deployment_configs_yaml]({% image_path django-deployment-configs-yaml.png %})
 
 
-Replication Controllers
------------------------
+### Replication Controllers ###
 A ReplicationController ensures that a specified number of replicas of a Pod are running at all times. If Pods exit or are deleted, the ReplicationController acts to instantiate more up to the defined number. Likewise, if there are more running than desired, it deletes as many as necessary to match the defined amount.
 
 A ReplicationController configuration consists of:
@@ -180,15 +175,13 @@ Go to the `Workloads` tab and select *Replication Controllers* to view the Repli
 ![django_replication_overview]({% image_path django-replication-overview.png %})
 
 
-Secrets
--------
+### Secrets ###
 The `Secret` object type provides a mechanism to hold sensitive information such as passwords, OpenShift Container Platform client configuration files, `dockercfg` files, private source repository credentials, and so on. Secrets decouple sensitive content from the pods. You can mount secrets into containers using a volume plug-in or the system can use secrets to perform actions on behalf of a pod.
 
 ![django_secrets]({% image_path django-secrets.png %})
 
 
-Config Maps
------------
+### Config Maps ###
 Many applications require configuration using some combination of configuration files, command line arguments, and environment variables. These configuration artifacts should be decoupled from image content in order to keep containerized applications portable.
 
 The `ConfigMap` object provides mechanisms to inject containers with configuration data while keeping containers agnostic of OpenShift Container Platform. A `ConfigMap` can be used to store fine-grained information like individual properties or coarse-grained information like entire configuration files or JSON blobs.
@@ -201,7 +194,7 @@ Go to the `Workloads` tab and select *Config Maps* to view the Config Maps for t
 
 
 Summary
-=======
+-------
 In this chapter, we learnt about deploying an application from source code using a Source-to-Image (S2I) builder. We have deployed the application from the web console from `Developer` perspective and looked at the different tabs under the `Administrator` perspective.
 
 The web application was implemented using the Python programming language. OpenShift provides S2I builders for a number of different programming languages/frameworks in addition to Python. These include Java, NodeJS, Perl, PHP and Ruby.
