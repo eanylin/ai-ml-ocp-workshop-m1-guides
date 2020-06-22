@@ -15,11 +15,12 @@ The Control Plane maintains a record of all of the Kubernetes Objects in the sys
 
 The Kubernetes Control Plane consists of a collection of processes running within the cluster:
 
-* Master
+* [Master](https://kubernetes.io/docs/concepts/#overview)
   - A collection of 3 processes that run on a single node, designated as the master node in the cluster. The processes are [kube-apiserver](https://kubernetes.io/docs/admin/kube-apiserver/), [kube-controller-manager](https://kubernetes.io/docs/admin/kube-controller-manager/) and [kube-scheduler](https://kubernetes.io/docs/admin/kube-scheduler/)
   - Responsible for maintaining the desired state of the cluster
+  - The master can also be replicated for availability and redundancy.
 
-* Node
+* [Node](https://kubernetes.io/docs/concepts/architecture/nodes/)
   - Machines (VMs, physical servers, etc) that run the applications and cloud workflows
   - Nodes are controlled by Kubernetes Master
   - Runs 2 processes, i.e. [kubelet](https://kubernetes.io/docs/admin/kubelet/) and [kube-proxy](https://kubernetes.io/docs/admin/kube-proxy/)
@@ -32,12 +33,12 @@ Kubernetes Objects
 The basic Kubernetes object include:
 
 * [Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
-  - A Pod is the smallest unit in the Kubernetes object model that can be created or deploy. It represents processes running on the cluster.
+  - A Pod is the smallest unit in the Kubernetes object model that can be created or deployed. It represents processes running on the cluster.
   - A Pod encapsulates an application's container(s), storages resources, unique network identity (IP address) as well as options that govern how the container(s) should run
 
 * [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - An abstract way to expose an application running on a set of Pods as a network service
-  - An abstraction which defines a logic set of Pods and a policy by which to access them
+  - An abstraction which defines a logical set of Pods and a policy by which to access them
   - The set of Pods that are targeted by a Service is usually determined by a [selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 
 * [Volume](https://kubernetes.io/docs/concepts/storage/volumes/)
@@ -56,6 +57,7 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
 
 * [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
   - Provides declarative updates for Pods and ReplicaSets
+  - You can describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate.
   - Used in different scenarios, e.g.
     - Create a Deployment to rollout a ReplicaSet
       * ReplicaSet creates Pods in the background and checks the status of the rollout to see if it succeeds or not
@@ -77,7 +79,7 @@ Kubernetes also contains higher-level abstractions that rely on controllers to b
   - Workload API object used to manage stateful applications
   - Manages deployment scaling of a set of Pods and provides *guarantees* about the ordering and *uniqueness* of these Pods
   - Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods
-  - Pods are created from the same spec but are not interchangeable, i.e. each has a persistent identifer that it maintains across any rescheduling  
+  - Pods are created from the same spec but are not interchangeable, i.e. each has a persistent identifier that it maintains across any rescheduling  
 
 * [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
   - Maintain a stable set of replica Pods running at any given time
@@ -98,16 +100,16 @@ Kubernetes Cluster Architecture
 
 Containers
 ==========
-Containers are a technology for packaging the complied code for an application along with the dependencies it needs at run time. The standardization from having dependencies included means that we will always get the same behavior for the container no matter where we run it. Containers decouple applications from the underlying infrastructure, which makes it easy to deploy in different private/public clouds or operating system (OS).
+Containers are a technology for packaging the compiled code for an application along with the dependencies it needs at run time. The standardization from having dependencies included means that we will always get the same behavior for the container no matter where we run it. Containers decouple applications from the underlying infrastructure, which makes it easy to deploy in different private/public clouds or operating systems (OS).
 
 
 Container Images
 ----------------
-A container image represents binary data that encapsulates an application and all its software depencies. It is an executable software bundle that can run standalone and one that makes very well defined assumptions about its runtime environment.
+A container image represents binary data that encapsulates an application and all its software dependencies. It is an executable software bundle that can run standalone and one that makes very well defined assumptions about its runtime environment.
 
 The container image of an application is typically pushed to a registry before it is referred to in a Pod.
 
-Container is immutable by design, i.e. you cannot change the code of a container that is already running. If you have a containerized application and want to make changes, you need to build a new container that includes the change, then recreate the container to start from the updated image.
+Containers are immutable by design, i.e. you cannot change the code of a container that is already running. If you have a containerized application and want to make changes, you need to build a new container that includes the change, then recreate the container to start from the updated image.
 
 
 Container Runtimes
@@ -139,7 +141,7 @@ Compared to VMs, containers are best used to:
 
 Compared to containers, VMs are best used to:
 
-* House traditional, legacy, and monolothic workloads
+* House traditional, legacy, and monolithic workloads
 * Isolate risky development cycles
 * Provision infrastructural resources (such as networks, servers, and data)
 * Run a different OS inside another OS (such as running Unix on Linux)
