@@ -15,12 +15,12 @@ The Control Plane maintains a record of all of the Kubernetes Objects in the sys
 
 The Kubernetes Control Plane consists of a collection of processes running within the cluster:
 
-* [Master] (https://kubernetes.io/docs/concepts/#overview)
+* [Master](https://kubernetes.io/docs/concepts/#overview)
   - A collection of 3 processes that run on a single node, designated as the master node in the cluster. The processes are [kube-apiserver](https://kubernetes.io/docs/admin/kube-apiserver/), [kube-controller-manager](https://kubernetes.io/docs/admin/kube-controller-manager/) and [kube-scheduler](https://kubernetes.io/docs/admin/kube-scheduler/)
   - Responsible for maintaining the desired state of the cluster
   - The master can also be replicated for availability and redundancy.
 
-* [Node] (https://kubernetes.io/docs/concepts/architecture/nodes/)
+* [Node](https://kubernetes.io/docs/concepts/architecture/nodes/)
   - Machines (VMs, physical servers, etc) that run the applications and cloud workflows
   - Nodes are controlled by Kubernetes Master
   - Runs 2 processes, i.e. [kubelet](https://kubernetes.io/docs/admin/kubelet/) and [kube-proxy](https://kubernetes.io/docs/admin/kube-proxy/)
