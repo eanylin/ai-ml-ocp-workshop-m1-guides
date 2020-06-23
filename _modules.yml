@@ -10,6 +10,8 @@ modules:
     name: Your Workshop Environment
   getting-started-mlops:
     name: Getting Started with ML Ops
+  exploring-data:
+    name: Exploring the data
   building-the-first-model:
     name: Build the First Model
   exploring-openshift:
