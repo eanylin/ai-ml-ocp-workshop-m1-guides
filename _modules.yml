@@ -6,10 +6,10 @@ modules:
     name: Kubernetes Overview
   navigating-openshift-ui:
     name: Navigating OpenShift Web Console
-  workshop-environment:
-    name: Your Workshop Environment
   getting-started-mlops:
     name: Getting Started with ML Ops
+  workshop-environment:
+    name: Your Workshop Environment  
   exploring-data:
     name: Exploring the data
   building-the-first-model:
