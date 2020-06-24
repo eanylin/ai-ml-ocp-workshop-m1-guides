@@ -17,14 +17,16 @@ DVC keeps metafiles in Git to describe and version control your data sets and mo
 Data management is the core part of DVC for large files, datasets, ML models versioning and efficient sharing. In this workshop, you will be using DVC to retrieve the dataset from a S3 bucket provided by OCS4. 
 
 ### Logging in
-First, begin by logging into [JupyterHub]({{JUPYTERHUB_URL}}). 
+Begin by logging into [JupyterHub]({{JUPYTERHUB_URL}}). 
 
 Your user name will be `{{  USER_ID }}` and password is `{{  OPENSHIFT_USER_PASSWORD }}`.
 
-Upon logging in, you will start a new notebook by choosing `s2i-minimal-notebook:3.6` image in the drop down box and then click on `Spawn`. Leave the rest of the options as default.
+Upon logging in, start a new notebook by choosing `s2i-minimal-notebook:3.6` image in the drop down box and then click on `Spawn`. Leave the rest of the options as default.
 
-> If the notebook page did not appear, try refreshing the page ??????...
+> If the notebook page did not appear, try refreshing the page or reach out to your instructor. 
 
-Once the notebook page is up and running, click on `notebooks/1 data exploration.ipynb` to load the notebook.
+> There is a notebook `"0 intro to juypyter.ipynb"` to help you get started on Jupyter interface. 
+
+Once the notebook page is up and running, click on `"notebooks/1 data exploration.ipynb"` to load the notebook.
 
 
