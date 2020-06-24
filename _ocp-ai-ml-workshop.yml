@@ -19,8 +19,8 @@ modules:
   activate:
   - kubernetes-overview
   - navigating-openshift-ui
-  - workshop-environment
   - getting-started-mlops
+  - workshop-environment
   - exploring-data
   - building-the-first-model
   - exploring-openshift
