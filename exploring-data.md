@@ -1,0 +1,32 @@
+## Exporing Data
+
+You will be using Jupyter notebooks from [OpenDataHub](https://opendatahub.io/) to explore credit card fraud [data](https://www.kaggle.com/mlg-ulb/creditcardfraud), using tools such as [dvc](https://dvc.org/) and [Pandas](https://pandas.pydata.org/). 
+
+### About OpenDataHub
+
+Open Data Hub is a blueprint for building an AI as a service platform on Red Hat's Kubernetes-based OpenShift® Container Platform and Ceph Object Storage. It inherits from upstream efforts such as Kafka/Strimzi and Kubeflow, and is the foundation for Red Hat's internal data science and AI platform. Data scientists can create models using Jupyter notebooks, and select from popular tools such as TensorFlow™, scikit-learn, Apache Spark™ and more for developing models. Teams can spend more time solving critical business needs and less on installing and maintaining infrastructure with the Open Data Hub. 
+
+### About JupyterHub
+
+JupyterHub fron ODH allows OpenShift users to access Jupyter notebooks. It gives users access to computational environments and resources without burdening the users with installation and maintenance tasks.
+
+### About DVC
+
+DVC keeps metafiles in Git to describe and version control your data sets and models. DVC supports a variety of external storage types as a remote cache for large files.
+
+Data management is the core part of DVC for large files, datasets, ML models versioning and efficient sharing. In this workshop, you will be using DVC to retrieve the dataset from a S3 bucket provided by OCS4. 
+
+### Logging in
+Begin by logging into [JupyterHub]({{JUPYTERHUB_URL}}). 
+
+Your user name will be `{{  USER_ID }}` and password is `{{  OPENSHIFT_USER_PASSWORD }}`.
+
+Upon logging in, start a new notebook by choosing `s2i-minimal-notebook:3.6` image in the drop down box and then click on `Spawn`. Leave the rest of the options as default.
+
+> If the notebook page did not appear, try refreshing the page or reach out to your instructor. 
+
+> There is a notebook `"0 intro to juypyter.ipynb"` to help you get started on Jupyter interface. 
+
+Once the notebook page is up and running, click on `"notebooks/1 data exploration.ipynb"` to load the notebook.
+
+
