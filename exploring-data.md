@@ -8,7 +8,7 @@ Open Data Hub is a blueprint for building an AI as a service platform on Red Hat
 
 ### About JupyterHub
 
-JupyterHub fron ODH allows OpenShift users to access Jupuyter notebooks. It gives users access to computational environments and resources without burdening the users with installation and maintenance tasks.
+JupyterHub fron ODH allows OpenShift users to access Jupyter notebooks. It gives users access to computational environments and resources without burdening the users with installation and maintenance tasks.
 
 ### About DVC
 
