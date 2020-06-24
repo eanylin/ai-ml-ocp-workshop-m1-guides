@@ -15,13 +15,15 @@ As shown in the following diagram, only a small fraction of a real-world ML syst
 ## What Is MLOps
 
 From [Wikiepdia](https://en.wikipedia.org/wiki/MLOps):
->MLOps (a compound of “machine learning” and “operations”) is a practice for collaboration and communication between data scientists and operations professionals to help manage production ML (or deep learning) lifecycle.[1] Similar to the DevOps or DataOps approaches, MLOps looks to increase automation and improve the quality of production ML while also focusing on business and regulatory requirements. 
+
+>MLOps (a compound of “machine learning” and “operations”) is a practice for collaboration and communication between data scientists and operations professionals to help manage production ML (or deep learning) lifecycle. Similar to the DevOps or DataOps approaches, MLOps looks to increase automation and improve the quality of production ML while also focusing on business and regulatory requirements. 
 
 ## Differences Between DevOps And MLOps
 
  Unlike DevOps, MLOps is much more experimental in nature. Data scientists try different features, parameters and models. With all these changes, they must manage their code base and datasets, to create reproducible results.
 
 Unlike application developments, MLOps needs to:
+
 * Handle performance degradation. ML and DL systems suffer from changes in data profile, which leads to retraining in the pipeline. 
 
 * Model monitoring. Models statistics needs to be monitored to ensure is performing within limits, so that it can be retrained when necessary. 

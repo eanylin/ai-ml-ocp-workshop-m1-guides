@@ -1,6 +1,6 @@
 ## Exporing Data
 
-You will be using Jupyter notebooks to explore credit card fraud [data](https://www.kaggle.com/mlg-ulb/creditcardfraud), using tools such as [dvc](https://dvc.org/) and [Pandas](https://pandas.pydata.org/). 
+You will be using Jupyter notebooks from [OpenDataHub](https://opendatahub.io/) to explore credit card fraud [data](https://www.kaggle.com/mlg-ulb/creditcardfraud), using tools such as [dvc](https://dvc.org/) and [Pandas](https://pandas.pydata.org/). 
 
 ### About OpenDataHub
 
@@ -16,9 +16,8 @@ DVC keeps metafiles in Git to describe and version control your data sets and mo
 
 Data management is the core part of DVC for large files, datasets, ML models versioning and efficient sharing. In this workshop, you will be using DVC to retrieve the dataset from a S3 bucket provided by OCS4. 
 
-
 ### Logging in
-First, begin by logging into [JupyterHub](JUPYTERHUB_URL). 
+First, begin by logging into [JupyterHub]({{JUPYTERHUB_URL}}). 
 
 Your user name will be `{{  USER_ID }}` and password is `{{  OPENSHIFT_USER_PASSWORD }}`.
 

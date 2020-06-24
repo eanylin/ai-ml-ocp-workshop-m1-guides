@@ -11,7 +11,7 @@ modules:
   workshop-environment:
     name: Your Workshop Environment  
   exploring-data:
-    name: Exploring the data
+    name: Exploring data
   building-the-first-model:
     name: Build the First Model
   exploring-openshift:
