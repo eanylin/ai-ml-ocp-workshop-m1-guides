@@ -14,7 +14,7 @@ As shown in the following diagram, only a small fraction of a real-world ML syst
 
 ## What Is MLOps
 
-From [Wikiepdia](https://en.wikipedia.org/wiki/MLOps):
+From [Wikipedia](https://en.wikipedia.org/wiki/MLOps):
 
 >MLOps (a compound of “machine learning” and “operations”) is a practice for collaboration and communication between data scientists and operations professionals to help manage production ML (or deep learning) lifecycle. Similar to the DevOps or DataOps approaches, MLOps looks to increase automation and improve the quality of production ML while also focusing on business and regulatory requirements. 
 
@@ -24,11 +24,11 @@ From [Wikiepdia](https://en.wikipedia.org/wiki/MLOps):
 
 Unlike application developments, MLOps needs to:
 
-* Handle performance degradation. ML and DL systems suffer from changes in data profile, which leads to retraining in the pipeline. 
+* Data/model versioning != code versioning: Model reuse has an entirely different meaning compared to software reuse, as models need tuning based on scenarios and data.
 
-* Model monitoring. Models statistics needs to be monitored to ensure is performing within limits, so that it can be retrained when necessary. 
+* Model monitoring. Models statistics needs to be monitored to ensure is performing within limits, so that it can be retrained when necessary (retraining needs to be on-demand) 
 
-* Testing. In addition to unit tests, models needs to be validated for model quality, such as accuracy, AUC, ROC, confusion matrix, precision, recall, etc. 
+* Testing. In addition to unit tests, models need to be validated for model quality, such as accuracy, AUC, ROC, confusion matrix, precision, recall, etc. 
 
 As such:
 
@@ -50,7 +50,7 @@ Once the data has been cleaned and is made available, we will start the iterativ
 
 #### Feature Engineering, Model Evaluation and Experimentation
 
-As the ML process is very experimental in nature and you may have multiple experiments running in parallel, it is is important to capture key model metrics. This helps in the decision whether the model can be promoted through the different stages, such as staging and finally to production. 
+As the ML process is very experimental in nature and you may have multiple experiments running in parallel, it is important to capture key model metrics. This helps in the decision whether the model can be promoted through the different stages, such as staging and finally to production. 
 
 We will be using [JupyterHub](https://jupyter.org/hub) and [MLFlow](https://www.mlflow.org/) to log the model and experiment results. 
 
@@ -72,11 +72,11 @@ As part of the pipeline, the model will be validated and tested.
 
 ### Model Deployment
 
-Once the model has been built, the model will packaged into a container image and deployed onto OpenShift by the pipeline. 
+Once the model has been built, the model will be packaged into a container image and deployed onto OpenShift by the pipeline. 
 
 #### Model Serving
 
-The model will be served using [Seldon](https://www.seldon.io/). The pipeline will be build an image using Source-to-Image ([S2I](https://github.com/openshift/source-to-image)) and deploy the model onto OpenShift. 
+The model will be served using [Seldon](https://www.seldon.io/). The pipeline will build an image using Source-to-Image ([S2I](https://github.com/openshift/source-to-image)) and deploy the model onto OpenShift. 
 
 ## Model Monitoring and Observability
 
@@ -85,6 +85,10 @@ Seldon models can expose prometheus endpoints which we will use to monitor key m
 ## Continuous Delivery 
 
 [Tekton](https://tekton.dev/) CI/CD pipeline will be used in the workshop to automate the different stages, such as building, testing, deployment and promotion of the model onto OpenShift. 
+
+## Suggested additional reading:
+[MLOps Platform – Productionizing Machine Learning Models](https://www.xenonstack.com/blog/mlops/)
+
 
 Let's get started!
 
