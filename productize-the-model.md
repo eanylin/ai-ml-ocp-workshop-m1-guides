@@ -31,9 +31,30 @@ The production pipeline will promote (tag) the image from staging to production.
 
 ## Logging Into CodeReady Workspaces
 
-Built on the open Eclipse Che project, Red Hat CodeReady Workspaces uses Kubernetes and containers to provide any member of the development or IT team with a consistent, secure, and zero-configuration development environment. The user experience is as fast and familiar as an integrated development environment (IDE) on their laptop.
+You will be using Red Hat CodeReady Workspaces, an online IDE based on Eclipse Che. Built on the open Eclipse Che project, Red Hat CodeReady Workspaces uses Kubernetes and containers to provide any member of the development or IT team with a consistent, secure, and zero-configuration development environment. The user experience is as fast and familiar as an integrated development environment (IDE) on their laptop.
 
 CodeReady Workspaces is included in OpenShift® and is available in the OpenShift Operator Hub. Once deployed, CodeReady Workspaces provides development teams a faster and more reliable foundation on which to work, and it gives operations centralized control and peace of mind.
+
+To get started, [access the CodeReady Workspaces instance]({{ ECLIPSE_CHE_URL }}), and log in using the username and password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+
+![che-login](images/che-login.png)
+
+Once you log in, you’ll be placed on your personal dashboard. Click on the name of the pre-created workspace on the left, as shown below (the name will be different depending on your assigned number). You can also click on the name of the workspace in the center, and then click on the green {{USER_ID}}-namespace that says _Open_ on the top right hand side of the screen.
+
+After a minute or two, you’ll be placed in the workspace:
+
+![che-workspace](images/che-workspace.png)
+
+[NOTE]
+====
+If things get weird or your browser appears, you can simply reload the browser tab to refresh the view.
+====
+
+This IDE is based on Eclipse Che (which is in turn based on MicroSoft VS Code editor).
+
+You can see icons on the left for navigating between project explorer, search, version control (e.g. Git), debugging, and other plugins.  You’ll use these during the course of this workshop. Feel free to click on them and see what they do:
+
+*Changes to files are auto-saved every few seconds*, so you don’t need to explicitly save changes.
 
 ## Converting A Notebook To Python Code
 
@@ -46,9 +67,7 @@ Within your workspace, click on "Open New Terminal" and run
 
 This will convert the notebook into a python code.
 
-Next, we will then modify the code into a format that the pipeline can run to train and build the image with the model. The pipeline will call `train.sh` and expects the model to be written to a folder at `/workspace/model`.
-
-The pipeline expects the model to be written to a folder which can then be used in a pipeline stage to build the image.
+Next, we will then modify the code into a format that the pipeline can run to train and build the image with the model. The pipeline will call `train.sh` and expects the model to be written to a folder at `/workspace/model`. The pipeline expects the model to be written to a folder which can then be used in a pipeline stage to build the image.
 
 We have prepared the refactored model at `src/`. Copy it to `src/blah`.
 
@@ -59,10 +78,17 @@ The python code generated from the notebook has been refactored into a python cl
 Furthermore, the version of the data used is going to be committed together with source, thus allowing us to have reproducible result easily with dvc. 
 
 ```
-
+sample code here
 ```
 
 ## Testing The Model
+
+[NOTE]
+====
+The Terminal window in CodeReady Workspaces. You can open a terminal window for any of the containers running in your Developer workspace. For the rest of these labs, anytime you need to run a command in a terminal, you can use the **>_ New Terminal** command on the right:
+====
+
+![che-workspace-terminal](images/che-workspace-terminal.png)
 
 ``` bash
 pip install -r src/train/requirements.txt
