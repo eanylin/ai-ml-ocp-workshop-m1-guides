@@ -2,7 +2,7 @@
 
 In this module, you will begin to use Jupyter Notebook to build, train and test the model.
 
-### Logging in
+## Logging in
 Begin by logging into [JupyterHub]({{JUPYTERHUB_URL}}). 
 
 Your user name will be `{{  USER_ID }}` and password is `{{  OPENSHIFT_USER_PASSWORD }}`.

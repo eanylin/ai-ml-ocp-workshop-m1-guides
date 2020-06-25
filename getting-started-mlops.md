@@ -1,4 +1,4 @@
-## Getting Started with ML Ops
+## Getting Started with MLOps
 
 In the next few modules you will look at how AI/ML workload on OpenShift (OCP) can be integrated with Red Hat Middleware portfolio, focusing on MLOps, which enables data science and IT teams to collaborate and increase the pace of model development and deployment.
 
@@ -43,8 +43,6 @@ As such:
 ![cd4ml-end-to-end]({% image_path cd4ml-end-to-end.png %}) 
 Image Source: [CD4ML](https://martinfowler.com/articles/cd4ml.html#TestingAndQualityInMachineLearning)
 
-
-
 ### Model Building
 Once the data has been cleaned and is made available, we will start the iterative approach for model building. 
 
@@ -62,7 +60,7 @@ We will be using [dvc](https://dvc.org/) in this workshop.
 
 ### Productize Model
 
-Once a model has been chosen, we will begin to productize the model from a notebook to source code. This allows better source revision control compared to having a notebook in a Source code management (SCM). 
+Once a model has been chosen, we will begin to productize the model from a notebook to source code. This allows better source revision control compared to having a notebook in a Source Code Management (SCM). 
 
 We will be using [Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) to version control the source code. 
 
@@ -78,11 +76,11 @@ Once the model has been built, the model will be packaged into a container image
 
 The model will be served using [Seldon](https://www.seldon.io/). The pipeline will build an image using Source-to-Image ([S2I](https://github.com/openshift/source-to-image)) and deploy the model onto OpenShift. 
 
-## Model Monitoring and Observability
+### Model Monitoring and Observability
 
 Seldon models can expose prometheus endpoints which we will use to monitor key model metrics using the Grafana dashboard. 
 
-## Continuous Delivery 
+### Continuous Delivery 
 
 [Tekton](https://tekton.dev/) CI/CD pipeline will be used in the workshop to automate the different stages, such as building, testing, deployment and promotion of the model onto OpenShift. 
 
