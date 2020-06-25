@@ -20,10 +20,10 @@ The staging pipeline will deploy the model into this environment for further tes
 
 The pipeline is responsible for:
 
-# Checking out the source code
-# Running the training code using `train.sh`
-# Build the image with the model and push the image to OpenShift's registry
-# Deploy the model 
+1. Checking out the source code
+2. Running the training code using `train.sh`
+3. Build the image with the model and push the image to OpenShift's registry
+4. Deploy the model 
 
 ### Production Environment
 
