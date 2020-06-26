@@ -1,0 +1,24 @@
+## Deploy the Model to Staging
+
+The model has been tested and is ready to be deployed to the staging environment.
+
+## Push to staging branch
+
+[source, sh]
+----
+git branch -b
+git commit
+git push
+----
+
+Because gogs has been configure with a webhook, a git push will trigger our pipeline.
+
+You can go to OpenShift console ...
+
+
+## Test the Model
+
+[source, sh]
+----
+
+----
