@@ -35,7 +35,7 @@ using DVC to retrieve the dataset from a S3 bucket provided by OCS4.
 
 == Logging in
 
-Begin by logging into link:%7B%7BJUPYTERHUB_URL%7D%7D[JupyterHub].
+Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub^].
 
 Your user name will be `{{  USER_ID }}` and password is
 `{{  OPENSHIFT_USER_PASSWORD }}`.
