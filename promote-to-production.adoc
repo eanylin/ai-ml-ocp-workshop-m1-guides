@@ -1,0 +1,36 @@
+## Promote To Production
+
+The model is working properly in staging and can now be deployed to production. The production environment will be under the `{{USER_ID}}-prod` namespace.
+
+Using container images allows us to have consistency across environments. Containers allows us to package our model and its dependencies into an image and will run the same regardless of their deployment environment.
+
+## Image Promotion
+
+To promote the image from Staging to Production, we are going to run the promotion pipeline. The pipeline can be called by a workflow engine, such as Red Hat Process Automation Manager, to deploy an approved image into production. 
+
+Ensure you are on the staging branch:
+
+[source,sh]
+----
+$ git branch -a
+  master
+  no-track
+  production
+* staging
+----
+
+And run the following promotion script. The same image would be tagged as production and deployment will happen.
+
+[source,sh,role="copyandpaste"]
+----
+/projects/datascience-examples/workshop/src/prod/promote.sh
+----
+
+
+## End To End Testing
+
+
+
+
+
+
