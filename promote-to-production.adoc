@@ -14,12 +14,10 @@ Ensure you are on the staging branch:
 ----
 $ git branch -a
   master
-  no-track
-  production
 * staging
 ----
 
-And run the following promotion script. The same image would be tagged as production and deployment will happen.
+And run the following promotion script. The same image would be tagged as production and deployment will happen to `{{USER_ID}}-prod` namespace.
 
 [source,sh,role="copyandpaste"]
 ----
