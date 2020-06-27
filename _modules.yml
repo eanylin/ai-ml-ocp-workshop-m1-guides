@@ -15,8 +15,6 @@ modules:
   building-the-first-model:
     name: Build the First Model
   productize-the-model:
-    name Productize the Model
-  # deploy-to-staging:
-  #   name: Deploy the Model to Staging
+    name: Productize the Model
   exploring-openshift:
     name: Exploring OpenShift
