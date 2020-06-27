@@ -37,18 +37,15 @@ CodeReady Workspaces is included in OpenShift® and is available in the OpenShif
 
 To get started, [access the CodeReady Workspaces instance]({{ ECLIPSE_CHE_URL }}), and log in using the username and password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
-![che-login](images/che-login.png)
+![che-login]({% image_path che-login.png %})
 
 Once you log in, you’ll be placed on your personal dashboard. Click on the name of the pre-created workspace on the left, as shown below (the name will be different depending on your assigned number). You can also click on the name of the workspace in the center, and then click on the green {{USER_ID}}-namespace that says _Open_ on the top right hand side of the screen.
 
 After a minute or two, you’ll be placed in the workspace:
 
-![che-workspace](images/che-workspace.png)
+![che-workspace]({% image_path che-workspace.png %})
 
-[NOTE]
-====
-If things get weird or your browser appears, you can simply reload the browser tab to refresh the view.
-====
+> If things get weird or your browser appears, you can simply reload the browser tab to refresh the view.
 
 This IDE is based on Eclipse Che (which is in turn based on MicroSoft VS Code editor).
 
@@ -60,12 +57,15 @@ You can see icons on the left for navigating between project explorer, search, v
 
 Within your workspace, click on "Open New Terminal" and run
 
-``` bash
-
-# This will convert the notebook into a python script
-```
+> The Terminal window in CodeReady Workspaces. You can open a terminal window for any of the containers running in your Developer workspace. For the rest of these labs, anytime you need to run a command in a terminal, you can use the **>_ New Terminal** command on the right:
 
 This will convert the notebook into a python code.
+
+~~~ bash
+cd /projects/bin
+./nb2py.sh /path/to/nb /path/lr.py
+~~~ 
+
 
 Next, we will then modify the code into a format that the pipeline can run to train and build the image with the model. The pipeline will call `train.sh` and expects the model to be written to a folder at `/workspace/model`. The pipeline expects the model to be written to a folder which can then be used in a pipeline stage to build the image.
 
@@ -77,34 +77,27 @@ The python code generated from the notebook has been refactored into a python cl
 
 Furthermore, the version of the data used is going to be committed together with source, thus allowing us to have reproducible result easily with dvc. 
 
-```
+~~~ python
 sample code here
-```
+~~~ 
 
 ## Testing The Model
 
-[NOTE]
-====
-The Terminal window in CodeReady Workspaces. You can open a terminal window for any of the containers running in your Developer workspace. For the rest of these labs, anytime you need to run a command in a terminal, you can use the **>_ New Terminal** command on the right:
-====
 
-![che-workspace-terminal](images/che-workspace-terminal.png)
-
-``` bash
+~~~ bash
 pip install -r src/train/requirements.txt
 /run/something
 
 some output here
-```
+~~~ 
 
 ## Commit the Code
 
-```bash
-
+~~~ sh
 git add
 git commit -m 'my model'
 git push -v origin master
-```
+~~~ 
 
 The code has now been pushed to [your]({{GIT_URL}}) git repository.
 
