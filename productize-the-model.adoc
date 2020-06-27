@@ -24,7 +24,7 @@ model into the staging or production namespace.
 
 === Development Environment
 
-This is to run experiments. JupyterHub and CodeReady Workspaces run in this environment. 
+JupyterHub and CodeReady Workspaces run in this environment for experiments. 
 
 === Staging Environment
 
@@ -97,13 +97,13 @@ Within your workspace, click on *>_ New Terminal*.
 
 [NOTE]
 ====
-The Terminal window in CodeReady Workspaces. You can open a terminal
+You can open a terminal
 window for any of the containers running in your Developer workspace.
 For the rest of these labs, anytime you need to run a command in a
-terminal, you can use the *>_ New Terminal* command on the right:
+terminal, you can use the *>_ New Terminal* command on the right.
+====
 
 image::che-terminal.png[che-terminal]
-====
 
 Run the the following commands to convert a notebook into a python code.
 
@@ -193,7 +193,7 @@ The script will send a fraud and non-fraud requests to the the model.
 
 == Commit the Code
 
-[source,sh]
+[source,sh,role="copypaste"]
 ----
 cd /projects/datascience-examples/workshop/src/train
 git add *.py
