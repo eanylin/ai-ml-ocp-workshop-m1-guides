@@ -19,14 +19,14 @@ image:pipeline.png[pipeline]
 The pipeline consists of the following stages
 
 * Git clone the source code
-* Run `train.sh` to train the model
+* Run `train-stage.sh` to train the model
 * Build the image using S2I (Source-to-Image)
 * Push the image into OpenShift's registry
 * Deploy the model into the {{USER_ID}}-stage namespace
 
 ### Training script
 
-`train.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/datascience-examples/[Gogs^] repository. 
+`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/datascience-examples/[Gogs^] repository. 
 
 [source, sh]
 ----
@@ -72,7 +72,9 @@ The yaml file used in this workshop is available {{GIT_URL}}/{{USER_ID}}/datasci
 
 ## Push To Staging Branch
 
-[source, sh]
+Now let's push the code to the staging branch so that the pipeline will run.
+
+[source,sh,role="copypaste"]
 ----
 git checkout -b staging
 git push -u -v origin staging

@@ -33,7 +33,7 @@ The staging pipeline will deploy the model into this environment for further tes
 The pipeline is responsible for:
 
 . Checking out the source code
-. Running the training code using `train.sh`
+. Running the training code using `train-stage.sh`
 . Build the image with the model and push the image to OpenShift’s
 registry
 . Deploy the model
@@ -130,7 +130,7 @@ python class and visualization removed.
 
 Next, we will then modify the code into a format that the pipeline can
 run to train and build the image with the model. The pipeline will call
-`train.sh` and expects the model to be written to a folder at
+`train-stage.sh` and expects the model to be written to a folder at
 `/workspace/model`. 
 
 The version of the data used is going to be committed
@@ -174,7 +174,7 @@ class LRModel(Base):
         # Calls the model predict_proba method
 ----
 
-Serve the model by running `serve.sh`.
+Serve the model by running `app.sh`.
 
 [source,bash,role="copypaste"]
 ----
@@ -182,7 +182,14 @@ cd /projects/datascience-examples/workshop/src/seldon/
 ./app.sh
 ----
 
-Now let's test the model. Open up a new terminal and run the following:
+[NOTE]
+====
+You can ignore this popup box because we are not exposing the route.
+
+image::che-exposed-route.png[che-exposed-route]
+====
+
+Now let's test the model. Open up a *new* terminal and run the following:
 
 [source,bash,role="copypaste"]
 ----

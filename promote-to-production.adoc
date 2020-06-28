@@ -19,7 +19,7 @@ $ git branch -a
 
 And run the following promotion script. The same image would be tagged as production and deployment will happen to `{{USER_ID}}-prod` namespace.
 
-[source,sh,role="copyandpaste"]
+[source,sh,role="copypaste"]
 ----
 /projects/datascience-examples/workshop/src/prod/promote.sh
 ----
