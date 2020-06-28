@@ -109,9 +109,13 @@ image::seldon-svc-orch.png[seldon-svc-orch]
 
 The image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/imagestreams[registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
-## End To End Testing
+## Model Testing
+
+Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
 
 [source, sh]
 ----
-
+/projects/datascience-examples/workshop/bin/stage-test.sh
 ----
+
+## End-To-End Testing

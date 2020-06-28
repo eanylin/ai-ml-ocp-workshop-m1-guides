@@ -21,11 +21,17 @@ And run the following promotion script. The same image would be tagged as produc
 
 [source,sh,role="copypaste"]
 ----
-/projects/datascience-examples/workshop/src/prod/promote.sh
+/projects/datascience-examples/workshop/bin/promote.sh
 ----
 
+## Model Testing
 
-## End To End Testing
+Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
+
+[source, sh]
+----
+/projects/datascience-examples/workshop/bin/prod-test.sh
+----
 
 
 

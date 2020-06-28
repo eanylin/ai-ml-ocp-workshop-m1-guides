@@ -68,7 +68,3 @@ class Base(object):
 Seldon model provides a `/api/v1.0/feedback` endpoint that allows you to send back feedback to the model, which allows us to calculate various scores.
 
 This is extremely useful when multi-armed bandits is used for reinforced learning, so as to maximize a numerical reward signal. 
-
-## Continuous Training (CT)
-
-It is important for us to actively monitor the quality of your model in production. Monitoring allows us to detect performance degradation, thus allowing us to decide whether we should start new experiment iterations or retrain the model with new data. 
