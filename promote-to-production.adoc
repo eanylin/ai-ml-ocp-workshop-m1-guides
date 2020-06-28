@@ -14,20 +14,24 @@ Ensure you are on the staging branch:
 ----
 $ git branch -a
   master
-  no-track
-  production
 * staging
 ----
 
-And run the following promotion script. The same image would be tagged as production and deployment will happen.
+And run the following promotion script. The same image would be tagged as production and deployment will happen to `{{USER_ID}}-prod` namespace.
 
-[source,sh,role="copyandpaste"]
+[source,sh,role="copypaste"]
 ----
-/projects/datascience-examples/workshop/src/prod/promote.sh
+/projects/datascience-examples/workshop/bin/promote.sh
 ----
 
+## Model Testing
 
-## End To End Testing
+Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
+
+[source, sh]
+----
+/projects/datascience-examples/workshop/bin/prod-test.sh
+----
 
 
 
