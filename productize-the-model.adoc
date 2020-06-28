@@ -1,0 +1,206 @@
+== Productize The Model
+
+Now the model has been created, we will now begin to productize the
+model.
+
+We will be using CodeReady Workspaces and `juyptext` to convert
+the notebook to python code.
+
+== Pipeline
+
+A pipeline in software development is an automated process that drives
+software through a path of building, testing, and deploying code. By
+automating the process, the objective is to minimize human error and
+maintain a consistent process for how software is deployed. Tools that
+are included in the pipeline could include compiling code, unit tests,
+code analysis, security, and installer creation. For containerized
+environments, this pipeline would also include packaging the code into a
+container to be deployed across the hybrid cloud. A pipeline is critical
+in supporting continuous integration and continuous deployment (CI/CD)
+processes.
+
+There is a staging and production pipeline that is used to deploy the
+model into the staging or production namespace.
+
+=== Development Environment
+
+JupyterHub and CodeReady Workspaces run in this environment for experiments. 
+
+=== Staging Environment
+
+The staging pipeline will deploy the model into this environment for further testing.
+
+The pipeline is responsible for:
+
+. Checking out the source code
+. Running the training code using `train.sh`
+. Build the image with the model and push the image to OpenShift’s
+registry
+. Deploy the model
+
+=== Production Environment
+
+The production pipeline will promote(tag) the image from staging to
+production.
+
+== Logging Into CodeReady Workspaces
+
+You will be using Red Hat CodeReady Workspaces, an online IDE based on
+Eclipse Che. Built on the open Eclipse Che project, Red Hat CodeReady
+Workspaces uses Kubernetes and containers to provide any member of the
+development or IT team with a consistent, secure, and zero-configuration
+development environment. The user experience is as fast and familiar as
+an integrated development environment (IDE) on their laptop.
+
+CodeReady Workspaces is included in OpenShift® and is available in the
+OpenShift Operator Hub. Once deployed, CodeReady Workspaces provides
+development teams a faster and more reliable foundation on which to
+work, and it gives operations centralized control and peace of mind.
+
+To get started, {{ECLIPSE_CHE_URL}}[access the
+CodeReady Workspaces instance^], and log in using the username and
+password you’ve been assigned
+(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+
+image::che-login.png[che-login]
+
+Once you log in, you’ll be placed on your personal dashboard. Click on
+the name of the pre-created workspace on the left, as shown below (the
+name will be different depending on your assigned number). 
+
+After a minute or two, you’ll be placed in the workspace:
+
+image::che-workspace.png[che-workspace]
+
+[NOTE]
+====
+If things get weird or your browser appears, you can simply reload the
+browser tab to refresh the view.
+====
+
+This IDE is based on Eclipse Che (which is in turn based on MicroSoft VS
+Code editor).
+
+You can see icons on the left for navigating between project explorer,
+search, version control (e.g. Git), debugging, and other plugins. You’ll
+use these during the course of this workshop. Feel free to click on them
+and see what they do:
+
+Your git repository will be cloned to `/projects` automatically for you.
+
+_Changes to files are auto-saved every few seconds_, so you don’t need
+to explicitly save changes.
+
+== Converting A Notebook To Python Code
+
+Within your workspace, click on *>_ New Terminal*.
+
+[NOTE]
+====
+You can open a terminal
+window for any of the containers running in your Developer workspace.
+For the rest of these labs, anytime you need to run a command in a
+terminal, you can use the *>_ New Terminal* command on the right.
+====
+
+image::che-terminal.png[che-terminal]
+
+Run the the following commands to convert a notebook into a python code.
+
+[source,bash,role="copypaste"]
+----
+pip install jupytext
+cd /projects/datascience-examples/workshop/notebooks/
+jupytext "2 building the first model.ipynb"  -o ../src/train/lr.py
+----
+
+Open up the file in the editor and inspect the newly converted file. 
+
+[NOTE]
+====
+You can ignore the pylint warning
+
+image::che-pylint.png[che-pylint]
+====
+
+The python code generated from the notebook has been refactored into a
+python class and visualization removed.
+
+== Refactor the New Model
+
+Next, we will then modify the code into a format that the pipeline can
+run to train and build the image with the model. The pipeline will call
+`train.sh` and expects the model to be written to a folder at
+`/workspace/model`. 
+
+The version of the data used is going to be committed
+together with source, thus allowing us to have reproducible result
+easily with dvc. We will also use a bigger training set `"creditcard-train.csv"`.
+
+[source,python]
+----
+DATA_VERSION = 'v1.0'
+CSV_FILE = 'creditcard-train.csv'
+----
+
+We have prepared the refactored model at `/projects/datascience-examples/workshop/src/train/lr.ans.py`. Copy it to `/projects/datascience-examples/workshop/src/train/lr.py`
+
+[source,bash,role="copypaste"]
+----
+cp /projects/datascience-examples/workshop/src/train/lr.ans.py /projects/datascience-examples/workshop/src/train/lr.py
+----
+
+== Train And Test The Model
+
+To train the model, run the following script:
+
+[source,bash,role="copypaste"]
+----
+/projects/datascience-examples/workshop/src/train/train-dev.sh
+----
+
+The model would have been written to `/opt/app-root/src/model`. 
+
+As part of the training, the metrics and model will be logged at https://mlflow-{{USER_ID}}-dev.{{ROUTE_SUBDOMAIN}}[MLflow server^]. 
+
+Now start serving the model using REST. A model wrapper has been written to serve the model using Seldon. The model will be loaded and `predict_proba` method will be called. Seldon will wrap the model using Flask and exposes the port `5000`.
+
+[source,python]
+----
+class LRModel(Base):
+    def __init__(self):
+        # Load the model
+    def predict(self, X, features_names):
+        # Calls the model predict_proba method
+----
+
+Serve the model by running `serve.sh`.
+
+[source,bash,role="copypaste"]
+----
+cd /projects/datascience-examples/workshop/src/seldon/
+./app.sh
+----
+
+Now let's test the model. Open up a new terminal and run the following:
+
+[source,bash,role="copypaste"]
+----
+/projects/datascience-examples/workshop/src/train/seldon-test.py
+----
+
+The script will send a fraud and non-fraud requests to the the model. 
+
+== Commit the Code
+
+[source,sh,role="copypaste"]
+----
+cd /projects/datascience-examples/workshop/src/train
+git add *.py
+git commit -a -m 'my lr training code'
+git push -v origin master
+----
+
+The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your^] git
+repository.
+

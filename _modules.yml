@@ -1,5 +1,5 @@
 config:
-    renderer: markdown
+    renderer: asciidoc
 
 modules:
   kubernetes-overview:
@@ -15,8 +15,10 @@ modules:
   building-the-first-model:
     name: Build the First Model
   productize-the-model:
-    name Productize the Model
-  # deploy-to-staging:
-  #   name: Deploy the Model to Staging
+    name: Productize the Model
+  deploy-to-staging:
+    name: Deploy The Model To Staging
+  promote-to-production:
+    name: Promote to Production
   exploring-openshift:
     name: Exploring OpenShift
