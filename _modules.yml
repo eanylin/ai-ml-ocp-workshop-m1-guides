@@ -22,3 +22,5 @@ modules:
     name: Promote to Production
   exploring-openshift:
     name: Exploring OpenShift
+  model-observability:
+    name: Model Monitoring and Observability
