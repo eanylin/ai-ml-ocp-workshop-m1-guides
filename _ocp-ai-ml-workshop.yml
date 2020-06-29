@@ -15,6 +15,7 @@ vars:
   OPENSHIFT_USER_PASSWORD:
   ROUTE_SUBDOMAIN:
   JUPYTERHUB_URL:
+  GRAFANA_URL:
 
 modules:
   activate:
