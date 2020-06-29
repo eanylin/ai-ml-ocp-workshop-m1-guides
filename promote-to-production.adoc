@@ -36,14 +36,6 @@ Once the model has been deployed and is running, you now can run some simple tes
 /projects/datascience-examples/workshop/bin/prod-test.sh
 ----
 
-<<<<<<< HEAD
-[source,sh,role="copypaste"]
-----
-/projects/datascience-examples/workshop/bin/prod-test.sh
-----
-
-=======
->>>>>>> resolve conflict
 ## Tag it!
 
 Now the model has been tested in production, we now can tag it as `v1.0`.
@@ -53,13 +45,3 @@ Now the model has been tested in production, we now can tag it as `v1.0`.
 git tag -a v1.0 -m "v1.0"
 git push -v origin v1.0
 ----
-<<<<<<< HEAD
-
-
-
-
-
-
-
-=======
->>>>>>> resolve conflict
