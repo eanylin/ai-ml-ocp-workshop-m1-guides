@@ -136,7 +136,7 @@ run to train and build the image with the model. The pipeline will call
 The version of the data used is going to be committed together with source, thus allowing us to have reproducible result
 easily with dvc. 
 
-We will also use a bigger training set `"creditcard-train.csv"` during the training stage in the pipeline.
+We will also use a bigger training set `creditcard-train.csv` during the training stage in the pipeline.
 
 
 [source,python]
@@ -214,6 +214,6 @@ git commit -a -m 'my lr training code'
 git push -v origin master
 ====
 
-The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your^] git
+The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your] git
 repository.
 
