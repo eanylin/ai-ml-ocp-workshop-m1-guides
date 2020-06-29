@@ -113,9 +113,9 @@ The image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID
 
 Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
 
-[source, sh]
-====
+[source,sh,role="copypaste"]
+----
 /projects/datascience-examples/workshop/bin/stage-test.sh
-====
+----
 
 ## End-To-End Testing
