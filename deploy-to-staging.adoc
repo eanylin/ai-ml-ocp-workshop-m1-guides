@@ -5,13 +5,13 @@ The model has been tested in the development environment and is now ready to be 
 Once we code is pushed to the git repository, the pipeline will run and deploy it to the staging environment. 
 
 To get started, {{ECLIPSE_CHE_URL}}[access the
-CodeReady Workspaces instance^], and log in using the username and
-password you’ve been assigned
+CodeReady Workspaces instance], and log in using the username and
+password you have been assigned
 (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 ## Pipeline
 
-A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline^]
+A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline]
 has been created for you.
 
 image:pipeline.png[pipeline]
@@ -26,10 +26,10 @@ The pipeline consists of the following stages
 
 ### Training script
 
-`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/datascience-examples/[Gogs^] repository. 
+`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/datascience-examples/[Gogs] repository. 
 
 [source, sh]
-----
+====
 #!/bin/bash
 
 pip install -U pip setuptools
@@ -37,26 +37,26 @@ pip install -r /workspace/source/workshop/src/train/requirements.txt
 
 echo "Running training"
 python /workspace/source/workshop/src/train/lr.py -m /workspace/model -r lr
-----
+====
 
 ### Building The Image
 
 Once the model has been saved into the pipeline workspace, the building stage will begin to assemble the image by calling `S2I` and `buildah`.
 
-https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users/[Buildah^] is a tool that facilitates building Open Container Initiative (OCI) container images.
+https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users/[Buildah] is a tool that facilitates building Open Container Initiative (OCI) container images.
 
 image::buildah.png[buildah, 700]
 
-S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#images-create-s2i-build_build-strategie[defined^] repository https://github.com/sclorg/s2i-python-container/tree/master/3.6[layout^], which includes the following files:
+S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#images-create-s2i-build_build-strategie[defined] repository https://github.com/sclorg/s2i-python-container/tree/master/3.6[layout], which includes the following files:
 
 * `requirements.txt`, for python dependencies
 * `.s2i/bin/assemble`, to customize image assembling 
 * `.s2i/environment`, custom environment variables
-* `app.py`, python script to launch the application. 
+* `app.py`, python script to launch the application
 
 In our workshop, we have overridden `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
 
-The source code is available {{GIT_URL}}/{{USER_ID}}/datascience-examples/src/staging/workshop/src/seldon[here^] 
+The source code is available {{GIT_URL}}/{{USER_ID}}/datascience-examples/src/staging/workshop/src/seldon[here] 
 
 ### Deployment
 
@@ -68,32 +68,32 @@ A `SeldonDeployment` is a JSON or YAML file that allows you to define your graph
 
 image::seldon-inf-graph.png[seldon-inf-graph]
 
-The yaml file used in this workshop is available {{GIT_URL}}/{{USER_ID}}/datascience-examples/src/master/workshop/pipeline/seldon-simple-model.yaml[here^].
+The yaml file used in this workshop is available {{GIT_URL}}/{{USER_ID}}/datascience-examples/src/master/workshop/pipeline/seldon-simple-model.yaml[here].
 
 ## Push To Staging Branch
 
 Now let's push the code to the staging branch so that the pipeline will run.
 
 [source,sh,role="copypaste"]
-----
+====
 git checkout -b staging
 git push -u -v origin staging
-----
+====
 
 image::gogs-staging-branch.png[gogs-staging-branch, 300]
 
-Because Gogs has been configure with a https://{{GIT_URL}}/{{USER_ID}}/datascience-examples/settings/hooks[webhook^], a git push will trigger our pipeline.
+Because Gogs has been configure with a https://{{GIT_URL}}/{{USER_ID}}/datascience-examples/settings/hooks[webhook], a git push will trigger our pipeline.
 
 [WARNING]
 ====
-Do not change the webhook. 
+Do not change the webhook.
 ====
 
-You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run^].
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
 
 Once the model has been deployed, a `Deployment` resource will be created. The pods should be running and in ready state.
 
-You can view them under OpenShift Console -> Workloads -> Deployments. Choose the `{{USER_ID}}-stage` project. 
+You can view them under OpenShift Console -> Workloads -> Deployments. Choose the `{{USER_ID}}-stage` project.
 
 [NOTE]
 ====
@@ -107,15 +107,15 @@ You will notice there is a Seldon service orchestrator pod running. The service 
 image::seldon-svc-orch.png[seldon-svc-orch]
 ====
 
-The image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/imagestreams[registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
+The image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/imagestreams[registry] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
 ## Model Testing
 
 Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
 
 [source, sh]
-----
+====
 /projects/datascience-examples/workshop/bin/stage-test.sh
-----
+====
 
 ## End-To-End Testing

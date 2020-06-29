@@ -29,4 +29,4 @@ The openshift user password is `{{  OPENSHIFT_USER_PASSWORD }}`
 
 == Image
 
-image:%7B%%20image_path%20Red-Hat-OpenShift.png%20%%7D[ocp_image]\{:width=``1200px''}
+image::Red-Hat-OpenShift.png[ocp_image]

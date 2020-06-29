@@ -20,14 +20,14 @@ As shown in the following diagram, only a small fraction of a real-world
 ML system is composed of the ML code. The required surrounding elements
 are vast and complex.
 
-image:%7B%%20image_path%20mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png%20%%7D[mlops_elements]
+image::mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png[mlops_elements]
 
 == What Is MLOps
 
 From https://en.wikipedia.org/wiki/MLOps[Wikipedia]:
 
 ____
-MLOps (a compound of ``machine learning'' and ``operations'') is a
+MLOps (a compound of `machine learning` and `operations`) is a
 practice for collaboration and communication between data scientists and
 operations professionals to help manage production ML (or deep learning)
 lifecycle. Similar to the DevOps or DataOps approaches, MLOps looks to
@@ -66,7 +66,7 @@ ML systems that is for
 
 == Data Science Steps For MLOps
 
-image:%7B%%20image_path%20cd4ml-end-to-end.png%20%%7D[cd4ml-end-to-end]
+image::cd4ml-end-to-end.png[cd4ml-end-to-end]
 Image Source:
 https://martinfowler.com/articles/cd4ml.html#TestingAndQualityInMachineLearning[CD4ML]
 

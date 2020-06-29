@@ -108,11 +108,11 @@ image::che-terminal.png[che-terminal]
 Run the the following commands to convert a notebook into a python code.
 
 [source,bash,role="copypaste"]
-----
+====
 pip install jupytext
 cd /projects/datascience-examples/workshop/notebooks/
 jupytext "2 building the first model.ipynb"  -o ../src/train/lr.py
-----
+====
 
 Open up the file in the editor and inspect the newly converted file. 
 
@@ -140,30 +140,30 @@ We will also use a bigger training set `"creditcard-train.csv"` during the train
 
 
 [source,python]
-----
+====
 DATA_VERSION = 'v1.0'
 
 if os.environ.get('PIPELINERUN', None):
     CSV_FILE = 'creditcard-train.csv'       
 else:
     CSV_FILE = 'creditcard.csv'
-----
+====
 
 We have prepared the refactored model at `/projects/datascience-examples/workshop/src/train/lr.ans.py`. Copy it to `/projects/datascience-examples/workshop/src/train/lr.py`
 
 [source,bash,role="copypaste"]
-----
+====
 cp /projects/datascience-examples/workshop/src/train/lr.ans.py /projects/datascience-examples/workshop/src/train/lr.py
-----
+====
 
 == Train And Test The Model
 
 To train the model, run the following script:
 
 [source,bash,role="copypaste"]
-----
+====
 /projects/datascience-examples/workshop/src/train/train-dev.sh
-----
+====
 
 The model would have been written to `/opt/app-root/src/model`. 
 
@@ -172,21 +172,21 @@ As part of the training, the metrics and model will be logged at https://mlflow-
 Now start serving the model using REST. A model wrapper has been written to serve the model using Seldon. The model will be loaded and `predict_proba` method will be called. Seldon will wrap the model using Flask and exposes the port `5000`.
 
 [source,python]
-----
+====
 class LRModel(Base):
     def __init__(self):
         # Load the model
     def predict(self, X, features_names):
         # Calls the model predict_proba method
-----
+====
 
 Serve the model by running `app.sh`.
 
 [source,bash,role="copypaste"]
-----
+====
 cd /projects/datascience-examples/workshop/src/seldon/
 ./app.sh
-----
+====
 
 [NOTE]
 ====
@@ -198,21 +198,21 @@ image::che-exposed-route.png[che-exposed-route]
 Now let's test the model. Open up a *new* terminal and run the following:
 
 [source,bash,role="copypaste"]
-----
+====
 /projects/datascience-examples/workshop/bin/dev-test.sh
-----
+====
 
 The script will send a fraud and non-fraud requests to the the model. 
 
 == Commit the Code
 
 [source,sh,role="copypaste"]
-----
+====
 cd /projects/datascience-examples/workshop/src/train
 git add *.py
 git commit -a -m 'my lr training code'
 git push -v origin master
-----
+====
 
 The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your^] git
 repository.

@@ -11,30 +11,24 @@ To promote the image from Staging to Production, we are going to run the promoti
 Ensure you are on the staging branch:
 
 [source,sh]
-----
+====
 $ git branch -a
   master
 * staging
-----
+====
 
 And run the following promotion script. The same image would be tagged as production and deployment will happen to `{{USER_ID}}-prod` namespace.
 
 [source,sh,role="copypaste"]
-----
+====
 /projects/datascience-examples/workshop/bin/promote.sh
-----
+====
 
 ## Model Testing
 
 Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
 
 [source, sh]
-----
+====
 /projects/datascience-examples/workshop/bin/prod-test.sh
-----
-
-
-
-
-
-
+====

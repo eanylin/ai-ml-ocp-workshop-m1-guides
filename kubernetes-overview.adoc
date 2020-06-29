@@ -137,7 +137,7 @@ task, i.e, Job is complete
 
 == Kubernetes Cluster Architecture
 
-image:%7B%%20image_path%20kubernetes-components.png%20%%7D[k8s_architecture]
+image::kubernetes-components.png[k8s_architecture]
 
 == Containers
 
