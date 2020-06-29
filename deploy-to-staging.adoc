@@ -29,7 +29,7 @@ The pipeline consists of the following stages
 `train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/datascience-examples/[Gogs] repository. 
 
 [source, sh]
-====
+----
 #!/bin/bash
 
 pip install -U pip setuptools
@@ -37,7 +37,7 @@ pip install -r /workspace/source/workshop/src/train/requirements.txt
 
 echo "Running training"
 python /workspace/source/workshop/src/train/lr.py -m /workspace/model -r lr
-====
+----
 
 ### Building The Image
 
@@ -75,10 +75,10 @@ The yaml file used in this workshop is available {{GIT_URL}}/{{USER_ID}}/datasci
 Now let's push the code to the staging branch so that the pipeline will run.
 
 [source,sh,role="copypaste"]
-====
+----
 git checkout -b staging
 git push -u -v origin staging
-====
+----
 
 image::gogs-staging-branch.png[gogs-staging-branch, 300]
 
@@ -114,8 +114,8 @@ The image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID
 Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
 
 [source, sh]
-====
+----
 /projects/datascience-examples/workshop/bin/stage-test.sh
-====
+----
 
 ## End-To-End Testing

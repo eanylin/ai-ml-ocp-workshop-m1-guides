@@ -33,7 +33,7 @@ Seldon models exposes a prometheus `/prometheus` endpoint and we have configured
 A ServiceMonitor describes the set of targets to be monitored by Prometheus, which declaratively specifies how groups of Kubernetes services should be monitored. The Prometheus Operator automatically generates Prometheus scrape configuration based on the current state of the objects in the API server.
 
 [source, yaml]
-====
+----
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -45,7 +45,7 @@ spec:
       path: /prometheus
       port: http
       scheme: http
-====
+----
 
 Seldon service orchestrator exposes core metrics such as:
 
@@ -55,13 +55,13 @@ Seldon service orchestrator exposes core metrics such as:
 , and custom metrics added to the model class via the {{GIT_URL}}/{{USER_ID}}/datascience-examples[`Base`] class.
 
 [source, python]
-====
+----
 class Base(object):
   def metrics(self):
     pass
   def send_feedback(self, features, feature_names, reward, truth, routing):
     pass
-====
+----
 
 ## Feedback endpoint
 

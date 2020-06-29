@@ -58,7 +58,7 @@ development teams a faster and more reliable foundation on which to
 work, and it gives operations centralized control and peace of mind.
 
 To get started, {{ECLIPSE_CHE_URL}}[access the
-CodeReady Workspaces instance^], and log in using the username and
+CodeReady Workspaces instance], and log in using the username and
 password you’ve been assigned
 (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
@@ -108,11 +108,11 @@ image::che-terminal.png[che-terminal]
 Run the the following commands to convert a notebook into a python code.
 
 [source,bash,role="copypaste"]
-====
+----
 pip install jupytext
 cd /projects/datascience-examples/workshop/notebooks/
 jupytext "2 building the first model.ipynb"  -o ../src/train/lr.py
-====
+----
 
 Open up the file in the editor and inspect the newly converted file. 
 
