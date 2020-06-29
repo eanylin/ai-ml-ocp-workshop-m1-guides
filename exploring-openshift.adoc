@@ -1,11 +1,11 @@
-## Lab2 - Exploring OpenShift
+== Lab2 - Exploring OpenShift
 
-You will make use of CodeReady Workspace to code, train and deploy your model on OpenShift within the Dev environment
+You will make use of CodeReady Workspace to code, train and deploy your
+model on OpenShift within the Dev environment
 
+== Environment
 
-## Environment
-
----
+'''''
 
 The user_id is `{{ USER_ID }}`
 
@@ -27,7 +27,6 @@ The openshift user name is `{{  USER_ID }}`
 
 The openshift user password is `{{  OPENSHIFT_USER_PASSWORD }}`
 
+== Image
 
-## Image
-
-![ocp_image]({% image_path Red-Hat-OpenShift.png %}){:width="1200px"}
+image::Red-Hat-OpenShift.png[ocp_image]

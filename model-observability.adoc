@@ -1,0 +1,70 @@
+## Model Monitoring and Observability
+
+Monitoring has been configured in this workshop. Prometheus will be scraping the metrics from the model and Grafana will be the interactive visualization web dashboard.
+
+Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, many companies and organizations have adopted Prometheus, and the project has a very active developer and user community. It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project's governance structure, Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.
+
+Grafana is open source visualization and analytics software. It allows you to query, visualize, alert on, and explore your metrics no matter where they are stored. In plain English, it provides you with tools to turn your time-series database (TSDB) data into beautiful graphs and visualizations.
+
+## Looking At Metrics
+
+The Grafana dashbaord has been {{GRAFANA_URL}}[configured]. 
+
+Go to Home and find the `Prediction Analytics` dashboard.
+
+image::grafana-home.png[grafana-home]
+
+image::grafana-dashboard.png[grafana-dashboard]
+
+The dashboard has been configured to look at several metrics:
+
+* Requests/second
+* Latency
+* True/False and Positive/Negative count
+* Accuracy 
+* Precision
+* Recall 
+* F1 
+
+## Exposing Metrics to Prometheus
+
+Seldon models exposes a prometheus `/prometheus` endpoint and we have configured Prometheus `ServiceMonitor` to scrape these endpoints.
+
+A ServiceMonitor describes the set of targets to be monitored by Prometheus, which declaratively specifies how groups of Kubernetes services should be monitored. The Prometheus Operator automatically generates Prometheus scrape configuration based on the current state of the objects in the API server.
+
+[source, yaml]
+====
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: odh-seldon
+  namespace: userX-prod
+spec:
+  endpoints:
+    - interval: 30s
+      path: /prometheus
+      port: http
+      scheme: http
+====
+
+Seldon service orchestrator exposes core metrics such as:
+
+* seldon_api_executor_server_requests_seconds_(bucket,count,sum) 
+* seldon_api_executor_client_requests_seconds_(bucket,count,sum) 
+
+, and custom metrics added to the model class via the {{GIT_URL}}/{{USER_ID}}/datascience-examples[`Base`] class.
+
+[source, python]
+====
+class Base(object):
+  def metrics(self):
+    pass
+  def send_feedback(self, features, feature_names, reward, truth, routing):
+    pass
+====
+
+## Feedback endpoint
+
+Seldon model provides a `/api/v1.0/feedback` endpoint that allows you to send back feedback to the model, which allows us to calculate various scores.
+
+This is extremely useful when multi-armed bandits is used for reinforced learning, so as to maximize a numerical reward signal. 

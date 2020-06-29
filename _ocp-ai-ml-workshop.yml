@@ -14,6 +14,7 @@ vars:
   OPENSHIFT_USER_NAME:
   OPENSHIFT_USER_PASSWORD:
   ROUTE_SUBDOMAIN:
+  JUPYTERHUB_URL:
 
 modules:
   activate:
@@ -23,4 +24,13 @@ modules:
   - workshop-environment
   - exploring-data
   - building-the-first-model
+  - productize-the-model
+  - deploy-to-staging
+  - promote-to-production
+  # - model-observability
+  # - take2-model-building
+  # - take2-deploy-to-staging
+  # - take2-ab-testing-production
+  # - take2-model-observability
+  # - take2-choose-the-right-model
   - exploring-openshift
