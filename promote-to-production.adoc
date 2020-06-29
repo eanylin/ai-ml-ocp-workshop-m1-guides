@@ -4,6 +4,9 @@ The model is working properly in staging and can now be deployed to production. 
 
 Using container images allows us to have consistency across environments. Containers allows us to package our model and its dependencies into an image and will run the same regardless of their deployment environment.
 
+We will be using {{ECLIPSE_CHE_URL}}[ CodeReady Workspaces^], and log in using the username and
+password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+
 ## Image Promotion
 
 To promote the image from Staging to Production, we are going to run the promotion pipeline. The pipeline can be called by a workflow engine, such as Red Hat Process Automation Manager, to deploy an approved image into production. 
@@ -32,3 +35,25 @@ Once the model has been deployed and is running, you now can run some simple tes
 ----
 /projects/datascience-examples/workshop/bin/prod-test.sh
 ----
+
+[source,sh,role="copypaste"]
+----
+/projects/datascience-examples/workshop/bin/prod-test.sh
+----
+
+## Tag it!
+
+Now the model has been tested in production, we now can tag it as `v1.0`.
+
+[source,sh,role="copypaste"]
+----
+git tag -a v1.0 -m "v1.0"
+git push -v origin v1.0
+----
+
+
+
+
+
+
+
