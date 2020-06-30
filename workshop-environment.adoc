@@ -1,55 +1,47 @@
 == The Workshop Environment You Are Using
 
-Your workshop environment consists of several components which have been
-pre-installed and are ready to use. Depending on which parts of the
-workshop you’re doing, you will use one or more of:
+Your workshop environment consists of several components which have been pre-installed and are ready to use. Depending on which parts of the
+workshop you are doing, you will use one or more of:
 
-* https://www.openshift.com/[Red Hat OpenShift] -
-You will use one or more _projects_ (Kubernetes namespaces) that are your
-own and are isolated from other workshop students
-* https://developers.redhat.com/products/codeready-workspaces/overview[Red
-Hat CodeReady Workspaces] - based on *Eclipse Che*,
-it’s a cloud-based, in-browser IDE (similar to IntelliJ IDEA, VSCode,
-Eclipse IDE). You’ve been provisioned your own personal workspace for
-use with this workshop. You will write, test, and deploy code from here.
-* https://developers.redhat.com/products/rhamt[Red Hat Application
-Migration Toolkit] - You will use this to migrate an
-existing application
-* https://www.redhat.com/en/products/runtimes[Red Hat
-Runtimes] - a collection of cloud-native runtimes
-like Spring Boot, Node.js, and
-https://quarkus.io[Quarkus]
-* https://www.redhat.com/en/technologies/jboss-middleware/amq[Red Hat
-AMQ Streams] - streaming data platform based on
-*Apache Kafka*
-* https://access.redhat.com/products/red-hat-single-sign-on[Red Hat
-SSO] - For authentication / authorization - based on
-*Keycloak*
-* Other open source projects like
-https://gogs.io/[Gogs] (Git server that holds
-application source code),
-https://knative.dev[Knative] (for serverless apps),
-https://jenkins.io/[Jenkins] and
-https://cloud.google.com/tekton/[Tekton] (CI/CD
-pipelines), https://prometheus.io[Prometheus] and
-https://grafana.com[Grafana] (monitoring apps), and
-more.
+* https://www.openshift.com/[Red Hat OpenShift] - You will use one or more _projects_ (Kubernetes namespaces) that are your own and are isolated from other workshop students
+* https://developers.redhat.com/products/codeready-workspaces/overview[Red Hat CodeReady Workspaces] - based on *Eclipse Che*, it is a cloud-based, in-browser IDE (similar to IntelliJ IDEA, VSCode, Eclipse IDE). You’ve been provisioned your own personal workspace for use with this workshop. You will write, test, and deploy code from here.
+* https://developers.redhat.com/products/rhamt[Red Hat Application Migration Toolkit] - You will use this to migrate an existing application
+* https://www.redhat.com/en/products/runtimes[Red Hat Runtimes] - a collection of cloud-native runtimes like Spring Boot, Node.js, and https://quarkus.io[Quarkus]
+* https://www.redhat.com/en/technologies/jboss-middleware/amq[Red Hat AMQ Streams] - streaming data platform based on *Apache Kafka*
+* https://access.redhat.com/products/red-hat-single-sign-on[Red Hat SSO] - For authentication / authorization - based on *Keycloak*
+* https://buildah.io/[Buildah] - Buildah is a tool that facilitates building Open Container Initiative (OCI) container images. We will be the tool in this workshop to create models from constructed images.
+* https://jupyter.org/[Jupyter Notebook] - An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Jupyter Notebook will be used to build, train and test models in this workshop.
+* https://jupyterhub.readthedocs.io/en/stable/[JupyterHub] - A multi-user Hub that spawns, manages, and proxies multiple instances of the single-user Jupyter notebook server. In this workshop we will be logging into this environment to provision instances of Jupyter Notebook.
+* https://www.openshift.com/learn/topics/pipelines[Tekton] - An open source project that provides a framework to create cloud-native CI/CD pipelines quickly. We will be creating pipelines based on Tekton in this workshop.
+* https://www.openshift.com/blog/configure-openshift-metrics-with-prometheus-backed-by-openshift-container-storage[Prometheus] - An open-source systems monitoring toolkit for event monitoring and alerting. Prometheus will be collating the metrics from the produced models in this workshop.
+* https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4[Grafana] - An open-source visualization and analytics software. In this workshop Grafana allows you to query, visualize, alert on, and explore the metrics collected by Prometheus.
+* https://github.com/gogs/gogs[Gogs] - Gogs is a simple, stable and extensible self-hosted Git service which will be created for the purposes of this workshop.
+* https://www.seldon.io/[Seldon] - Provides a set of tools for deploying machine learning models at scale. In this workshop, Seldon will be used for a variety of purposes including providing endpoints for metric collection and allows us to provide feedback to the created models.
+* Other open source projects like https://knative.dev[Knative] (for serverless apps) and https://jenkins.io/[Jenkins] and more.
 
-You will be provided clickable URLs throughout the workshop to access the
-services that have been installed for you.
+You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.
+
+== Workshop Flow
+ 
+The goal of this workshop is the delivery of an end-to-end AI/ML solution for fraud detection based on the respective software components and their processes. The main steps are as follows:
+ 
+1) Create an AI/ML model that predicts fraud transactions using Jupyter Notebook.
+ 
+2) To productize the model. Using CodeReady Workspaces provided by Openshift to convert code into python, before delivering it into a pipeline for the process of building, testing and deploying code, mainly in three different environments:
+ 
+* Development Environment: Created models will be converted into python code here via CodeReady Workspaces, where these models will be trained and tested with a mixture of fraudulent and non-fraudulent inputs. Versioning will be done to ensure reproducibility of the model +
+* Staging Environment: When the model has undergone all the relevant testing, an image will be created with Buildah and stored in the Openshift registry +
+* Production Environment: Once the model has been verified to be in proper working condition, it will be promoted to the production environment, where approved images are deployed into the environment.
+ 
+3) Monitoring provided by Prometheus/Grafana provides insight into the credibility of the fraud detection model as well as account for any sanity check on the results derived from the associated data. The visualized metrics reflect any performance degradation of the model, which preempts us to decide on either starting on new experiment iterations or retraining the model with new data, considering the regular evolution of fraud practices in the real world.
 
 == How to complete this workshop
 
-Simply follow these instructions end-to-end. *You will need to do quite a
-bit of copy/paste for Linux commands and source code modifications*, as
-well as clicking around on various consoles used in the labs. When you
-get to the end of each section, you can click the `Next >` button at
-the bottom to advance to the next topic. You can also use the menu on
-the left to move around the instructions at will.
+Simply follow these instructions end-to-end. *You will need to do quite a bit of copy/paste for Linux commands and source code modifications*, as
+well as clicking around on various consoles used in the labs. When you get to the end of each section, you can click the `Next >` button at
+the bottom to advance to the next topic. You can also use the menu on the left to move around the instructions at will.
 
-The entire workshop is split into one or more _modules_ - Look at the
-top of the screen in the header to see which module you are on. After
-you complete this module, your instructor may have additional modules to
-complete.
+The entire workshop is split into one or more _modules_ - Look at the top of the screen in the header to see which module you are on. After
+you complete this module, your instructor may have additional modules to complete.
 
 Good luck, and let’s get started!
