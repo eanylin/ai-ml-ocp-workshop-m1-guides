@@ -17,7 +17,6 @@ workshop you are doing, you will use one or more of:
 * https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4[Grafana] - An open-source visualization and analytics software. In this workshop Grafana allows you to query, visualize, alert on, and explore the metrics collected by Prometheus.
 * https://github.com/gogs/gogs[Gogs] - Gogs is a simple, stable and extensible self-hosted Git service which will be created for the purposes of this workshop.
 * https://www.seldon.io/[Seldon] - Provides a set of tools for deploying machine learning models at scale. In this workshop, Seldon will be used for a variety of purposes including providing endpoints for metric collection and allows us to provide feedback to the created models.
-* Other open source projects like https://knative.dev[Knative] (for serverless apps) and https://jenkins.io/[Jenkins] and more.
 
 You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.
 
