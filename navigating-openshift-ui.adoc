@@ -78,8 +78,8 @@ image::django-git-repo-url.png[django_git_repo_url]
 
 Next, we will scroll down to the _General_ settings. We can see that the
 settings in the _Application Name_ field have been pre-populated with
-values based on the Git repository name. Changes can be made as needed.
-We are leaving the settings with their default values for this example.
+values based on the Git repository name. We will need to select `Deployment Config` 
+under the `Resources` section. Other changes can be made as needed.
 Proceed to hit the `Create` button at the bottom of the page after this.
 
 image::django-application-settings.png[django_application_settings]
