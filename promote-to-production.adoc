@@ -72,4 +72,3 @@ git checkout stage
 git tag -a v1.0 -m "v1.0"
 git push -v origin v1.0
 ----
-
