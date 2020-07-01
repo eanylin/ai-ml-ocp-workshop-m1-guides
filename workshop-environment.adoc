@@ -20,6 +20,12 @@ workshop you are doing, you will use one or more of:
 
 You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.
 
+== Pipeline
+ 
+A pipeline in software development is an automated process that drives software through a path of building, testing, and deploying code. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is deployed. Tools that are included in the pipeline could include compiling code, unit tests, code analysis, security, and installer creation. For containerized environments, this pipeline would also include packaging the code into a container to be deployed across the hybrid cloud. A pipeline is critical in supporting continuous integration and continuous deployment (CI/CD) processes.
+ 
+There is a staging and production pipeline that is used to build and train the model.
+
 == Workshop Flow
  
 The goal of this workshop is the delivery of an end-to-end AI/ML solution for fraud detection based on the respective software components and their processes. The main steps are as follows:
