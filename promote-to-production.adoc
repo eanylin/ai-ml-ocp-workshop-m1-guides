@@ -9,23 +9,48 @@ password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 ## Image Promotion
 
-To promote the image from Staging to Production, we are going to run the promotion pipeline. The pipeline can be called by a workflow engine, such as Red Hat Process Automation Manager, to deploy an approved image into production. 
+?????? To promote the image from staging to production environment, we are going to merge our `stage` to `prod` deployment branch.????? If there is a need for approval process, Red Hat Process Automation Manager can be used to approve the Pull Request before the changes are merged.
 
-Ensure you are on the staging branch:
+Ensure you are on the staging branch. The starred branch is your current branch.
 
 [source,sh]
 ----
-$ git branch -a
-  master
-* staging
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git branch -a
+master
+* stage
 ----
-
-And run the following promotion script. The same image would be tagged as production and deployment will happen to `{{USER_ID}}-prod` namespace.
 
 [source,sh,role="copypaste"]
 ----
-/projects/datascience-examples/workshop/bin/promote.sh
+cd /projects/{{USER_MODEL_REPO_NAME}}
+GIT_REV=`git rev-parse --short HEAD`
+echo "GIT REVISION: $GIT_REV"
+. workshop/src/seldon/config.sh
+
+cd /projects/{{USER_DEPLOY_REPO_NAME}}
+git checkout master
+git checkout -b prod
+sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_ENV_/prod/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
 ----
+
+View the `seldon.yaml` in the IDE and notice that image name has been updated with the specific tag. 
+[source,yaml]
+----
+spec:
+  containers:
+    - image: image-registry.openshift-image-registry.svc:5000/{{USER_ID}}-prod/lr:xxxxxxx
+----
+
+Now, push the changes to git.
+[source,sh,role="copypaste"]
+----
+git add *.yaml
+git commit -m "Update image tag to $GIT_REV"
+git push -u -v origin prod
+----
+
+You can now login to {{ARGOCD_URL}}/applications/{{USER_ID}}-prod[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential to view the changes that Argo CD is making to the production environment. 
 
 ## Model Testing
 
@@ -42,6 +67,8 @@ Now the model has been tested in production, we now can tag it as `v1.0`.
 
 [source,sh,role="copypaste"]
 ----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git checkout stage
 git tag -a v1.0 -m "v1.0"
 git push -v origin v1.0
 ----
