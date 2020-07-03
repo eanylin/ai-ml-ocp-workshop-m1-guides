@@ -5,10 +5,7 @@ workshop you are doing, you will use one or more of:
 
 * https://www.openshift.com/[Red Hat OpenShift] - You will use one or more _projects_ (Kubernetes namespaces) that are your own and are isolated from other workshop students
 * https://developers.redhat.com/products/codeready-workspaces/overview[Red Hat CodeReady Workspaces] - based on *Eclipse Che*, it is a cloud-based, in-browser IDE (similar to IntelliJ IDEA, VSCode, Eclipse IDE). You’ve been provisioned your own personal workspace for use with this workshop. You will write, test, and deploy code from here.
-* https://developers.redhat.com/products/rhamt[Red Hat Application Migration Toolkit] - You will use this to migrate an existing application
-* https://www.redhat.com/en/products/runtimes[Red Hat Runtimes] - a collection of cloud-native runtimes like Spring Boot, Node.js, and https://quarkus.io[Quarkus]
 * https://www.redhat.com/en/technologies/jboss-middleware/amq[Red Hat AMQ Streams] - streaming data platform based on *Apache Kafka*
-* https://access.redhat.com/products/red-hat-single-sign-on[Red Hat SSO] - For authentication / authorization - based on *Keycloak*
 * https://buildah.io/[Buildah] - Buildah is a tool that facilitates building Open Container Initiative (OCI) container images. We will be the tool in this workshop to create models from constructed images.
 * https://jupyter.org/[Jupyter Notebook] - An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Jupyter Notebook will be used to build, train and test models in this workshop.
 * https://jupyterhub.readthedocs.io/en/stable/[JupyterHub] - A multi-user Hub that spawns, manages, and proxies multiple instances of the single-user Jupyter notebook server. In this workshop we will be logging into this environment to provision instances of Jupyter Notebook.
@@ -17,6 +14,7 @@ workshop you are doing, you will use one or more of:
 * https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4[Grafana] - An open-source visualization and analytics software. In this workshop Grafana allows you to query, visualize, alert on, and explore the metrics collected by Prometheus.
 * https://github.com/gogs/gogs[Gogs] - Gogs is a simple, stable and extensible self-hosted Git service which will be created for the purposes of this workshop.
 * https://www.seldon.io/[Seldon] - Provides a set of tools for deploying machine learning models at scale. In this workshop, Seldon will be used for a variety of purposes including providing endpoints for metric collection and allows us to provide feedback to the created models.
+* https://www.sonatype.com/nexus-repository-oss[Nexus^] - Nexus Repository OSS is an open source repository that supports many artifact formats, including Docker, Java™, and npm. 
 
 You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.
 

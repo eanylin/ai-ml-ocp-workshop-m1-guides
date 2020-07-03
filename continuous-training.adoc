@@ -1,0 +1,126 @@
+## Continuous Training With A/B Testing
+
+It is important for us to actively monitor the quality of your model in production. Monitoring allows us to detect performance degradation, thus allowing us to decide whether we should start new experiment iterations or retrain the model with new data. 
+
+In this chapter, you will build a new model, test it in staging and deploy it to production with A/B testing.
+
+## Exploring The New Model
+
+Go to JupyterHub and launch the notebook `{{USER_MODEL_REPO_NAME}}/notebooks/3 using xgboost.ipynb`. The new model will be based on XGBoost.
+
+XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.
+
+## Build and Test A New Model
+
+We will be using {{ECLIPSE_CHE_URL}}[ CodeReady Workspaces^], and log in using the username and
+password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+
+The model has already been converted for you using `juypertext` and modified to run in the pipeline.
+
+Run the following script to use the new model:
+
+[source,sh,role="copypaste"]
+----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git checkout master
+cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/boost.ans.py \
+    /projects/{{USER_MODEL_REPO_NAME}}/src/train/boost.py
+
+cat << EOF > /projects/{{USER_MODEL_REPO_NAME}}/src/train/config.sh
+PYTHON_SCRIPT=boost.py
+RUN_NAME=xgboost
+EOF
+
+/projects/{{USER_MODEL_REPO_NAME}}/src/train/train-dev.sh
+----
+
+Run the model:
+[source,sh,role="copypaste"]
+----
+cat << EOF > /projects/{{USER_MODEL_REPO_NAME}}/src/seldon/config.sh
+MODEL_NAME=XGBoostModel
+IMAGE_NAME=xgboost
+EOF
+
+cd /projects/{{USER_MODEL_REPO_NAME}}/src/seldon/
+./app.sh
+----
+
+Now let's test the model. Open up a *new* terminal and run the following:
+
+[source,bash,role="copypaste"]
+----
+/projects/datascience-examples/bin/dev-test.sh
+----
+
+The code has been tested and we can now commit to development branch. 
+[source,sh,role="copypaste"]
+----
+ cd /projects/{{USER_MODEL_REPO_NAME}}/src/train
+ git add *.py
+ git commit -a -m "my xgboost model"
+ git push -v origin master
+----
+
+The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your^] git
+repository.
+
+## Deploy to Staging With A/B Testing
+
+We will now build the image for staging. Once the code has bene pushed to the `stage` branch, the pipeline will run. 
+
+[source,sh,role="copypaste"]
+----
+ cd /projects/{{USER_MODEL_REPO_NAME}}
+ git checkout stage
+ git merge master 
+ git push -v origin stage
+----
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
+
+Once the pipeline runs finish,the we can begin modify the `SeldonDeployment` to do A/B testing in staging.
+
+[source,sh,role="copypaste"]
+----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git checkout stage
+GIT_REV=`git rev-parse --short HEAD`
+echo "GIT REVISION: $GIT_REV"
+. workshop/src/seldon/config.sh
+
+cd /projects/{{USER_DEPLOY_REPO_NAME}}
+git checkout stage
+sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_ENV_/prod/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.ab.yaml.tmpl > seldon.yaml
+git add *.yaml
+git commit -m "Update image tag to $GIT_REV"
+git push -u -v origin stage
+----
+
+You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential to monitor the deployment. 
+
+After the new model has been deployed to OpenShift, you an run some basic tests
+
+[source,bash,role="copypaste"]
+----
+/projects/{{USER_MODEL_REPO_NAME}}/bin/dev-stage.sh
+----
+
+???? Observe a/b in effect.....
+
+## Deploy To Production With A/B Testing
+
+We will now promote this new image to Production environment and run some tests.
+
+[source,sh,role="copypaste"]
+----
+cd /projects/{{USER_DEPLOY_REPO_NAME}}
+git checkout -b prod
+git merge stage
+git push --u v origin prod
+----
+
+After the new model has been deployed to OpenShift, you can run some basic tests.
+[source,bash,role="copypaste"]
+----
+/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-stage.sh
+----
