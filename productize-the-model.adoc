@@ -114,11 +114,11 @@ else:
     CSV_FILE = 'creditcard.csv'
 ----
 
-We have prepared the refactored model at `/projects/datascience-examples/workshop/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/lr.py`
+We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`
 
 [source,bash,role="copypaste"]
 ----
-cp /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/lr.py
+cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py
 ----
 
 == Train And Test The Model
@@ -127,7 +127,9 @@ To train the model, run the following script:
 
 [source,bash,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/train-dev.sh
+cd /projects/{{USER_MODEL_REPO_NAME}}
+. src/train/config.sh
+src/train/train-dev.sh
 ----
 
 The model would have been written to `/opt/app-root/src/model`. 
@@ -149,7 +151,7 @@ Serve the model by running `app.sh`.
 
 [source,bash,role="copypaste"]
 ----
-cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/seldon/
+cd /projects/{{USER_MODEL_REPO_NAME}}/src/seldon/
 ./app.sh
 ----
 
@@ -164,7 +166,7 @@ Now let's test the model. Open up a *new* terminal and run the following:
 
 [source,bash,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/workshop/bin/dev-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/dev-test.sh
 ----
 
 The script will send a fraud and non-fraud requests to the the model. 
@@ -173,7 +175,7 @@ The script will send a fraud and non-fraud requests to the the model.
 
 [source,sh,role="copypaste"]
 ----
-cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train
+cd /projects/{{USER_MODEL_REPO_NAME}}/src/train
 git add *
 git commit -a -m 'my lr training code'
 git push -v origin master

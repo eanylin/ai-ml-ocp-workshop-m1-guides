@@ -90,7 +90,7 @@ Do not change the webhook.
 
 You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
 
-Once the pipeline runs finish,the image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/imagestreams[registry] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
+Once the pipeline runs finish,the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
 ## Deploy to Staging
 
@@ -112,11 +112,11 @@ We will now modify the `SeldonDeployment` to deploy our new image that is tagged
 cd /projects/{{USER_MODEL_REPO_NAME}}
 GIT_REV=`git rev-parse --short HEAD`
 echo "GIT REVISION: $GIT_REV"
-. workshop/src/seldon/config.sh
+. src/seldon/config.sh
 
 cd /projects/{{USER_DEPLOY_REPO_NAME}}
 git checkout -b stage
-sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_ENV_/stage/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
+sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
 ----
 
 View the `seldon.yaml` in the IDE and notice that image name has been updated with the specific tag. 
@@ -124,18 +124,18 @@ View the `seldon.yaml` in the IDE and notice that image name has been updated wi
 ----
 spec:
   containers:
-    - image: image-registry.openshift-image-registry.svc:5000/{{USER_ID}}-stage/lr:xxxxxxx
+    - image: {{NEXUS_DOCKER_REGISTRY}}/{{USER_ID}}/lr:1234
 ----
 
 Now, push the changes to git.
 [source,sh,role="copypaste"]
 ----
 git add *.yaml
-git commit -m "Update image tag to $GIT_REV"
+git commit -a -m "Update image tag to $GIT_REV"
 git push -u -v origin stage
 ----
 
-{{ARGOCD_URL}}[Argo CD^] is configured to monitor your deployment for the `stage` and `prod` branch in your git 
+Argo CD is configured to monitor your deployment for the `stage` and `prod` branch in your git 
 {{GIT_URL}}/{{USER_ID}}/{{USER_DEPLOY_REPO_NAME}}[repository^]. You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential.
 
 Once the deployment has been pushed, Argo CD will be triggered via a webhook to push the deployment over to OpenShift. 
@@ -163,7 +163,7 @@ Once the model has been deployed and is running, you now can run some simple tes
 
 [source,sh,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/workshop/bin/stage-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/stage-test.sh
 ----
 
 ## End-To-End Testing
