@@ -20,7 +20,7 @@ image::welcome-to-openshift.png[welcome_to_openshift]
 
 == Creating a New Project
 
-Proceed to create a new project by selecting `Create Project`
+Proceed to create a new project with the name `{{  USER_ID }}-myproject` by selecting `Create Project`.
 
 image::openshift-create-new-project.png[openshift_create_new_project]
 
@@ -36,7 +36,7 @@ image::openshift-project-list.png[openshift_project_list]
 
 == Accessing Project
 
-Click on `myproject` and we will get to the `Overview` page of the
+Click on `{{  USER_ID }}-myproject` and we will get to the `Overview` page of the
 project
 
 image::myproject-overview-page.png[myproject_overview_page]
