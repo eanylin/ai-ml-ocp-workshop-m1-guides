@@ -54,4 +54,4 @@ started on Jupyter interface.
 ====
 
 Once the notebook page is up and running, click on
-`notebooks/1 data exploration.ipynb` to load the notebook.
+`{{USER_MODEL_REPO_NAME}}/notebooks/1 data exploration.ipynb` to load the notebook.

@@ -2,14 +2,16 @@
 
 The model has been tested in the development environment and is now ready to be deployed to the staging environment.
 
-Once we code is pushed to the git repository, the pipeline will run and deploy it to the staging environment. 
+Once we code is pushed to the git repository, the pipeline will run to build and train the image. We will also be using Argo CD as the GitOps tool to deploy the model to the staging environment.
 
 To get started, {{ECLIPSE_CHE_URL}}[access the
 CodeReady Workspaces instance], and log in using the username and
 password you have been assigned
 (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
-## Pipeline
+## OpenShift Pipelines
+
+OpenShift Pipelines is a Kubernetes-style CI/CD solution based on Tekton. It builds on the Tekton building blocks and provides a CI/CD experience through tight integration with OpenShift and Red Hat developer tools. 
 
 A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline]
 has been created for you.
@@ -22,24 +24,23 @@ The pipeline consists of the following stages
 * Run `train-stage.sh` to train the model
 * Build the image using S2I (Source-to-Image)
 * Push the image into OpenShift's registry
-* Deploy the model into the {{USER_ID}}-stage namespace
 
-### Training script
+## Argo CD
 
-`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/datascience-examples/[Gogs] repository. 
+Argo CD is a declarative continuous delivery tool that leverages GitOps to maintain cluster resources. Argo CD is implemented as a controller that continuously monitors application definitions and configurations defined in a Git repository and compares the specified state of those configurations with their live state on the cluster. Configurations that deviate from their specified state in the Git repository are classified as OutOfSync. Argo CD reports these differences and allows administrators to automatically or manually resync configurations to the defined state.
 
-[source, sh]
+## Training script
+
+`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/[Gogs] repository. The training script uses a `config.sh` that allows you to define the model to be trained.
+
+Under /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/config.sh:
+[source,sh,role="copypaste"]
 ----
-#!/bin/bash
-
-pip install -U pip setuptools
-pip install -r /workspace/source/workshop/src/train/requirements.txt
-
-echo "Running training"
-python /workspace/source/workshop/src/train/lr.py -m /workspace/model -r lr
+PYTHON_SCRIPT=lr.py
+RUN_NAME=lr
 ----
 
-### Building The Image
+## Building The Image
 
 Once the model has been saved into the pipeline workspace, the building stage will begin to assemble the image by calling `S2I` and `buildah`.
 
@@ -56,9 +57,9 @@ S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/buil
 
 In our workshop, we have overridden `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
 
-The source code is available {{GIT_URL}}/{{USER_ID}}/datascience-examples/src/staging/workshop/src/seldon[here] 
+The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/staging/workshop/src/seldon[here] 
 
-### Deployment
+## Deployment
 
 Once the image has been pushed to OpenShift's internal registry, we will deploy the model using Seldon's operator by creating a `SeldonDeployment` resource.
 
@@ -68,21 +69,19 @@ A `SeldonDeployment` is a JSON or YAML file that allows you to define your graph
 
 image::seldon-inf-graph.png[seldon-inf-graph]
 
-The yaml file used in this workshop is available {{GIT_URL}}/{{USER_ID}}/datascience-examples/src/master/workshop/pipeline/seldon-simple-model.yaml[here].
-
 ## Push To Staging Branch
 
 Now let's push the code to the staging branch so that the pipeline will run.
 
 [source,sh,role="copypaste"]
 ----
-git checkout -b staging
-git push -u -v origin staging
+git checkout -b stage
+git push -u -v origin stage
 ----
 
 image::gogs-staging-branch.png[gogs-staging-branch, 300]
 
-Because Gogs has been configure with a https://{{GIT_URL}}/{{USER_ID}}/datascience-examples/settings/hooks[webhook], a git push will trigger our pipeline.
+Because Gogs has been configure with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/settings/hooks[webhook], a git push will trigger our pipeline.
 
 [WARNING]
 ====
@@ -91,12 +90,64 @@ Do not change the webhook.
 
 You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
 
-Once the model has been deployed, a `Deployment` resource will be created. The pods should be running and in ready state.
+Once the pipeline runs finish,the image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/imagestreams[registry] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
+
+## Deploy to Staging
+
+Argo CD follows the GitOps model of deployment, where desired configuration changes are first pushed to Git, and the cluster state then syncs to the desired state in git. 
+
+Ensure you are on the staging branch. The starred branch is your current branch.
+
+[source,sh]
+----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git branch -a
+master
+* stage
+----
+
+We will now modify the `SeldonDeployment` to deploy our new image that is tagged with the git revision.
+[source,sh,role="copypaste"]
+----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+GIT_REV=`git rev-parse --short HEAD`
+echo "GIT REVISION: $GIT_REV"
+. workshop/src/seldon/config.sh
+
+cd /projects/{{USER_DEPLOY_REPO_NAME}}
+git checkout -b stage
+sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_ENV_/stage/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
+----
+
+View the `seldon.yaml` in the IDE and notice that image name has been updated with the specific tag. 
+[source,yaml]
+----
+spec:
+  containers:
+    - image: image-registry.openshift-image-registry.svc:5000/{{USER_ID}}-stage/lr:xxxxxxx
+----
+
+Now, push the changes to git.
+[source,sh,role="copypaste"]
+----
+git add *.yaml
+git commit -m "Update image tag to $GIT_REV"
+git push -u -v origin stage
+----
+
+{{ARGOCD_URL}}[Argo CD^] is configured to monitor your deployment for the `stage` and `prod` branch in your git 
+{{GIT_URL}}/{{USER_ID}}/{{USER_DEPLOY_REPO_NAME}}[repository^]. You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential.
+
+Once the deployment has been pushed, Argo CD will be triggered via a webhook to push the deployment over to OpenShift. 
+
+image::argocd-deploy.png[argocd-deploy]
+
+A `Deployment` resource will be created. The pods should be running and in ready state.
 
 You can view them under OpenShift Console -> Workloads -> Deployments. Choose the `{{USER_ID}}-stage` project.
 
-[NOTE]
-====
+image::seldon-deploy.png[seldon-deploy]
+
 You will notice there is a Seldon service orchestrator pod running. The service orchestrator is a component that is added to your inference graph to:
 
 * Correctly manage the request/response paths described by your inference graph
@@ -105,17 +156,14 @@ You will notice there is a Seldon service orchestrator pod running. The service 
 * Add CloudEvent based payload logging
 
 image::seldon-svc-orch.png[seldon-svc-orch]
-====
-
-The image would have been pushed into OpenShift {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/imagestreams[registry] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
 ## Model Testing
 
 Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
 
-[source, sh]
+[source,sh,role="copypaste"]
 ----
-/projects/datascience-examples/workshop/bin/stage-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/workshop/bin/stage-test.sh
 ----
 
 ## End-To-End Testing

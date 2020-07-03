@@ -1,47 +1,9 @@
 == Productize The Model
 
-Now the model has been created, we will now begin to productize the
-model.
+Now the model has been created, we will now begin to productize the model in the development environment. 
 
 We will be using CodeReady Workspaces and `juyptext` to convert
 the notebook to python code.
-
-== Pipeline
-
-A pipeline in software development is an automated process that drives
-software through a path of building, testing, and deploying code. By
-automating the process, the objective is to minimize human error and
-maintain a consistent process for how software is deployed. Tools that
-are included in the pipeline could include compiling code, unit tests,
-code analysis, security, and installer creation. For containerized
-environments, this pipeline would also include packaging the code into a
-container to be deployed across the hybrid cloud. A pipeline is critical
-in supporting continuous integration and continuous deployment (CI/CD)
-processes.
-
-There is a staging and production pipeline that is used to deploy the
-model into the staging or production namespace.
-
-=== Development Environment
-
-JupyterHub and CodeReady Workspaces run in this environment for experiments. 
-
-=== Staging Environment
-
-The staging pipeline will deploy the model into this environment for further testing.
-
-The pipeline is responsible for:
-
-. Checking out the source code
-. Running the training code using `train-stage.sh`
-. Build the image with the model and push the image to OpenShift’s
-registry
-. Deploy the model
-
-=== Production Environment
-
-The production pipeline will promote(tag) the image from staging to
-production.
 
 == Logging Into CodeReady Workspaces
 
@@ -86,7 +48,10 @@ search, version control (e.g. Git), debugging, and other plugins. You’ll
 use these during the course of this workshop. Feel free to click on them
 and see what they do:
 
-Your git repository will be cloned to `/projects` automatically for you.
+Your git repositories will be cloned to `/projects` automatically for you:
+
+* {{USER_MODEL_REPO_NAME}}: Source repository for the model
+* {{USER_DEPLOY_REPO_NAME}}: Kubernetes deployment artifacts
 
 _Changes to files are auto-saved every few seconds_, so you don’t need
 to explicitly save changes.
@@ -110,7 +75,7 @@ Run the the following commands to convert a notebook into a python code.
 [source,bash,role="copypaste"]
 ----
 pip install jupytext
-cd /projects/datascience-examples/workshop/notebooks/
+cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/notebooks/
 jupytext "2 building the first model.ipynb"  -o ../src/train/lr.py
 ----
 
@@ -138,22 +103,22 @@ easily with dvc.
 
 We will also use a bigger training set `creditcard-train.csv` during the training stage in the pipeline.
 
-
 [source,python]
 ----
 DATA_VERSION = 'v1.0'
 
+# PIPELINERUN will be set when run from the pipeline
 if os.environ.get('PIPELINERUN', None):
     CSV_FILE = 'creditcard-train.csv'       
 else:
     CSV_FILE = 'creditcard.csv'
 ----
 
-We have prepared the refactored model at `/projects/datascience-examples/workshop/src/train/lr.ans.py`. Copy it to `/projects/datascience-examples/workshop/src/train/lr.py`
+We have prepared the refactored model at `/projects/datascience-examples/workshop/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/lr.py`
 
 [source,bash,role="copypaste"]
 ----
-cp /projects/datascience-examples/workshop/src/train/lr.ans.py /projects/datascience-examples/workshop/src/train/lr.py
+cp /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/lr.py
 ----
 
 == Train And Test The Model
@@ -162,7 +127,7 @@ To train the model, run the following script:
 
 [source,bash,role="copypaste"]
 ----
-/projects/datascience-examples/workshop/src/train/train-dev.sh
+/projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/train-dev.sh
 ----
 
 The model would have been written to `/opt/app-root/src/model`. 
@@ -184,7 +149,7 @@ Serve the model by running `app.sh`.
 
 [source,bash,role="copypaste"]
 ----
-cd /projects/datascience-examples/workshop/src/seldon/
+cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/seldon/
 ./app.sh
 ----
 
@@ -199,7 +164,7 @@ Now let's test the model. Open up a *new* terminal and run the following:
 
 [source,bash,role="copypaste"]
 ----
-/projects/datascience-examples/workshop/bin/dev-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/workshop/bin/dev-test.sh
 ----
 
 The script will send a fraud and non-fraud requests to the the model. 
@@ -208,11 +173,11 @@ The script will send a fraud and non-fraud requests to the the model.
 
 [source,sh,role="copypaste"]
 ----
-cd /projects/datascience-examples/workshop/src/train
-git add *.py
+cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train
+git add *
 git commit -a -m 'my lr training code'
 git push -v origin master
 ----
 
-The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your] git
-repository.
+The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}[your] git
+repository on the `master/devel` branch.
