@@ -15,7 +15,7 @@ image::openshift-ui-login.png[openshift_ui_login]
 
 == Creating a New Project
 
-Proceed to create a new project with the name `{{  USER_ID }}-myproject` by selecting `Create Project`.
+Proceed to create a new project with the name `{{  USER_ID }}-myproject` by selecting `Create Project`. For instance, `user1` will create `user1-myproject`, `user2` will create `user2-myproject` and so on. The screen shot below shows the example for `user1`.
 
 image::openshift-create-new-project.png[openshift_create_new_project]
 
