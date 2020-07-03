@@ -13,11 +13,6 @@ Your user name will be `{{  USER_ID }}` and password is
 
 image::openshift-ui-login.png[openshift_ui_login]
 
-We will be presented with a `Welcome to OpenShift` message and the
-option of creating a new project
-
-image::welcome-to-openshift.png[welcome_to_openshift]
-
 == Creating a New Project
 
 Proceed to create a new project with the name `{{  USER_ID }}-myproject` by selecting `Create Project`.
