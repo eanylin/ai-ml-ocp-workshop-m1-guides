@@ -20,6 +20,7 @@ vars:
   USER_DEPLOY_REPO_NAME:
   ARGOCD_URL:
   NEXUS_URL:
+  NEXUS_DOCKER_REGISTRY:
 
 modules:
   activate:
