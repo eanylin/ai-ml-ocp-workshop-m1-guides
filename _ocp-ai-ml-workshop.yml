@@ -19,6 +19,7 @@ vars:
   USER_MODEL_REPO_NAME:
   USER_DEPLOY_REPO_NAME:
   ARGOCD_URL:
+  NEXUS_URL:
 
 modules:
   activate:
@@ -31,10 +32,9 @@ modules:
   - productize-the-model
   - deploy-to-staging
   - promote-to-production
-  # - model-observability
-  # - take2-model-building
-  # - take2-deploy-to-staging
-  # - take2-ab-testing-production
-  # - take2-model-observability
-  # - take2-choose-the-right-model
+  - model-observability
+  - continuous-training
+  - decide-on-final-model
+  - integrate-with-middleware
+  - additional-resources
   - exploring-openshift
