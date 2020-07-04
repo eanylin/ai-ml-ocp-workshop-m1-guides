@@ -27,7 +27,7 @@ modules:
   continuous-training:
     name: Continuous Training With A/B Testing
   decide-on-final-model:
-    name: Deploying The Chosen One
+    name: Deploy The Chosen One
   integrate-with-middleware:
     name: Integration with Kafka and Decision Manager
   additional-resources:

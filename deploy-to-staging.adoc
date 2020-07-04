@@ -88,7 +88,7 @@ Because Gogs has been configure with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO
 Do not change the webhook.
 ====
 
-You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run]. This will take about 10 minutes. 
 
 Once the pipeline runs finish,the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
@@ -115,8 +115,13 @@ echo "GIT REVISION: $GIT_REV"
 . src/seldon/config.sh
 
 cd /projects/{{USER_DEPLOY_REPO_NAME}}
-git checkout -b stage
+git checkout master
 sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
+git add *.yaml
+git commit -a -m "Update image tag to $GIT_REV"
+
+git checkout -b stage
+git push -u -v origin 
 ----
 
 View the `seldon.yaml` in the IDE and notice that image name has been updated with the specific tag. 
@@ -125,14 +130,6 @@ View the `seldon.yaml` in the IDE and notice that image name has been updated wi
 spec:
   containers:
     - image: {{NEXUS_DOCKER_REGISTRY}}/{{USER_ID}}/lr:1234
-----
-
-Now, push the changes to git.
-[source,sh,role="copypaste"]
-----
-git add *.yaml
-git commit -a -m "Update image tag to $GIT_REV"
-git push -u -v origin stage
 ----
 
 Argo CD is configured to monitor your deployment for the `stage` and `prod` branch in your git 
