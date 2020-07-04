@@ -118,7 +118,7 @@ cd /projects/{{USER_DEPLOY_REPO_NAME}}
 git checkout master
 sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
 git add *.yaml
-git commit -a -m "Update image tag to $GIT_REV"
+git commit -a -m "Update image tag to $IMAGE_NAME:$GIT_REV"
 
 git checkout -b stage
 git push -u -v origin 
