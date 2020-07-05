@@ -1,0 +1,50 @@
+## Deploying The Chosen One
+
+Based on the Grafana {{GRAFANA_URL}}[dashboard^], we can see that XGBoost model is better and we shall use that in production.
+
+Let's quickly change the `SeldonDeployment`, deploy to staging and promote it to Production.
+
+[source,sh,role="copypaste"]
+----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git checkout master
+GIT_REV=`git rev-parse --short HEAD`
+echo "GIT REVISION: $GIT_REV"
+. src/seldon/config.sh
+
+cd /projects/{{USER_DEPLOY_REPO_NAME}}
+git checkout master
+sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.yaml.tmpl > seldon.yaml
+git commit -a -m "Update image tag to $IMAGE_NAME:$GIT_REV"
+
+git checkout stage
+git merge master
+
+git checkout prod
+git merge stage
+
+git push -u -v origin
+----
+
+Observe that only a single classifier has been deployed.
+
+After the final model has been deployed to OpenShift, you can run some basic tests.
+[source,bash,role="copypaste"]
+----
+/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-test.sh
+----
+
+## Tag It!
+
+Great! The new XGBoost model is working better and we now can tag it as `v2.0`
+
+[source,sh,role="copypaste"]
+----
+cd /projects/{{USER_MODEL_REPO_NAME}}
+git checkout stage
+git tag -a v2.0 -m "v2.0"
+git push -v origin v2.0
+----
+
+The tag has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/v2.0[your] git
+repository.

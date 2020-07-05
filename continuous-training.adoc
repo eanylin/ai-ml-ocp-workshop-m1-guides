@@ -83,17 +83,34 @@ Once the pipeline runs finish,the we can begin modify the `SeldonDeployment` to 
 [source,sh,role="copypaste"]
 ----
 cd /projects/{{USER_MODEL_REPO_NAME}}
-git checkout stage
+git checkout tags/v1.0 -b v1.0
 GIT_REV=`git rev-parse --short HEAD`
 echo "GIT REVISION: $GIT_REV"
-. workshop/src/seldon/config.sh
+. src/seldon/config.sh
+
+PREV_IMAGE_NAME=$IMAGE_NAME
+PREV_GIT_REV=$GIT_REV
+
+git checkout stage
+GIT_REV=`git rev-parse --short HEAD`
+. src/seldon/config.sh
 
 cd /projects/{{USER_DEPLOY_REPO_NAME}}
+git checkout master
+
+sed -e "s/_USER_/{{USER_ID}}/g" \
+-e "s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g" \
+-e "s/_PREV_IMAGE_NAME_/$PREV_IMAGE_NAME/g" \
+-e "s/_PREV_GIT_REV_/$PREV_GIT_REV/g" \
+-e "s/_IMAGE_NAME_/$IMAGE_NAME/g" \
+-e "s/_GIT_REV_/$GIT_REV/g" \
+seldon-model-ab.yaml.tmpl > seldon.yaml
+
+git commit -a -m "a/b testing with $PREV_IMAGE_NAME:$PREV_GIT_REV and $IMAGE_NAME:$GIT_REV"
 git checkout stage
-sed -e "s/_USER_/{{USER_ID}}/g" -e "s/_ENV_/prod/g" -e "s/_IMAGE_NAME_/$IMAGE_NAME/g" -e "s/_GIT_REV_/$GIT_REV/g" seldon-model.ab.yaml.tmpl > seldon.yaml
-git add *.yaml
-git commit -m "Update image tag to $GIT_REV"
-git push -u -v origin stage
+git merge master
+
+git push -v origin
 ----
 
 You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential to monitor the deployment. 
@@ -102,7 +119,7 @@ After the new model has been deployed to OpenShift, you an run some basic tests
 
 [source,bash,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/bin/dev-stage.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/stage-test.sh
 ----
 
 ???? Observe a/b in effect.....
@@ -116,11 +133,11 @@ We will now promote this new image to Production environment and run some tests.
 cd /projects/{{USER_DEPLOY_REPO_NAME}}
 git checkout -b prod
 git merge stage
-git push --u v origin prod
+git push -u -v origin
 ----
 
 After the new model has been deployed to OpenShift, you can run some basic tests.
 [source,bash,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-stage.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-test.sh
 ----

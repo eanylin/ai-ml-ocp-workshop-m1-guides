@@ -11,21 +11,12 @@ password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 To promote the image from staging to production environment, we are going to merge our `stage` to `prod` deployment branch. If there is a need for approval process, Red Hat Process Automation Manager can be used to approve the Pull Request before the changes are merged.
 
-Ensure you are on the staging branch. The starred branch is your current branch.
-
-[source,sh]
-----
-cd /projects/{{USER_DEPLOY_REPO_NAME}}
-git branch -a
-master
-* stage
-----
-
 [source,sh,role="copypaste"]
 ----
+cd /projects/{{USER_DEPLOY_REPO_NAME}}
 git checkout -b prod
 git merge stage
-git push --u v origin prod
+git push -u -v origin prod
 ----
 
 You can now login to {{ARGOCD_URL}}/applications/{{USER_ID}}-prod[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential to view the changes that Argo CD is making to the production environment. 
@@ -50,5 +41,8 @@ git checkout stage
 git tag -a v1.0 -m "v1.0"
 git push -v origin v1.0
 ----
+
+The tag has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/v1.0[your] git
+repository.
 
 image::git-tag-1_0.png[git-tag-1_0]
