@@ -131,9 +131,4 @@ https://tekton.dev/[Tekton] CI/CD pipeline will be used in the workshop
 to automate the different stages, such as building, testing, deployment
 and promotion of the model onto OpenShift.
 
-== Suggested additional reading:
-
-https://www.xenonstack.com/blog/mlops/[MLOps Platform – Productionizing
-Machine Learning Models]
-
 Let’s get started!
