@@ -121,7 +121,8 @@ git add *.yaml
 git commit -a -m "Update image tag to $IMAGE_NAME:$GIT_REV"
 
 git checkout -b stage
-git push -u -v origin 
+git merge master
+git push -u -v origin stage
 ----
 
 View the `seldon.yaml` in the IDE and notice that image name has been updated with the specific tag. 
