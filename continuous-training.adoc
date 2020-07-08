@@ -50,7 +50,7 @@ Now let's test the model. Open up a *new* terminal and run the following:
 
 [source,bash,role="copypaste"]
 ----
-/projects/datascience-examples/bin/dev-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/dev-test.sh
 ----
 
 The code has been tested and we can now commit to development branch. 
@@ -62,12 +62,12 @@ The code has been tested and we can now commit to development branch.
  git push -v origin master
 ----
 
-The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/datascience-examples[your^] git
+The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}[your^] git
 repository.
 
 ## Deploy to Staging With A/B Testing
 
-We will now build the image for staging. Once the code has bene pushed to the `stage` branch, the pipeline will run. 
+We will now build the image for staging. Once the code is pushed to the `stage` branch, the pipeline will run. 
 
 [source,sh,role="copypaste"]
 ----
@@ -78,7 +78,7 @@ We will now build the image for staging. Once the code has bene pushed to the `s
 ----
 You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
 
-Once the pipeline runs finish,the we can begin modify the `SeldonDeployment` to do A/B testing in staging.
+Once the pipeline runs finish,the we will modify the `SeldonDeployment` to do A/B testing in staging.
 
 [source,sh,role="copypaste"]
 ----
@@ -115,6 +115,11 @@ git push -v origin
 
 You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential to monitor the deployment. 
 
+There will be 2 classifier pods deployed in your {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/pods/[{{USER_ID}}-stage project^].
+
+PICTURE HERE 
+image::png[]
+
 After the new model has been deployed to OpenShift, you an run some basic tests
 
 [source,bash,role="copypaste"]
@@ -122,7 +127,9 @@ After the new model has been deployed to OpenShift, you an run some basic tests
 /projects/{{USER_MODEL_REPO_NAME}}/bin/stage-test.sh
 ----
 
-???? Observe a/b in effect.....
+Now, go to both Pod -> Logs and observe that credit card transactions have been sent.
+
+PICTURE HERE
 
 ## Deploy To Production With A/B Testing
 

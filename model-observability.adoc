@@ -12,9 +12,9 @@ The Grafana dashbaord has been {{GRAFANA_URL}}[configured].
 
 Go to Home and find the `Prediction Analytics` dashboard.
 
-image::grafana-home.png[grafana-home]
+image::grafana-home.png[grafana-home, 200]
 
-image::grafana-dashboard.png[grafana-dashboard]
+image::grafana-dashboard.png[grafana-dashboard, 700]
 
 The dashboard has been configured to look at several metrics:
 
@@ -25,6 +25,14 @@ The dashboard has been configured to look at several metrics:
 * Precision
 * Recall 
 * F1 
+
+Choose your namespace {{USER_ID}}-prod and view the metrics from your model.
+
+image::grafana-dropdown.png[grafana-dropdown, 500]
+
+We are interested in the recall score of the model, which ie ratio TP / (TP + FN). Recall is a good metric to use when the cost associated with false negative (FN) is high. In this classification problem there is a high cost for the bank when a fraud transaction is predicted as non-fraud, since no actions can be taken. Thus, recall is one important metric to pay attention to.
+
+image::grafana-recall.png[grafana-recall, 400]
 
 ## Exposing Metrics to Prometheus
 
@@ -52,7 +60,7 @@ Seldon service orchestrator exposes core metrics such as:
 * seldon_api_executor_server_requests_seconds_(bucket,count,sum) 
 * seldon_api_executor_client_requests_seconds_(bucket,count,sum) 
 
-, and custom metrics added to the model class via the {{GIT_URL}}/{{USER_ID}}/datascience-examples[`Base`] class.
+, and custom metrics added to the model class via the {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}[`Base`] class.
 
 [source, python]
 ----
@@ -67,4 +75,4 @@ class Base(object):
 
 Seldon model provides a `/api/v1.0/feedback` endpoint that allows you to send back feedback to the model, which allows us to calculate various scores.
 
-This is extremely useful when multi-armed bandits is used for reinforced learning, so as to maximize a numerical reward signal. 
+This is extremely useful when multi-armed bandits is used for reinforced learning, so as to maximize a numerical reward signal.

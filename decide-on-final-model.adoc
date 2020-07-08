@@ -1,8 +1,29 @@
+## Observing The Performance Of Both Models
+
+Run the following script to send sufficient transactions to the models. 
+
+[source,sh,role="copypaste"]
+----
+/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-mon-test.sh
+----
+
+Now look at the Grafana {{GRAFANA_URL}}[dashbaord], and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression. 
+
+:figure-caption!:
+
+[.float-group]
+--
+[.text-center]
+.Logistic Regression
+image::lr-classification.png[lr-classification, 300, float="left"]
+
+.XGBoost
+image::xgboost-classification.png[xgboost-classification, 300, float="left"]
+--
+
 ## Deploying The Chosen One
 
-Based on the Grafana {{GRAFANA_URL}}[dashboard^], we can see that XGBoost model is better and we shall use that in production.
-
-Let's quickly change the `SeldonDeployment`, deploy to staging and promote it to Production.
+Let's quickly change the `SeldonDeployment` to use XGBoost, deploy to staging and promote it to Production.
 
 [source,sh,role="copypaste"]
 ----
