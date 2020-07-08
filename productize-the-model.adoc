@@ -88,9 +88,6 @@ You can ignore the pylint warning
 image::che-pylint.png[che-pylint]
 ====
 
-The python code generated from the notebook has been refactored into a
-python class and visualization removed.
-
 == Refactor the New Model
 
 Next, we will then modify the code into a format that the pipeline can
@@ -114,7 +111,8 @@ else:
     CSV_FILE = 'creditcard.csv'
 ----
 
-We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`
+We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`. The python code generated from the notebook has been refactored into a python class and visualization removed.
+
 
 [source,bash,role="copypaste"]
 ----
@@ -128,7 +126,6 @@ To train the model, run the following script:
 [source,bash,role="copypaste"]
 ----
 cd /projects/{{USER_MODEL_REPO_NAME}}
-. src/train/config.sh
 src/train/train-dev.sh
 ----
 
