@@ -23,7 +23,7 @@ The pipeline consists of the following stages
 * Git clone the source code
 * Run `train-stage.sh` to train the model
 * Build the image using S2I (Source-to-Image)
-* Push the image into OpenShift's registry
+* Push the image into Nexus Registry
 
 ## Argo CD
 
@@ -57,7 +57,7 @@ S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/buil
 
 In our workshop, we have overridden `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
 
-The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/staging/workshop/src/seldon[here] 
+The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/master/src/seldon[here] 
 
 ## Deployment
 
