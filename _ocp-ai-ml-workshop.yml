@@ -21,6 +21,7 @@ vars:
   ARGOCD_URL:
   NEXUS_URL:
   NEXUS_DOCKER_REGISTRY:
+  RHDM_URL:
 
 modules:
   activate:
