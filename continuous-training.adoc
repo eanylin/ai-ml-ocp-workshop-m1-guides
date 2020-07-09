@@ -117,8 +117,7 @@ You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with yo
 
 There will be 2 classifier pods deployed in your {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/pods/[{{USER_ID}}-stage project^].
 
-PICTURE HERE 
-image::png[]
+image::seldon-ab.png[seldon-ab]
 
 After the new model has been deployed to OpenShift, you an run some basic tests
 
@@ -127,9 +126,10 @@ After the new model has been deployed to OpenShift, you an run some basic tests
 /projects/{{USER_MODEL_REPO_NAME}}/bin/stage-test.sh
 ----
 
-Now, go to both Pod -> Logs and observe that credit card transactions have been sent.
 
-PICTURE HERE
+Now go to {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/pods[OpenShift Console] to view the pod logs. Observe that credit card transactions have been sent to both pods by calling the `/predict` endpoints. 
+
+image::seldon-ab-logs.png[seldon-ab-logs]
 
 ## Deploy To Production With A/B Testing
 

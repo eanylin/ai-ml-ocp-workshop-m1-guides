@@ -1,5 +1,5 @@
 id: "mlops"
-name: "The ML Ops Workshop"
+name: "The MLOps Workshop"
 
 content:
   url: https://raw.githubusercontent.com/eanylin/ocp-al-ml-workshop-m1-guides.git/master
