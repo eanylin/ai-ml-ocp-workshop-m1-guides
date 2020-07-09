@@ -49,9 +49,8 @@ Upon logging in, start a new notebook by choosing
 If the notebook page did not appear, try refreshing the page or
 reach out to your instructor.
 
-There is a notebook `0 intro to juypyter.ipynb` to help you get
-started on Jupyter interface.
 ====
 
-Once the notebook page is up and running, click on
-`{{USER_MODEL_REPO_NAME}}/notebooks/1 data exploration.ipynb` to load the notebook.
+Once the notebook page is up and running, there is a notebook `"{{USER_MODEL_REPO_NAME}}/notebooks/0 intro to juypyter.ipynb"` to help you get started on familiarizing with the Jupyter interface.
+
+After you have acquainted yourself with how to edit and run Jupyter Notebooks, click on `"{{USER_MODEL_REPO_NAME}}/notebooks/1 data exploration.ipynb"` to load the notebook. Run the individual code blocks contained in this notebook and observe the output.
