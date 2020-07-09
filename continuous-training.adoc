@@ -76,7 +76,7 @@ We will now build the image for staging. Once the code is pushed to the `stage` 
  git merge master 
  git push -v origin stage
 ----
-You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run].
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run^].
 
 Once the pipeline runs finish,the we will modify the `SeldonDeployment` to do A/B testing in staging.
 
@@ -126,7 +126,7 @@ After the new model has been deployed to OpenShift, you an run some basic tests
 /projects/{{USER_MODEL_REPO_NAME}}/bin/stage-test.sh
 ----
 
-Now go to {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/pods[OpenShift Console] to view the pod logs. Observe that credit card transactions have been sent to both pods by calling the `/predict` endpoints. 
+Now go to {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/pods[OpenShift Console^] to view the pod logs. Observe that credit card transactions have been sent to both pods by calling the `/predict` endpoints. 
 
 image::seldon-ab-logs.png[seldon-ab-logs]
 

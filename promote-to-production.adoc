@@ -42,7 +42,7 @@ git tag -a v1.0 -m "v1.0"
 git push -v origin v1.0
 ----
 
-The tag has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/v1.0[your] git
+The tag has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/v1.0[your^] git
 repository.
 
 image::git-tag-1_0.png[git-tag-1_0]

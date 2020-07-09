@@ -8,7 +8,7 @@ Grafana is open source visualization and analytics software. It allows you to qu
 
 ## Looking At Metrics
 
-The Grafana dashbaord has been {{GRAFANA_URL}}[configured]. 
+The Grafana dashbaord has been {{GRAFANA_URL}}[configured^]. 
 
 Go to Home and find the `Prediction Analytics` dashboard.
 

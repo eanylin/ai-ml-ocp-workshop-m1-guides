@@ -13,7 +13,7 @@ password you have been assigned
 
 OpenShift Pipelines is a Kubernetes-style CI/CD solution based on Tekton. It builds on the Tekton building blocks and provides a CI/CD experience through tight integration with OpenShift and Red Hat developer tools. 
 
-A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline]
+A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline^]
 has been created for you.
 
 image:pipeline.png[pipeline]
@@ -31,7 +31,7 @@ Argo CD is a declarative continuous delivery tool that leverages GitOps to maint
 
 ## Training script
 
-`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/[Gogs] repository. The training script uses a `config.sh` that allows you to define the model to be trained.
+`train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/[Gogs^] repository. The training script uses a `config.sh` that allows you to define the model to be trained.
 
 Under /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/config.sh:
 [source,sh,role="copypaste"]
@@ -44,11 +44,11 @@ RUN_NAME=lr
 
 Once the model has been saved into the pipeline workspace, the building stage will begin to assemble the image by calling `S2I` and `buildah`.
 
-https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users/[Buildah] is a tool that facilitates building Open Container Initiative (OCI) container images.
+https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users/[Buildah^] is a tool that facilitates building Open Container Initiative (OCI) container images.
 
 image::buildah.png[buildah, 700]
 
-S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#images-create-s2i-build_build-strategie[defined] repository https://github.com/sclorg/s2i-python-container/tree/master/3.6[layout], which includes the following files:
+S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#images-create-s2i-build_build-strategie[defined^] repository https://github.com/sclorg/s2i-python-container/tree/master/3.6[layout^], which includes the following files:
 
 * `requirements.txt`, for python dependencies
 * `.s2i/bin/assemble`, to customize image assembling 
@@ -57,7 +57,7 @@ S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/buil
 
 In our workshop, we have overridden `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
 
-The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/master/src/seldon[here] 
+The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/master/src/seldon[here^] 
 
 ## Deployment
 
@@ -81,14 +81,14 @@ git push -u -v origin stage
 
 image::gogs-staging-branch.png[gogs-staging-branch, 300]
 
-Because Gogs has been configure with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/settings/hooks[webhook], a git push will trigger our pipeline.
+Because Gogs has been configure with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/settings/hooks[webhook^], a git push will trigger our pipeline.
 
 [WARNING]
 ====
 Do not change the webhook.
 ====
 
-You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run]. This will take about 10 minutes. 
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run^]. This will take about 10 minutes. 
 
 Once the pipeline runs finish,the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
@@ -131,7 +131,7 @@ Once the deployment has been pushed, Argo CD will be triggered via a webhook to 
 
 image::argocd-deploy.png[argocd-deploy]
 
-A `Deployment` resource will be created. The pods should be running and in ready state. You can view them under {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/deployments[OpenShift Console]. 
+A `Deployment` resource will be created. The pods should be running and in ready state. You can view them under {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/deployments[OpenShift Console^]. 
 
 image::seldon-deploy.png[seldon-deploy]
 

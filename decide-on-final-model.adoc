@@ -7,7 +7,7 @@ Run the following script to send sufficient transactions to the models.
 /projects/{{USER_MODEL_REPO_NAME}}/bin/prod-mon-test.sh
 ----
 
-Now look at the Grafana {{GRAFANA_URL}}[dashbaord], and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression. 
+Now look at the Grafana {{GRAFANA_URL}}[dashbaord^], and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression. 
 
 :figure-caption!:
 
@@ -67,5 +67,5 @@ git tag -a v2.0 -m "v2.0"
 git push -v origin v2.0
 ----
 
-The tag has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/v2.0[your] git
+The tag has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/v2.0[your^] git
 repository.
