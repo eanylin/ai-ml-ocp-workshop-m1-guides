@@ -58,4 +58,4 @@ After you have acquainted yourself with how to edit and run Jupyter Notebooks, c
 
 Run the notebook “1 data exploration” from start to end and the end product should contain something like this.
 
-image::jupyter-1-data-exploration.png[jupyter-1-data-exploration]
+image::jupyternotebook-1-data-exploration.jpeg[jupyter-1-data-exploration]
