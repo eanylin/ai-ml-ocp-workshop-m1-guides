@@ -1,0 +1,5 @@
+== Integration with Kafka and Decision Manager
+
+Red Hat Decision Manager 7 is a powerful, scalable open source business rules management system that includes business resource optimization and complex event processing (CEP) technology. It helps organizations capture business logic and develop applications that automate business decisions.
+
+Red Hat Process Automation Manager is a platform for developing containerized microservices and applications that automate business decisions and processes. Process Automation Manager lets users capture business policies and procedures, create applications that automate business operations, and measure the results of business activities. It includes easy-to-use graphical tools that foster collaboration between IT and business users in addition to providing better visibility into the rules and procedures that govern business applications.
