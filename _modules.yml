@@ -20,8 +20,6 @@ modules:
     name: Deploy The Model To Staging
   promote-to-production:
     name: Promote to Production
-  exploring-openshift:
-    name: Exploring OpenShift
   model-observability:
     name: Model Monitoring and Observability
   continuous-training:

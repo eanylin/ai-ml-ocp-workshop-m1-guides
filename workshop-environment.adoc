@@ -61,6 +61,24 @@ You will see various code and command blocks throughout these exercises which ca
 echo "This is a bash shell command that you can copy/paste by clicking"
 ----
 
+== Your Environment
+
+Your user_id is `{{ USER_ID }}`
+
+OpenShift Console url is `{{  CONSOLE_URL }}`. Username/password is `{{ USER_ID }}/{{  OPENSHIFT_USER_PASSWORD }}`.
+
+CodeReady Workspaces url is `{{  ECLIPSE_CHE_URL }}`. Username/password is `{{ USER_ID }}/{{  CHE_USER_PASSWORD }}`.
+
+Git url is `{{  GIT_URL }}`. Username/password is `{{USER_ID}}/{{GIT_USER_PASSWORD}}`.
+
+JupyterHub url is `{{ JUPYTERHUB_URL }} `
+
+Grafana url is `{{ GRAFANA_URL }}`
+
+Argo CD url is `{{ ARGOCD_URL }}`
+
+Nexus url is `{{ NEXUS_URL }} `
+
 == How to complete this workshop
 
 Simply follow these instructions end-to-end. *You will need to do quite a bit of copy/paste for Linux commands and source code modifications*, as
@@ -71,3 +89,4 @@ The entire workshop is split into one or more _modules_ - Look at the top of the
 you complete this module, your instructor may have additional modules to complete.
 
 Good luck, and let’s get started!
+
