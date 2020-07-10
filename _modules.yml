@@ -28,5 +28,3 @@ modules:
     name: Deploy The Chosen One
   integrate-with-middleware:
     name: Integration with Kafka and Decision Manager
-  additional-resources:
-    name: Additional Reading Resources

@@ -38,4 +38,3 @@ modules:
   - continuous-training
   - decide-on-final-model
   - integrate-with-middleware
-  - workshop-links
