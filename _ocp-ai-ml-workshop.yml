@@ -38,5 +38,3 @@ modules:
   - continuous-training
   - decide-on-final-model
   - integrate-with-middleware
-  - additional-resources
-  - exploring-openshift
