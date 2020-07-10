@@ -24,7 +24,7 @@ image::mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-el
 
 == What Is MLOps
 
-From https://en.wikipedia.org/wiki/MLOps[Wikipedia]:
+From https://en.wikipedia.org/wiki/MLOps[Wikipedia^]:
 
 ____
 MLOps (a compound of `machine learning` and `operations`) is a
@@ -68,7 +68,7 @@ ML systems that is for
 
 image::cd4ml-end-to-end.png[cd4ml-end-to-end]
 Image Source:
-https://martinfowler.com/articles/cd4ml.html#TestingAndQualityInMachineLearning[CD4ML]
+https://martinfowler.com/articles/cd4ml.html#TestingAndQualityInMachineLearning[CD4ML^]
 
 === Model Building
 
@@ -83,8 +83,8 @@ model metrics. This helps in the decision whether the model can be
 promoted through the different stages, such as staging and finally to
 production.
 
-We will be using https://jupyter.org/hub[JupyterHub] and
-https://www.mlflow.org/[MLFlow] to log the model and experiment results.
+We will be using https://jupyter.org/hub[JupyterHub^] and
+https://www.mlflow.org/[MLFlow^] to log the model and experiment results.
 
 ==== Reproducible Dataset
 
@@ -92,7 +92,7 @@ This allows the data scientists to reproduce the model results, but also
 allows them to share the work with fellow data scientists or machine
 learning engineers who need to deploy the model.
 
-We will be using https://dvc.org/[dvc] in this workshop.
+We will be using https://dvc.org/[dvc^] in this workshop.
 
 === Productize Model
 
@@ -101,7 +101,7 @@ a notebook to source code. This allows better source revision control
 compared to having a notebook in a Source Code Management (SCM).
 
 We will be using
-https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F[Git] to
+https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F[Git^] to
 version control the source code.
 
 === Testing
@@ -115,9 +115,9 @@ container image and deployed onto OpenShift by the pipeline.
 
 ==== Model Serving
 
-The model will be served using https://www.seldon.io/[Seldon]. The
+The model will be served using https://www.seldon.io/[Seldon^]. The
 pipeline will build an image using Source-to-Image
-(https://github.com/openshift/source-to-image[S2I]) and deploy the model
+(https://github.com/openshift/source-to-image[S2I^]) and deploy the model
 onto OpenShift.
 
 === Model Monitoring and Observability
@@ -127,7 +127,7 @@ monitor key model metrics using the Grafana dashboard.
 
 === Continuous Delivery
 
-https://tekton.dev/[Tekton] CI/CD pipeline will be used in the workshop
+https://tekton.dev/[Tekton^] CI/CD pipeline will be used in the workshop
 to automate the different stages, such as building, testing, deployment
 and promotion of the model onto OpenShift.
 

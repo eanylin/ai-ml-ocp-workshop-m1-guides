@@ -9,7 +9,7 @@ Google open-sourced the Kubernetes project in 2014.
 
 This module provides a brief overview on the core concepts in
 Kubernetes, based on the documentation in
-https://kubernetes.io/docs/home/[kubernetes.io].
+https://kubernetes.io/docs/home/[kubernetes.io^].
 
 == Kubernetes Control Plane
 
@@ -27,21 +27,21 @@ objects match the desired state.
 The Kubernetes Control Plane consists of a collection of processes
 running within the cluster:
 
-* https://kubernetes.io/docs/concepts/#overview[Master]
+* https://kubernetes.io/docs/concepts/#overview[Master^]
 ** A collection of 3 processes that run on a single node, designated as
 the master node in the cluster. The processes are
-https://kubernetes.io/docs/admin/kube-apiserver/[kube-apiserver],
-https://kubernetes.io/docs/admin/kube-controller-manager/[kube-controller-manager]
-and https://kubernetes.io/docs/admin/kube-scheduler/[kube-scheduler]
+https://kubernetes.io/docs/admin/kube-apiserver/[kube-apiserver^],
+https://kubernetes.io/docs/admin/kube-controller-manager/[kube-controller-manager^]
+and https://kubernetes.io/docs/admin/kube-scheduler/[kube-scheduler^]
 ** Responsible for maintaining the desired state of the cluster
 ** The master can also be replicated for availability and redundancy.
-* https://kubernetes.io/docs/concepts/architecture/nodes/[Node]
+* https://kubernetes.io/docs/concepts/architecture/nodes/[Node^]
 ** Machines (VMs, physical servers, etc) that run the applications and
 cloud workflows
 ** Nodes are controlled by Kubernetes Master
 ** Runs 2 processes,
-i.e. https://kubernetes.io/docs/admin/kubelet/[kubelet] and
-https://kubernetes.io/docs/admin/kube-proxy/[kube-proxy]
+i.e. https://kubernetes.io/docs/admin/kubelet/[kubelet^] and
+https://kubernetes.io/docs/admin/kube-proxy/[kube-proxy^]
 ** kubelet allows the node to communicate with the Kubernetes Master
 ** kube-proxy is a network proxy which reflects Kubernetes networking
 services on each node
@@ -50,21 +50,21 @@ services on each node
 
 The basic Kubernetes object include:
 
-* https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/[Pod]
+* https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/[Pod^]
 ** A Pod is the smallest unit in the Kubernetes object model that can be
 created or deployed. It represents processes running on the cluster.
 ** A Pod encapsulates an application’s container(s), storages resources,
 unique network identity (IP address) as well as options that govern how
 the container(s) should run
-* https://kubernetes.io/docs/concepts/services-networking/service/[Service]
+* https://kubernetes.io/docs/concepts/services-networking/service/[Service^]
 ** An abstract way to expose an application running on a set of Pods as
 a network service
 ** An abstraction which defines a logical set of Pods and a policy by
 which to access them
 ** The set of Pods that are targeted by a Service is usually determined
 by a
-https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[selector]
-* https://kubernetes.io/docs/concepts/storage/volumes/[Volume]
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[selector^]
+* https://kubernetes.io/docs/concepts/storage/volumes/[Volume^]
 ** On-disk files in a Container are ephemeral, which is not idea for
 non-trivial applications when running in Containers
 ** Kubernetes volume allows data to be preserved across Container
@@ -72,9 +72,9 @@ restarts
 ** It has an explicit lifetime, i.e. the same as the Pod that encloses
 it
 ** There is support for different types of
-https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes[Volumes],
+https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes[Volumes^],
 such as awsElasticBlock, cephfs, etc
-* https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Namespace]
+* https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Namespace^]
 ** Kubernetes supports multiple virtual clusters backed by the same
 physical cluster
 ** These virtual clusters are called namespaces and are a way to divide
@@ -88,7 +88,7 @@ Kubernetes also contains higher-level abstractions that rely on
 controllers to build upon the basic objects to provide additional
 functionality and convenience features. These include:
 
-* https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Deployment]
+* https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Deployment^]
 ** Provides declarative updates for Pods and ReplicaSets
 ** You can describe a desired state in a Deployment, and the Deployment
 Controller changes the actual state to the desired state at a controlled
@@ -102,7 +102,7 @@ the Deployment is not stable
 **** Each rollback updates the revision of the Deployment
 *** Scale up the Deployment to facilitate more load
 *** Clean up ReplicaSets
-* https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/[DaemonSet]
+* https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/[DaemonSet^]
 ** Ensures that all or some Nodes run a copy of the Pod
 ** Pods are added and garbage collected as nodes are added/removed from
 the cluster
@@ -111,7 +111,7 @@ the cluster
 *** Running cluster storage daemon on every node
 *** Running logs collection daemon on every node
 *** Running node monitoring daemon on every node
-* https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/[StatefulSet]
+* https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/[StatefulSet^]
 ** Workload API object used to manage stateful applications
 ** Manages deployment scaling of a set of Pods and provides _guarantees_
 about the ordering and _uniqueness_ of these Pods
@@ -120,14 +120,14 @@ each of their Pods
 ** Pods are created from the same spec but are not interchangeable,
 i.e. each has a persistent identifier that it maintains across any
 rescheduling
-* https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/[ReplicaSet]
+* https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/[ReplicaSet^]
 ** Maintain a stable set of replica Pods running at any given time
 ** It is used to guarantee the availability of a specified number of
 identical Pods
 ** A ReplicaSet is linked to its Pods via the Pods’
-https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/#owners-and-dependents[metadata.ownerReferences]
+https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/#owners-and-dependents[metadata.ownerReferences^]
 field, which specifies what resource the current object is owned by
-* https://kubernetes.io/docs/concepts/workloads/controllers/job/[Job]
+* https://kubernetes.io/docs/concepts/workloads/controllers/job/[Job^]
 ** Creates one or more Pods and ensures that a specified number of them
 successfully terminate
 ** Tracks successful completions of pods
@@ -172,12 +172,11 @@ containers.
 
 Kubernetes supports several container runtimes:
 
-* https://cri-o.io/#what-is-cri-o[CRI-O]
-* https://containerd.io/docs/[containerd]
-* https://docs.docker.com/engine/[Docker]
+* https://cri-o.io/#what-is-cri-o[CRI-O^]
+* https://containerd.io/docs/[containerd^]
+* https://docs.docker.com/engine/[Docker^]
 * Any other implementation of the
-https://github.com/kubernetes/community/blob/master/contributors/devel/sig-node/container-runtime-interface.md[Kubernetes
-CRI] (Container Runtime Interface)
+https://github.com/kubernetes/community/blob/master/contributors/devel/sig-node/container-runtime-interface.md[Kubernetes CRI^] (Container Runtime Interface)
 
 === Containers vs Virtual Machines
 

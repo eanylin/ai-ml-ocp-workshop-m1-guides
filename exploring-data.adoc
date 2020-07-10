@@ -1,9 +1,9 @@
 == Exploring Data
 
 You will be using Jupyter notebooks from
-https://opendatahub.io/[OpenDataHub] to explore credit card fraud
-https://www.kaggle.com/mlg-ulb/creditcardfraud[data], using tools such
-as https://dvc.org/[dvc] and https://pandas.pydata.org/[Pandas].
+https://opendatahub.io/[OpenDataHub^] to explore credit card fraud
+https://www.kaggle.com/mlg-ulb/creditcardfraud[data^], using tools such
+as https://dvc.org/[dvc^] and https://pandas.pydata.org/[Pandas^].
 
 == About OpenDataHub
 
@@ -35,7 +35,7 @@ using DVC to retrieve the dataset from a S3 bucket provided by OCS4.
 
 == Logging in
 
-Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub].
+Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub^].
 
 Your user name will be `{{  USER_ID }}` and password is
 `{{  OPENSHIFT_USER_PASSWORD }}`.

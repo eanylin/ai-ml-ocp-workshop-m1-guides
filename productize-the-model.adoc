@@ -20,7 +20,7 @@ development teams a faster and more reliable foundation on which to
 work, and it gives operations centralized control and peace of mind.
 
 To get started, {{ECLIPSE_CHE_URL}}[access the
-CodeReady Workspaces instance], and log in using the username and
+CodeReady Workspaces instance^], and log in using the username and
 password you’ve been assigned
 (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
@@ -178,5 +178,5 @@ git commit -a -m 'my lr training code'
 git push -v origin master
 ----
 
-The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}[your] git
+The code has now been pushed to {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}[your^] git
 repository on the `master/devel` branch.
