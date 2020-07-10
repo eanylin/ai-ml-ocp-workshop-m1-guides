@@ -127,7 +127,7 @@ else:
     CSV_FILE = 'creditcard.csv'
 ----
 
-The code above is not meant to be run, but it is highlighted for the user to take note of the versioning of the data as well as introduce the use of a bigger training file in the pipeline.
+Note that the code directly above this is not meant to be run but serves as an illustration for the user to take note of the versioning of the data as well as introduce the use of a bigger training file in the pipeline.
 
 == Train And Test The Model
 
