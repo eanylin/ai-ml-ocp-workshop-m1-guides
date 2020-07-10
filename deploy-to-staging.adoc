@@ -23,7 +23,7 @@ The pipeline consists of the following stages
 * Git clone the source code
 * Run `train-stage.sh` to train the model
 * Build the image using S2I (Source-to-Image)
-* Push the image into OpenShift's registry
+* Push the image into Nexus Registry
 
 ## Argo CD
 
@@ -57,7 +57,7 @@ S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/buil
 
 In our workshop, we have overridden `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
 
-The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/staging/workshop/src/seldon[here] 
+The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/master/src/seldon[here] 
 
 ## Deployment
 
@@ -96,20 +96,11 @@ Once the pipeline runs finish,the image would have been pushed into {{NEXUS_URL}
 
 Argo CD follows the GitOps model of deployment, where desired configuration changes are first pushed to Git, and the cluster state then syncs to the desired state in git. 
 
-Ensure you are on the staging branch. The starred branch is your current branch.
-
-[source,sh]
-----
-cd /projects/{{USER_MODEL_REPO_NAME}}
-git branch -a
-master
-* stage
-----
-
 We will now modify the `SeldonDeployment` to deploy our new image that is tagged with the git revision.
 [source,sh,role="copypaste"]
 ----
 cd /projects/{{USER_MODEL_REPO_NAME}}
+git checkout stage
 GIT_REV=`git rev-parse --short HEAD`
 echo "GIT REVISION: $GIT_REV"
 . src/seldon/config.sh
@@ -140,9 +131,7 @@ Once the deployment has been pushed, Argo CD will be triggered via a webhook to 
 
 image::argocd-deploy.png[argocd-deploy]
 
-A `Deployment` resource will be created. The pods should be running and in ready state.
-
-You can view them under OpenShift Console -> Workloads -> Deployments. Choose the `{{USER_ID}}-stage` project.
+A `Deployment` resource will be created. The pods should be running and in ready state. You can view them under {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/deployments[OpenShift Console]. 
 
 image::seldon-deploy.png[seldon-deploy]
 
@@ -163,5 +152,3 @@ Once the model has been deployed and is running, you now can run some simple tes
 ----
 /projects/{{USER_MODEL_REPO_NAME}}/bin/stage-test.sh
 ----
-
-## End-To-End Testing
