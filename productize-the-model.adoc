@@ -22,12 +22,11 @@ work, and it gives operations centralized control and peace of mind.
 To get started, {{ECLIPSE_CHE_URL}}[access the
 CodeReady Workspaces instance], and log in using the username and
 password you’ve been assigned
-(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 image::che-login.png[che-login]
 
-Once you log in, you’ll be placed on your personal dashboard. Click on
-the name of the pre-created workspace on the left, as shown below (the
+Upon successful logging into CodeReadyWorkspaces, select Dashboard -> enter {{USER_ID}}/{{USER_ID}}-workspace and open the file (the
 name will be different depending on your assigned number). 
 
 After a minute or two, you’ll be placed in the workspace:
@@ -44,7 +43,7 @@ This IDE is based on Eclipse Che (which is in turn based on MicroSoft VS
 Code editor).
 
 You can see icons on the left for navigating between project explorer,
-search, version control (e.g. Git), debugging, and other plugins. You’ll
+search, version control (e.g. Git), debugging, and other plugins. You’ll
 use these during the course of this workshop. Feel free to click on them
 and see what they do:
 
@@ -75,11 +74,12 @@ Run the the following commands to convert a notebook into a python code.
 [source,bash,role="copypaste"]
 ----
 pip install jupytext
-cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/notebooks/
+cd /projects/{{USER_MODEL_REPO_NAME}}/notebooks/
 jupytext "2 building the first model.ipynb"  -o ../src/train/lr.py
 ----
 
-Open up the file in the editor and inspect the newly converted file. 
+To inspect the newly converted file, from the file editor: 
+Select "Open Files" -> rh-mlops-workshop -> src -> train -> lr.py
 
 [NOTE]
 ====
@@ -91,6 +91,7 @@ image::che-pylint.png[che-pylint]
 The python code generated from the notebook has been refactored into a
 python class and visualization removed.
 
+
 == Refactor the New Model
 
 Next, we will then modify the code into a format that the pipeline can
@@ -98,6 +99,18 @@ run to train and build the image with the model. The pipeline will call
 `train-stage.sh` and expects the model to be written to a folder at
 `/workspace/model`. 
 
+We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`
+
+[source,bash,role="copypaste"]
+----
+cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py
+----
+
+Copying the file over would change the contents of the lr.py file 
+
+(From file editor select "Open Files" -> rh-mlops-workshop -> src -> train -> lr.py)
+
+Note that in the lr.py file, tere is a section on the version of the data used.
 The version of the data used is going to be committed together with source, thus allowing us to have reproducible result
 easily with dvc. 
 
@@ -114,12 +127,7 @@ else:
     CSV_FILE = 'creditcard.csv'
 ----
 
-We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`
-
-[source,bash,role="copypaste"]
-----
-cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py
-----
+The code above is not meant to be run, but it is highlighted for the user to take note of the versioning of the data as well as introduce the use of a bigger training file in the pipeline.
 
 == Train And Test The Model
 
@@ -146,6 +154,9 @@ class LRModel(Base):
     def predict(self, X, features_names):
         # Calls the model predict_proba method
 ----
+
+Note that the code directly above this is not meant to be run but serves as an illustration of the model wrapper.
+
 
 Serve the model by running `app.sh`.
 
