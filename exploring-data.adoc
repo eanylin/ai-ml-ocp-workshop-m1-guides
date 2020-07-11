@@ -1,9 +1,9 @@
 == Exploring Data
 
 You will be using Jupyter notebooks from
-https://opendatahub.io/[OpenDataHub^] to explore credit card fraud
-https://www.kaggle.com/mlg-ulb/creditcardfraud[data^], using tools such
-as https://dvc.org/[dvc^] and https://pandas.pydata.org/[Pandas^].
+https://opendatahub.io/[OpenDataHub] to explore credit card fraud
+https://www.kaggle.com/mlg-ulb/creditcardfraud[data], using tools such
+as https://dvc.org/[dvc] and https://pandas.pydata.org/[Pandas].
 
 == About OpenDataHub
 
@@ -35,10 +35,11 @@ using DVC to retrieve the dataset from a S3 bucket provided by OCS4.
 
 == Logging in
 
-Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub^].
+Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub].
 
 Your user name will be `{{  USER_ID }}` and password is
 `{{  OPENSHIFT_USER_PASSWORD }}`.
+You may see a notification on authorizing access, select “Allow selected permissions” and proceed.
 
 Upon logging in, start a new notebook by choosing
 `s2i-minimal-notebook:3.6` image in the drop down box and then click on
@@ -49,9 +50,13 @@ Upon logging in, start a new notebook by choosing
 If the notebook page did not appear, try refreshing the page or
 reach out to your instructor.
 
-There is a notebook `0 intro to juypyter.ipynb` to help you get
-started on Jupyter interface.
 ====
 
-Once the notebook page is up and running, click on
-`{{USER_MODEL_REPO_NAME}}/notebooks/1 data exploration.ipynb` to load the notebook.
+Once the notebook page is up and running, there is a notebook `"{{USER_MODEL_REPO_NAME}}/notebooks/0 intro to juypyter.ipynb"` to help you get started on familiarizing with the Jupyter interface.
+
+After you have acquainted yourself with how to edit and run Jupyter Notebooks, click on `"{{USER_MODEL_REPO_NAME}}/notebooks/1 data exploration.ipynb"` to load the notebook. Run the individual code blocks contained in this notebook and observe the output.
+
+Run the notebook “1 data exploration” from start to end and the end product should contain something like this.
+
+image::jupyternotebook-1-data-exploration.jpeg[jupyter-1-data-exploration]
+
