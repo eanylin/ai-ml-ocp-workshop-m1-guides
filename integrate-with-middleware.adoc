@@ -26,3 +26,9 @@ Red Hat Decision Manager is used to ....
 (picture here, rules)
 
 == Future Enhancements 
+
+(See Google Doc)
+
+== Wrap Up
+
+In this workshop, we have ...
