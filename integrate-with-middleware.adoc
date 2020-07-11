@@ -1,4 +1,4 @@
-== Integration with Kafka and Decision Manager
+== Integrate with Kafka and Decision Manager
 
 We have deployed on our final model base on XGBoost. In this workshop we have ...
 
