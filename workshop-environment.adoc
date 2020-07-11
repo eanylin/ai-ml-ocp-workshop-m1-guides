@@ -77,7 +77,7 @@ Grafana url is `{{ GRAFANA_URL }}`
 
 Argo CD url is `{{ ARGOCD_URL }}`
 
-Nexus url is `{{ NEXUS_URL }} `
+Nexus url is `{{ NEXUS_URL }}`
 
 == How to complete this workshop
 
