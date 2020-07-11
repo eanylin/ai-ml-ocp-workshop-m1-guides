@@ -1,5 +1,28 @@
 == Integration with Kafka and Decision Manager
 
+We have deployed on our final model base on XGBoost. In this workshop we have ...
+
+(Describe Kafka. AMQ Stream, PAM, DM )
+
 Red Hat Decision Manager 7 is a powerful, scalable open source business rules management system that includes business resource optimization and complex event processing (CEP) technology. It helps organizations capture business logic and develop applications that automate business decisions.
 
 Red Hat Process Automation Manager is a platform for developing containerized microservices and applications that automate business decisions and processes. Process Automation Manager lets users capture business policies and procedures, create applications that automate business operations, and measure the results of business activities. It includes easy-to-use graphical tools that foster collaboration between IT and business users in addition to providing better visibility into the rules and procedures that govern business applications.
+
+(Diagram and describe flow)
+
+== Sending Data To Kafka
+
+We will use Jupyter Notebook `4 kafka.ipyb` to send transactions to Kafka.
+
+Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub^].
+
+Your user name will be `{{  USER_ID }}` and password is
+`{{  OPENSHIFT_USER_PASSWORD }}`.
+
+After sending the transactions, you can now go to the http://webnotifications-{{USER_ID}}-prod.{{ROUTE_SUBDOMAIN}}[notification^] page to see the end results.
+
+Red Hat Decision Manager...
+
+(picture here)
+
+== Future Enhancements 
