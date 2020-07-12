@@ -132,7 +132,7 @@ View the `seldon.yaml` in the IDE and notice that image name has been updated wi
 ----
 spec:
   containers:
-     - image: {{NEXUS_DOCKER_REGISTRY}}/{{USER_ID}}/lr:1234
+    - image: {{NEXUS_DOCKER_REGISTRY}}/{{USER_ID}}/lr:1234
 ----
 
 Argo CD is configured to monitor your deployment for the `stage` and `prod` branch in your git 
