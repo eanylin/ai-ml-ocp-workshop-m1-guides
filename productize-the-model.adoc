@@ -30,7 +30,6 @@ Once you log in, you’ll be placed on your personal dashboard. Click on
 the name of the pre-created {{USER_ID}}-workspace on the bottom left, as shown below (the
 name will be different depending on your assigned number). 
 
-
 After a minute or two, you’ll be placed in the workspace:
 
 image::che-workspace.png[che-workspace]
