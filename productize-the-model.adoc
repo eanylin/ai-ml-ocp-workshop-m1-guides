@@ -22,12 +22,18 @@ work, and it gives operations centralized control and peace of mind.
 To get started, {{ECLIPSE_CHE_URL}}[access the
 CodeReady Workspaces instance^], and log in using the username and
 password you’ve been assigned
-(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 image::che-login.png[che-login]
 
-Once you log in, you’ll be placed on your personal dashboard. Click on
-the name of the pre-created workspace on the left, as shown below (the
+Once you log in, you’ll be placed on your personal dashboard. Click on the name of the pre-created workspace on the left, as shown below (the name will be different depending on your assigned number).
+
+image::codeready-dashboard.png[codeready-dashboard]
+
+Upon entering the workspace, click "Open" at the top right hand corner to access the environment.
+image::codeready-user-workspace.png[codeready-user-workspace]
+
+Upon successful logging into CodeReadyWorkspaces, select Dashboard -> enter {{USER_ID}}/{{USER_ID}}-workspace and open the file (the
 name will be different depending on your assigned number). 
 
 After a minute or two, you’ll be placed in the workspace:
@@ -44,7 +50,7 @@ This IDE is based on Eclipse Che (which is in turn based on MicroSoft VS
 Code editor).
 
 You can see icons on the left for navigating between project explorer,
-search, version control (e.g. Git), debugging, and other plugins. You’ll
+search, version control (e.g. Git), debugging, and other plugins. You’ll
 use these during the course of this workshop. Feel free to click on them
 and see what they do:
 
@@ -70,16 +76,18 @@ terminal, you can use the *>_ New Terminal* command on the right.
 
 image::che-terminal.png[che-terminal]
 
-Run the the following commands to convert a notebook into a python code.
+Run the following commands to convert a notebook into a python code.
 
 [source,bash,role="copypaste"]
 ----
 pip install jupytext
-cd /projects/{{USER_MODEL_REPO_NAME}}/workshop/notebooks/
+cd /projects/{{USER_MODEL_REPO_NAME}}/notebooks/
 jupytext "2 building the first model.ipynb"  -o ../src/train/lr.py
 ----
 
-Open up the file in the editor and inspect the newly converted file. 
+To inspect the newly converted file, the user can navigate from the file explorer under "Open File"
+
+image::codeready-file-explorer.png[codeready-file-explorer]
 
 [NOTE]
 ====
@@ -95,10 +103,28 @@ run to train and build the image with the model. The pipeline will call
 `train-stage.sh` and expects the model to be written to a folder at
 `/workspace/model`. 
 
-The version of the data used is going to be committed together with source, thus allowing us to have reproducible result
+We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`. The python code generated from the notebook has been refactored into a python class and visualization removed.
+
+[source,bash,role="copypaste"]
+----
+cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py
+----
+
+[WARNING] 
+====
+Copying the file over would change the contents of the lr.py file, but since this is a prepared file the contents replacing the original lr.py file would be accurate. Users can view the new contents of the file via the file explorer as stated previously.
+====
+
+Note that in the lr.py file, there is a section on the version of the data used.
+The version of the data used is going to be committed together with source, thus allowing us to have reproducible results
 easily with dvc. 
 
 We will also use a bigger training set `creditcard-train.csv` during the training stage in the pipeline.
+
+[WARNING] 
+====
+Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note of the versioning of the data as well as introduce the use of a bigger training set in the training stage of the pipeline.
+====
 
 [source,python]
 ----
@@ -109,14 +135,6 @@ if os.environ.get('PIPELINERUN', None):
     CSV_FILE = 'creditcard-train.csv'       
 else:
     CSV_FILE = 'creditcard.csv'
-----
-
-We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py`. Copy it to `/projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py`. The python code generated from the notebook has been refactored into a python class and visualization removed.
-
-
-[source,bash,role="copypaste"]
-----
-cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py
 ----
 
 == Train And Test The Model
@@ -133,7 +151,12 @@ The model would have been written to `/opt/app-root/src/model`.
 
 As part of the training, the metrics and model will be logged at https://mlflow-{{USER_ID}}-dev.{{ROUTE_SUBDOMAIN}}[MLflow server^]. 
 
-Now start serving the model using REST. A model wrapper has been written to serve the model using Seldon. The model will be loaded and `predict_proba` method will be called. Seldon will wrap the model using Flask and exposes the port `5000`.
+Now start serving the model using REST. A model wrapper has been written to serve the model using Seldon. The model will be loaded and the `predict_proba` method will be called. Seldon will wrap the model using Flask and expose the port `5000`.
+
+[WARNING] 
+====
+Note that the code directly below this statement is not meant to be run but serves as an illustration of the model wrapper.
+====
 
 [source,python]
 ----
@@ -166,7 +189,7 @@ Now let's test the model. Open up a *new* terminal and run the following:
 /projects/{{USER_MODEL_REPO_NAME}}/bin/dev-test.sh
 ----
 
-The script will send a fraud and non-fraud requests to the the model. 
+The script will send both fraud and non-fraud requests to the model. 
 
 == Commit the Code
 
