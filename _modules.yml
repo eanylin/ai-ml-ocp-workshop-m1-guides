@@ -27,4 +27,4 @@ modules:
   decide-on-final-model:
     name: Deploy The Chosen One
   integrate-with-middleware:
-    name: Integration with Kafka and Decision Manager
+    name: Integrate with Kafka and Decision Manager

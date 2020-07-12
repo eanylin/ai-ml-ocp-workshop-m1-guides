@@ -71,13 +71,13 @@ CodeReady Workspaces url is `{{  ECLIPSE_CHE_URL }}`. Username/password is `{{ U
 
 Git url is `{{  GIT_URL }}`. Username/password is `{{USER_ID}}/{{GIT_USER_PASSWORD}}`.
 
-JupyterHub url is `{{ JUPYTERHUB_URL }} `
+JupyterHub url is `{{ JUPYTERHUB_URL }}`
 
 Grafana url is `{{ GRAFANA_URL }}`
 
 Argo CD url is `{{ ARGOCD_URL }}`
 
-Nexus url is `{{ NEXUS_URL }} `
+Nexus url is `{{ NEXUS_URL }}`
 
 == How to complete this workshop
 

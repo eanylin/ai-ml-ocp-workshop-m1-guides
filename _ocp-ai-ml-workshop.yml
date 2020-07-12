@@ -22,6 +22,7 @@ vars:
   NEXUS_URL:
   NEXUS_DOCKER_REGISTRY:
   RHDM_URL:
+  GIT_USER_PASSWORD: 
 
 modules:
   activate:
