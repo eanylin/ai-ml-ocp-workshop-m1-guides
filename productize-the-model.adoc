@@ -26,15 +26,10 @@ password you’ve been assigned
 
 image::che-login.png[che-login]
 
-Once you log in, you’ll be placed on your personal dashboard. Click on the name of the pre-created workspace on the left, as shown below (the name will be different depending on your assigned number).
-
-image::codeready-dashboard.png[codeready-dashboard]
-
-Upon entering the workspace, click "Open" at the top right hand corner to access the environment.
-image::codeready-user-workspace.png[codeready-user-workspace]
-
-Upon successful logging into CodeReadyWorkspaces, select Dashboard -> enter {{USER_ID}}/{{USER_ID}}-workspace and open the file (the
+Once you log in, you’ll be placed on your personal dashboard. Click on
+the name of the pre-created {{USER_ID}}-workspace on the bottom left, as shown below (the
 name will be different depending on your assigned number). 
+
 
 After a minute or two, you’ll be placed in the workspace:
 
@@ -110,9 +105,11 @@ We have prepared the refactored model at `/projects/{{USER_MODEL_REPO_NAME}}/src
 cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.py
 ----
 
-[WARNING] 
+[NOTE] 
 ====
-Copying the file over would change the contents of the lr.py file, but since this is a prepared file the contents replacing the original lr.py file would be accurate. Users can view the new contents of the file via the file explorer as stated previously.
+
+Copying the file will override the jupuytertext converted lr.py.
+
 ====
 
 Note that in the lr.py file, there is a section on the version of the data used.
@@ -121,7 +118,7 @@ easily with dvc.
 
 We will also use a bigger training set `creditcard-train.csv` during the training stage in the pipeline.
 
-[WARNING] 
+[NOTE] 
 ====
 Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note of the versioning of the data as well as introduce the use of a bigger training set in the training stage of the pipeline.
 ====
@@ -153,7 +150,7 @@ As part of the training, the metrics and model will be logged at https://mlflow-
 
 Now start serving the model using REST. A model wrapper has been written to serve the model using Seldon. The model will be loaded and the `predict_proba` method will be called. Seldon will wrap the model using Flask and expose the port `5000`.
 
-[WARNING] 
+[NOTE] 
 ====
 Note that the code directly below this statement is not meant to be run but serves as an illustration of the model wrapper.
 ====
