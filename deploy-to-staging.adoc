@@ -1,5 +1,5 @@
 ## Deploy The Model To Staging
-#
+
 The model has been tested in the development environment and is now ready to be deployed to the staging environment.
 
 Once we code is pushed to the git repository, the pipeline will run to build and train the image. We will also be using Argo CD as the GitOps tool to deploy the model to the staging environment.
@@ -132,7 +132,7 @@ View the `seldon.yaml` in the IDE and notice that image name has been updated wi
 ----
 spec:
   containers:
-      - image: {{NEXUS_DOCKER_REGISTRY}}/{{USER_ID}}/lr:1234
+     - image: {{NEXUS_DOCKER_REGISTRY}}/{{USER_ID}}/lr:1234
 ----
 
 Argo CD is configured to monitor your deployment for the `stage` and `prod` branch in your git 
