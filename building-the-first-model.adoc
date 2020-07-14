@@ -22,3 +22,7 @@ out to your instructor.
 
 Once the notebook page is up and running, click on
 `{{USER_MODEL_REPO_NAME}}/notebooks/2 building the first model.ipynb` to load the notebook.
+
+After running notebook “2 building the first model”, the output would be similar to the example below.
+
+image::jupyternotebook-2-build-first-model.png[jupyternotebook-2-build-first-model]

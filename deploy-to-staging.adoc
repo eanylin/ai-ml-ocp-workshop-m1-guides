@@ -7,7 +7,7 @@ Once we code is pushed to the git repository, the pipeline will run to build and
 To get started, {{ECLIPSE_CHE_URL}}[access the
 CodeReady Workspaces instance], and log in using the username and
 password you have been assigned
-(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+(e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 ## OpenShift Pipelines
 
@@ -15,6 +15,11 @@ OpenShift Pipelines is a Kubernetes-style CI/CD solution based on Tekton. It bui
 
 A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline^]
 has been created for you.
+
+[Note]
+====
+Here, users are able to explore the different stages of the pipeline  
+====
 
 image:pipeline.png[pipeline]
 
@@ -34,6 +39,12 @@ Argo CD is a declarative continuous delivery tool that leverages GitOps to maint
 `train-stage.sh` has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. `train-stage.sh` can be found in your {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/[Gogs^] repository. The training script uses a `config.sh` that allows you to define the model to be trained.
 
 Under /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/config.sh:
+
+[Note]
+====
+Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note that the python script used is lr.py and the associated run name is lr.
+====
+
 [source,sh,role="copypaste"]
 ----
 PYTHON_SCRIPT=lr.py
