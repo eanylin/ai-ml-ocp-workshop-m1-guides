@@ -84,7 +84,7 @@ promoted through the different stages, such as staging and finally to
 production.
 
 We will be using https://jupyter.org/hub[JupyterHub^] and
-https://www.mlflow.org/[MLFlow^] to log the model and experiment results.
+https://www.mlflow.org/[MLflow^] to log the model and experiment results.
 
 ==== Reproducible Dataset
 

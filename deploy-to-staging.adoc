@@ -16,7 +16,7 @@ OpenShift Pipelines is a Kubernetes-style CI/CD solution based on Tekton. It bui
 A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline^]
 has been created for you.
 
-[Note]
+[NOTE]
 ====
 Here, users are able to explore the different stages of the pipeline  
 ====
@@ -40,7 +40,7 @@ Argo CD is a declarative continuous delivery tool that leverages GitOps to maint
 
 Under /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/config.sh:
 
-[Note]
+[NOTE]
 ====
 Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note that the python script used is lr.py and the associated run name is lr.
 ====
