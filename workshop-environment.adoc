@@ -17,13 +17,7 @@ workshop you are doing, you will use one or more of:
 * https://www.sonatype.com/nexus-repository-oss[Nexus^] - Nexus Repository OSS is an open source repository that supports many artifact formats, including Docker, Java™, and npm. 
 
 You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.
-
-== Pipeline
  
-A pipeline in software development is an automated process that drives software through a path of building, testing, and deploying code. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is deployed. Tools that are included in the pipeline could include compiling code, unit tests, code analysis, security, and installer creation. For containerized environments, this pipeline would also include packaging the code into a container to be deployed across the hybrid cloud. A pipeline is critical in supporting continuous integration and continuous deployment (CI/CD) processes.
- 
-There is a staging and production pipeline that is used to build and train the model.
-
 == Workshop Flow
  
 The goal of this workshop is the delivery of an end-to-end AI/ML solution for fraud detection based on the respective software components and their processes. The main steps are as follows:
@@ -37,6 +31,53 @@ The goal of this workshop is the delivery of an end-to-end AI/ML solution for fr
 * Production Environment: Once the model has been verified to be in proper working condition, it will be promoted to the production environment, where approved images are deployed into the environment.
  
 3) Monitoring provided by Prometheus/Grafana provides insight into the credibility of the fraud detection model as well as account for any sanity check on the results derived from the associated data. The visualized metrics reflect any performance degradation of the model, which preempts us to decide on either starting on new experiment iterations or retraining the model with new data, considering the regular evolution of fraud practices in the real world.
+
+== Pipeline
+ 
+A pipeline in software development is an automated process that drives software through a path of building, testing, and deploying code. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is deployed. Tools that are included in the pipeline could include compiling code, unit tests, code analysis, security, and installer creation. For containerized environments, this pipeline would also include packaging the code into a container to be deployed across the hybrid cloud. A pipeline is critical in supporting continuous integration and continuous deployment (CI/CD) processes.
+ 
+There is a staging pipeline that is used to build and train the model.
+
+== GPU 
+
+In this workshop, we will not be using GPU to train the models.
+
+GPU is supported on OpenShift via the https://github.com/NVIDIA/gpu-operator[Nvidia GPU Operator^] and Node Feature Discovery (NFD) Operator. The NFD operator identifies hardware device features in nodes. It solves the general problem of identifying and cataloging hardware resources in the infrastructure nodes so they can be made available to OpenShift.
+
+image::nvdia-gpu-operator-manual-install.png[nvdia-gpu-operator-manual-install]
+
+The NFD operator uses vendor PCI IDs to identify hardware in a node and Nivdia uses the PCI ID `10de`. 
+
+[source,sh]
+----
+$ oc describe node ip-10-0-132-138.us-east-2.compute.internal | egrep 'Roles|10de'
+
+Roles: worker
+feature.node.kubernetes.io/pci-10de.present=true
+----
+
+`10de` appears in the node feature list for the GPU-enabled node we defined. These labels created by the NFD operator are what the GPU Operator uses in order to determine where to deploy the driver containers for the GPU(s).
+
+You can then consume these GPUs from your containers by https://github.com/openshift-psap/blog-artifacts/blob/master/gpu-operator-pt1/0004-rapids_template.yaml#L67-L71[requesting^] `nvidia.com/gpu` just like you request cpu or memory. 
+
+[source,yaml]
+----
+resources:
+  requests:
+    nvidia.com/gpu: 1 # Num of GPUs
+  limits:
+    nvidia.com/gpu: 1
+----         
+
+== Model Training And Serving Frameworks
+
+We will be using Seldon to package the trained model into a Flask app.
+
+In Kubernetes, there are other Custom Resources (CR) such as:
+
+* TensorFlow. https://www.kubeflow.org/docs/components/training/tftraining/[TFJob^] provided by https://www.kubeflow.org[Kubeflow^]. You can serve the model directly from S3 or use https://github.com/AICoE/tensorflow-serving-s2i[S2I^].
+* Kubeflow XGBoost https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html[operator^]
+* PyTorch https://www.kubeflow.org/docs/components/training/pytorch/[jobs^] to run distributed training. 
 
 == First Step: Confirm Your Username!
 
