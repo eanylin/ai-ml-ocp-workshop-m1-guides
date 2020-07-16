@@ -12,7 +12,7 @@ Red Hat Process Automation Manager is a platform for developing containerized mi
 
 == Sending Data To Kafka
 
-We will use Jupyter Notebook `4 kafka.ipyb` to send transactions to Kafka.
+We will use Jupyter Notebook `"{{USER_MODEL_REPO_NAME}}/notebooks/4 kafka.ipyb`"` to send transactions to Kafka.
 
 Begin by logging into {{JUPYTERHUB_URL}}[JupyterHub^].
 
@@ -20,6 +20,8 @@ Your user name will be `{{  USER_ID }}` and password is
 `{{  OPENSHIFT_USER_PASSWORD }}`.
 
 After sending the transactions, you can now go to the http://webnotifications-{{USER_ID}}-prod.{{ROUTE_SUBDOMAIN}}[notification^] page to see the end results.
+
+image::notifications.png[notifications]
 
 Red Hat Decision Manager is used to .... 
 
