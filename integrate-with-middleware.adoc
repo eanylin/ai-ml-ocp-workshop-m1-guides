@@ -21,7 +21,7 @@ Your user name will be `{{  USER_ID }}` and password is
 
 After sending the transactions, you can now go to the http://webnotifications-{{USER_ID}}-prod.{{ROUTE_SUBDOMAIN}}[notification^] page to see the end results.
 
-image::notifications.png[notifications]
+image::notifications.png[notifications, 500]
 
 Red Hat Decision Manager is used to .... 
 
