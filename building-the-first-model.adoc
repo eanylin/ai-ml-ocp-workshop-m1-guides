@@ -11,7 +11,7 @@ Your user name will be `{{  USER_ID }}` and password is
 `{{  OPENSHIFT_USER_PASSWORD }}`.
 
 Upon logging in, start a new notebook by choosing
-`s2i-minimal-notebook:3.6` image in the drop down box and then click on
+`rh-mlops-workshop-notebook:3.6` image in the drop down box and then click on
 `Spawn`. Leave the rest of the options as default.
 
 [NOTE]
