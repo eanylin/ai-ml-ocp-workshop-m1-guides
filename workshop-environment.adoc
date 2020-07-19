@@ -1,3 +1,5 @@
+:experimental:
+
 == The Workshop Environment You Are Using
 
 Your workshop environment consists of several components which have been pre-installed and are ready to use. Depending on which parts of the
@@ -26,8 +28,8 @@ The goal of this workshop is the delivery of an end-to-end AI/ML solution for fr
  
 2) To productize the model. Using CodeReady Workspaces provided by Openshift to convert code into python, before delivering it into a pipeline for the process of building, testing and deploying code, mainly in three different environments:
  
-* Development Environment: Created models will be converted into python code here via CodeReady Workspaces, where these models will be trained and tested with a mixture of fraudulent and non-fraudulent inputs. Versioning will be done to ensure reproducibility of the model +
-* Staging Environment: When the model has undergone all the relevant testing, an image will be created with Buildah and stored in the Openshift registry +
+* Development Environment: Created models will be converted into python code here via CodeReady Workspaces, where these models will be trained and tested with a mixture of fraudulent and non-fraudulent inputs. Versioning will be done to ensure reproducibility of the model.
+* Staging Environment: When the model has undergone all the relevant testing, an image will be created with Buildah and stored in Nexus
 * Production Environment: Once the model has been verified to be in proper working condition, it will be promoted to the production environment, where approved images are deployed into the environment.
  
 3) Monitoring provided by Prometheus/Grafana provides insight into the credibility of the fraud detection model as well as account for any sanity check on the results derived from the associated data. The visualized metrics reflect any performance degradation of the model, which preempts us to decide on either starting on new experiment iterations or retraining the model with new data, considering the regular evolution of fraud practices in the real world.
