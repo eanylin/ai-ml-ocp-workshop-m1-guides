@@ -66,7 +66,7 @@ S2I follows a well https://docs.openshift.com/container-platform/4.4/builds/buil
 * `.s2i/environment`, custom environment variables
 * `app.py`, python script to launch the application
 
-In our workshop, we have overridden `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
+In our workshop, we have overridden the `APP_SCRIPT` environment variable to use `app.sh` to launch the model.
 
 The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/src/master/src/seldon[here^] 
 
@@ -92,7 +92,7 @@ git push -u -v origin stage
 
 image::gogs-staging-branch.png[gogs-staging-branch, 300]
 
-Because Gogs has been configure with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/settings/hooks[webhook^], a git push will trigger our pipeline.
+Because Gogs has been configured with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/settings/hooks[webhook^], a git push will trigger our pipeline.
 
 [WARNING]
 ====
@@ -144,7 +144,7 @@ Once the deployment has been pushed, Argo CD will be triggered via a webhook to 
 
 image::argocd-deploy.png[argocd-deploy]
 
-A `Deployment` resource will be created. The pods should be running and in ready state. You can view them under {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/deployments[OpenShift Console^]. 
+A `Deployment` resource will be created. The pods should be running and in a ready state. You can view them under {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/deployments[OpenShift Console^]. 
 
 image::seldon-deploy.png[seldon-deploy]
 
@@ -159,7 +159,7 @@ image::seldon-svc-orch.png[seldon-svc-orch]
 
 ## Model Testing
 
-Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
+Once the model has been deployed and is running, you can now run some simple tests. The test will send sample data to the prediction endpoint. 
 
 [source,sh,role="copypaste"]
 ----

@@ -78,7 +78,7 @@ We will now build the image for staging. Once the code is pushed to the `stage` 
 ----
 You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run^].
 
-Once the pipeline runs finish,the we will modify the `SeldonDeployment` to do A/B testing in staging.
+Once the pipeline runs finish, we will modify the `SeldonDeployment` to do A/B testing in staging.
 
 [source,sh,role="copypaste"]
 ----
@@ -119,7 +119,7 @@ There will be 2 classifier pods deployed in your {{CONSOLE_URL}}/k8s/ns/{{USER_I
 
 image::seldon-ab.png[seldon-ab]
 
-After the new model has been deployed to OpenShift, you an run some basic tests
+After the new model has been deployed to OpenShift, you can now run some basic tests
 
 [source,bash,role="copypaste"]
 ----
@@ -132,7 +132,7 @@ image::seldon-ab-logs.png[seldon-ab-logs]
 
 ## Deploy To Production With A/B Testing
 
-We will now promote this new image to Production environment and run some tests.
+We will now promote this new image to the Production environment and run some tests.
 
 [source,sh,role="copypaste"]
 ----

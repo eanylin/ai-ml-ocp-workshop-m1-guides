@@ -6,7 +6,7 @@ This module provides a brief overview of the OpenShift Web Console.
 
 The OpenShift cluster web console url for our workshop will be
 link:{{CONSOLE_URL}}[{{ CONSOLE_URL }}^]. The login page
-prompts user for their Username and Password.
+prompts users for their Username and Password.
 
 Your user name will be `{{  USER_ID }}` and password is
 `{{  OPENSHIFT_USER_PASSWORD }}`
@@ -107,7 +107,7 @@ Once the build has started, click on the _View Logs_ link shown on the
 Resources panel.
 
 This will allow you to monitor the progress of the build as it runs. The
-build will have completely successfully when you see a final message of
+build will have completed successfully when you see a final message of
 `Push successful`. This indicates that the container image for the
 application was pushed to the OpenShift internal image registry.
 

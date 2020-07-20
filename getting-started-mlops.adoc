@@ -61,8 +61,7 @@ data and the schema in addition to testing code.
 * Continuous deployment(CD) validating the performance of models in
 production – including the ability to deploy new models and rollback
 changes from a model.
-* Continuous testing (CT) to retrain and serve models. CT is unique to
-ML systems that is for
+* Continuous testing (CT) to retrain and serve models. CT is unique to ML systems because it allows us to keep our model updated.
 
 == Data Science Steps For MLOps
 
