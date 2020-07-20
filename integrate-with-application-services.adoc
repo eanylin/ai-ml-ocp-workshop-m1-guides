@@ -24,9 +24,9 @@ For organizations looking to improve business agility, operational efficiency, a
 
 == Data Streaming, Integration and Business Rules
 
-Data streaming to ensure the nature of data stays current, integration piecing different software components, business rules to accomplish business objectives, all these are crucial in any enterprise AI/ML setup, and in this section we will be covering how all these fit into the workshop we have been working on till now and how having the right application services solution is centerpiece to ensuring all these separate components work cohesively.
+Data streaming to ensure the nature of data stays current, integration piecing different software components, business rules to accomplish business objectives, all these are crucial in any enterprise AI/ML setup, and in this section we will be covering how all these fit into the workshop we have been working on till now and how having the right middleware solution is centerpiece to ensuring all these separate components work cohesively.
 
-=== Application Services Workflow
+=== Middleware Workflow
 
 
 In this workshop, transactions are kept in a CSV format which is streamed over to Kafka. To determine the authenticity of the conducted transactions. we are interested as to how many of these transactions are fraudulent. Consumer application contains a Camel Router which routes the data as messages around to different components for processing and eventual output.
