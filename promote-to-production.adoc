@@ -9,7 +9,7 @@ password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 ## Image Promotion
 
-To promote the image from staging to production environment, we are going to merge our `stage` to `prod` deployment branch. If there is a need for approval process, Red Hat Process Automation Manager can be used to approve the Pull Request before the changes are merged.
+To promote the image from staging to production environment, we are going to merge our `stage` to `prod` deployment branch. If there is a need for an approval process, Red Hat Process Automation Manager can be used to approve the Pull Request before the changes are merged.
 
 [source,sh,role="copypaste"]
 ----
@@ -23,7 +23,7 @@ You can now login to {{ARGOCD_URL}}/applications/{{USER_ID}}-prod[Argo CD^] with
 
 ## Model Testing
 
-Once the model has been deployed and is running, you now can run some simple test. The test will send sample data to the prediction endpoint. 
+Once the model has been deployed and is running, you can now run some simple tests. The test will send sample data to the prediction endpoint. 
 
 [source,sh,role="copypaste"]
 ----
