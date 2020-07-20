@@ -44,7 +44,8 @@ middleware-workflow.png[middleware-workflow]
 . The consumer application will route the outcome (Fraud/No Fraud) to a Web application to display the results so that users will be able to view.
 
 === Sending Data To Kafka
-We will use Jupyter Notebook 4 kafka.ipyb to send transactions to Kafka.
+
+We will use Jupyter Notebook `{{USER_MODEL_REPO_NAME}}/notebooks/4 kafka.ipyb` to send transactions to Kafka.
 
 Begin by logging into JupyterHub.
 
