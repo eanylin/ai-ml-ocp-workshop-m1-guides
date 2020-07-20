@@ -49,11 +49,10 @@ We will use Jupyter Notebook `{{USER_MODEL_REPO_NAME}}/notebooks/4 kafka.ipyb` t
 
 Begin by logging into JupyterHub.
 
-Your user name will be {{USER_ID }} and password is r3dh4t1!.
+Your user name will be `{{  USER_ID }}` and password is
+`{{  OPENSHIFT_USER_PASSWORD }}`.
 
 After sending the transactions, you can now go to the http://webnotifications-{{USER_ID}}-prod.{{ROUTE_SUBDOMAIN}}[notification^] page to see the end results.
-
-image::notifications.png[notifications, 500]
 
 Based on the probability score returned from the model, Red Hat Decision Manager is a 
 business rules management system (BRMS) that will decide whether a transaction is a fraud or not. 
