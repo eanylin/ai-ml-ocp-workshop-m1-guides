@@ -26,7 +26,7 @@ The dashboard has been configured to look at several metrics:
 * Recall 
 * F1 
 
-Choose your namespace {{USER_ID}}-prod and view the metrics from your model.
+Choose your image and namespace `{{USER_ID}}-prod` and view the metrics from your model.
 
 image::grafana-dropdown.png[grafana-dropdown, 500]
 

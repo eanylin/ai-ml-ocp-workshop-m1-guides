@@ -137,7 +137,7 @@ We will now promote this new image to Production environment and run some tests.
 [source,sh,role="copypaste"]
 ----
 cd /projects/{{USER_DEPLOY_REPO_NAME}}
-git checkout -b prod
+git checkout prod
 git merge stage
 git push -u -v origin
 ----
@@ -145,5 +145,5 @@ git push -u -v origin
 After the new model has been deployed to OpenShift, you can run some basic tests.
 [source,bash,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-mon-test.sh
 ----

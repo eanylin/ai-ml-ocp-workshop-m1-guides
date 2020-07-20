@@ -27,7 +27,7 @@ Once the model has been deployed and is running, you now can run some simple tes
 
 [source,sh,role="copypaste"]
 ----
-/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-test.sh
+/projects/{{USER_MODEL_REPO_NAME}}/bin/prod-mon-test.sh
 ----
 
 ## Tag it!

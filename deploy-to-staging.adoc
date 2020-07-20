@@ -16,7 +16,7 @@ OpenShift Pipelines is a Kubernetes-style CI/CD solution based on Tekton. It bui
 A Tekton {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~Pipeline[pipeline^]
 has been created for you.
 
-[Note]
+[NOTE]
 ====
 Here, users are able to explore the different stages of the pipeline  
 ====
@@ -28,7 +28,7 @@ The pipeline consists of the following stages
 * Git clone the source code
 * Run `train-stage.sh` to train the model
 * Build the image using S2I (Source-to-Image)
-* Push the image into Nexus Registry
+* Push the image into Nexus registry
 
 ## Argo CD
 
@@ -40,7 +40,7 @@ Argo CD is a declarative continuous delivery tool that leverages GitOps to maint
 
 Under /projects/{{USER_MODEL_REPO_NAME}}/workshop/src/train/config.sh:
 
-[Note]
+[NOTE]
 ====
 Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note that the python script used is lr.py and the associated run name is lr.
 ====
@@ -72,7 +72,7 @@ The source code is available {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REPO_NAME}}/sr
 
 ## Deployment
 
-Once the image has been pushed to OpenShift's internal registry, we will deploy the model using Seldon's operator by creating a `SeldonDeployment` resource.
+Once the image has been pushed to Nexus, we will deploy the model using Seldon's operator by creating a `SeldonDeployment` resource.
 
 Seldon Core, an open-source framework, makes it easier and faster to deploy your machine learning models and experiments at scale on Kubernetes. Seldon Core extends Kubernetes with its own custom resource `SeldonDeployment` where you can define your runtime inference graph made up of models and other components that Seldon will manage.
 
@@ -103,7 +103,7 @@ You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}
 
 image::pipelineruns.png[pipelineruns]
 
-Once the pipeline runs finish,the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
+Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
 
 ## Deploy to Staging
 
