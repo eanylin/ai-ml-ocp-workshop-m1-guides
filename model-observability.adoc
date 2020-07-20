@@ -8,7 +8,7 @@ Grafana is open source visualization and analytics software. It allows you to qu
 
 ## Looking At Metrics
 
-The Grafana dashbaord has been {{GRAFANA_URL}}[configured^]. 
+The Grafana dashboard has been {{GRAFANA_URL}}[configured^]. 
 
 Go to Home and find the `Prediction Analytics` dashboard.
 
@@ -30,13 +30,13 @@ Choose your namespace {{USER_ID}}-prod and view the metrics from your model.
 
 image::grafana-dropdown.png[grafana-dropdown, 500]
 
-We are interested in the recall score of the model, which ie ratio TP / (TP + FN). Recall is a good metric to use when the cost associated with false negative (FN) is high. In this classification problem there is a high cost for the bank when a fraud transaction is predicted as non-fraud, since no actions can be taken. Thus, recall is one important metric to pay attention to.
+We are interested in the recall score of the model, which is the ratio TP / (TP + FN). Recall is a good metric to use when the cost associated with false negative (FN) is high. In this classification problem there is a high cost for the bank when a fraud transaction is predicted as non-fraud, since no actions can be taken. Thus, recall is one important metric to pay attention to.
 
 image::grafana-recall.png[grafana-recall, 400]
 
 ## Exposing Metrics to Prometheus
 
-Seldon models exposes a prometheus `/prometheus` endpoint and we have configured Prometheus `ServiceMonitor` to scrape these endpoints.
+Seldon models expose a prometheus `/prometheus` endpoint and we have configured Prometheus `ServiceMonitor` to scrape these endpoints.
 
 A ServiceMonitor describes the set of targets to be monitored by Prometheus, which declaratively specifies how groups of Kubernetes services should be monitored. The Prometheus Operator automatically generates Prometheus scrape configuration based on the current state of the objects in the API server.
 
@@ -73,6 +73,6 @@ class Base(object):
 
 ## Feedback endpoint
 
-Seldon model provides a `/api/v1.0/feedback` endpoint that allows you to send back feedback to the model, which allows us to calculate various scores.
+The Seldon model provides a `/api/v1.0/feedback` endpoint that allows you to send back feedback to the model, which allows us to calculate various scores.
 
-This is extremely useful when multi-armed bandits is used for reinforced learning, so as to maximize a numerical reward signal.
+This is extremely useful when multi-armed bandits are used for reinforced learning, so as to maximize a numerical reward signal.

@@ -7,7 +7,7 @@ Run the following script to send sufficient transactions to the models.
 /projects/{{USER_MODEL_REPO_NAME}}/bin/prod-mon-test.sh
 ----
 
-Now look at the Grafana {{GRAFANA_URL}}[dashbaord^], and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression. 
+Now look at the Grafana {{GRAFANA_URL}}[dashboard^], and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression. 
 
 :figure-caption!:
 
