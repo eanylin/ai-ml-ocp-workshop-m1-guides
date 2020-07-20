@@ -8,14 +8,14 @@ In this chapter, you will build a new model, test it in staging and deploy it to
 
 Go to JupyterHub and launch the notebook `{{USER_MODEL_REPO_NAME}}/notebooks/3 using xgboost.ipynb`. The new model will be based on XGBoost.
 
-XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.
+XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solves many data science problems in a fast and accurate way.
 
 ## Build and Test A New Model
 
 We will be using {{ECLIPSE_CHE_URL}}[ CodeReady Workspaces^], and log in using the username and
 password you’ve been assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
-The model has already been converted for you using `juypertext` and modified to run in the pipeline.
+The model has already been converted for you using `jupytext` and modified to run in the pipeline.
 
 Run the following script to use the new model:
 
