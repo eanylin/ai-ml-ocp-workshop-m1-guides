@@ -2,13 +2,13 @@
 
 As a recap from what we have covered earlier in the workshop, only a small fraction of a real-world ML system is composed of the ML code. The required surrounding elements are vast and complex. In this section, the inclusion of Red Hat’s Middleware offerings will complete the solution.
 
-mlops-overall-picture.png[mlops-overall-picture]
+image::mlops-overall-picture.png[mlops-overall-picture]
 
 We have deployed our final model based on XGBoost, but this itself is insufficient in the considerations of a comprehensive AI/ML solution. To complete the picture, we need to consider other critical aspects relevant to any AI/ML application, such as streaming data and a rules engine. In this regard, the introduction of RedHat middleware portfolio provides the runtime for running applications to consume incoming data streams, as well as providing integration of different software components alongside streaming to cater to data collection and a rules engine as an integral part of process management.
 
 == Red Hat Middleware Portfolio
 
-middleware-portfolio-overview.png[middleware-portfolio-overview]
+image::middleware-portfolio-overview.png[middleware-portfolio-overview]
 
 === Red Hat Application Runtimes
 
@@ -31,7 +31,7 @@ Data streaming to ensure the nature of data stays current, integration piecing d
 
 In this workshop, transactions are kept in a CSV format which is streamed over to Kafka. To determine the authenticity of the conducted transactions. we are interested as to how many of these transactions are fraudulent. Consumer application contains a Camel Router which routes the data as messages around to different components for processing and eventual output.
 
-middleware-workflow.png[middleware-workflow]
+image::middleware-workflow.png[middleware-workflow]
 
 . Credit card transactions will be streamed to Kafka 
 
@@ -48,16 +48,16 @@ We will use Jupyter Notebook 4 kafka.ipyb to send transactions to Kafka.
 
 Begin by logging into JupyterHub.
 
-Your user name will be {{  USER_ID }} and password is r3dh4t1!.
+Your user name will be {{USER_ID }} and password is r3dh4t1!.
 
-After sending the transactions, you can now go to the http://webnotifications-{{  USER_ID }}-prod.apps.cluster-27ee.27ee.sandbox629.opentlc.com[notification^] page to see the end results.
+After sending the transactions, you can now go to the http://webnotifications-{{USER_ID}}-prod.{{ROUTE_SUBDOMAIN}}[notification^] page to see the end results.
 
 Based on the probability score returned from the model, Red Hat Decision Manager is a 
 business rules management system (BRMS) that will decide whether a transaction is a fraud or not. 
 
 Red Hat Decision Manager 7 is a powerful, scalable open source business rules management system that includes business resource optimization and complex event processing (CEP) technology. It helps organizations capture business logic and develop applications that automate business decisions.
 
-decision-flow-chart.png[decision-flow-chart]
+image::decision-flow-chart.png[decision-flow-chart]
 
 
 == Future Enhancements
@@ -69,7 +69,7 @@ So far what we have seen is how Red Hat AMQ reliably delivers a high-performance
 
 Decision Manager can be used to by introducing individual business processes for handling different kinds of potential fraudulent transactions
 
-business-process-demo.png[business-process-demo]
+image::business-process-demo.png[business-process-demo]
 
 Image source: https://github.com/ruivieira/ccfd-demo/[ruivieria-ccfd-demo^]
 
