@@ -2,13 +2,13 @@
 
 As a recap from what we have covered earlier in the workshop, only a small fraction of a real-world ML system is composed of the ML code. The required surrounding elements are vast and complex. In this section, the inclusion of Red Hat’s Middleware offerings will complete the solution.
 
-image::mlops-overall-picture.png[mlops-overall-picture]
+image::mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png[mlops_elements]
 
 We have deployed our final model based on XGBoost, but this itself is insufficient in the considerations of a comprehensive AI/ML solution. To complete the picture, we need to consider other critical aspects relevant to any AI/ML application, such as streaming data and a rules engine. In this regard, the introduction of RedHat middleware portfolio provides the runtime for running applications to consume incoming data streams, as well as providing integration of different software components alongside streaming to cater to data collection and a rules engine as an integral part of process management.
 
 == Red Hat Middleware Portfolio
 
-image::middleware-portfolio-overview.png[middleware-portfolio-overview]
+image::middleware-portfolio-overview.png[middleware-portfolio-overview, 700w]
 
 === Red Hat Application Runtimes
 
@@ -37,7 +37,7 @@ image::middleware-workflow.png[middleware-workflow]
 
 . The Camel router will consume the transactions from Kafka broker. 
 
-. The first stop the transaction data is routed to is the created Python Model, which releases a probability score as an indication of the transaction being fraudulent or not. The probability score is returned back to the consumer application.
+. The first stop the transaction data is routed to is the Python Model, which outputs a probability score as an indication of the transaction being fraudulent or not. The probability score is returned back to the consumer application.
 
 . Next, the consumer application routes the probability score to Red Hat Decision Manager, based on a threshold which determines whether the transaction is a fraud or not and returns an outcome (Fraud/No Fraud) to the consumer application.
 
@@ -77,7 +77,7 @@ image::business-process-demo.png[business-process-demo]
 
 Image source: https://github.com/ruivieira/ccfd-demo/[ruivieria-ccfd-demo^]
 
-Here, a process is instantiated with the transaction's data and it is consumed by the CustomerNotification node. The CustomerNotification node sends a message to the <CUSTOMER-OUTGOING> Kafka topic with the customer's id and the transaction's id. This message is picked by the notification service, which will send an appropriate notification (email, SMS, etc)"
+Here, a process is instantiated with the transaction's data and it is consumed by the CustomerNotification node. The CustomerNotification node sends a message to the <CUSTOMER-OUTGOING> Kafka topic with the customer's id and the transaction's id. This message is picked by the notification service, which will send an appropriate notification (email, SMS, etc)
 
 In the event where a customer response is not received, there is the potential of a fraudulent transaction, which will be determined after the process of a fraud investigation. In the event where verification is done by the customer, the request is deemed to be non fraudulent, though further customization can be done to investigate any fraud even if the transaction is being approved. The customer’s response determines whether a transaction is fraudulent or not, which means the outcome does not only depend on the output generated from the system, an enhancement from what we have done so far in the workshop. 
  
