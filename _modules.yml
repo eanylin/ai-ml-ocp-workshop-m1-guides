@@ -27,4 +27,4 @@ modules:
   decide-on-final-model:
     name: Deploy The Chosen One
   integrate-with-middleware:
-    name: Completing the Solution with Red Hat Middleware
+    name: Completing the Solution with Red Hat Application Services
