@@ -38,4 +38,4 @@ modules:
   - model-observability
   - continuous-training
   - decide-on-final-model
-  - integrate-with-middleware
+  - integrate-with-application-services

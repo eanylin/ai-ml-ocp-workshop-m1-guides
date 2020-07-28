@@ -26,5 +26,5 @@ modules:
     name: Continuous Training With A/B Testing
   decide-on-final-model:
     name: Deploy The Chosen One
-  integrate-with-middleware:
-    name: Completing the Solution with Red Hat Middleware
+  integrate-with-application-services:
+    name: Completing the Solution with Red Hat Application Services
