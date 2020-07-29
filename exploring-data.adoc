@@ -19,14 +19,13 @@ infrastructure with the Open Data Hub.
 
 == About JupyterHub
 
-JupyterHub fron ODH allows OpenShift users to access Jupyter notebooks.
+JupyterHub from ODH allows OpenShift users to access Jupyter notebooks.
 It gives users access to computational environments and resources
 without burdening the users with installation and maintenance tasks.
 
 == About DVC
 
-Data Version Control (DVC) keeps metafiles in Git to describe and version control your data
-sets and models. DVC supports a variety of external storage types as a
+Data Version Control (DVC) keeps metafiles in Git to describe and version control your datasets and models. DVC supports a variety of external storage types as a
 remote cache for large files.
 
 Data management is the core part of DVC for large files, datasets, ML

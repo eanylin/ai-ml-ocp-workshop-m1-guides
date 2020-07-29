@@ -107,7 +107,7 @@ cp /projects/{{USER_MODEL_REPO_NAME}}/src/train/lr.ans.py /projects/{{USER_MODEL
 [NOTE] 
 ====
 
-Copying the file will override the jupuytertext converted lr.py.
+Copying the file will override the jupytertext converted lr.py.
 
 ====
 
