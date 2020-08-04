@@ -90,7 +90,7 @@ Quarkus: Quarkus is a Kubernetes-native Java stack that combines some of the bes
 
 == Wrap Up
 
-In this workshop, we have successfully carried out an end to end lifecycle delivery of a fraud detection application. Openshift provides the enterprise container platform where models are created as images that are immutable, to cater to the reproducibility of results and ensure consistency of the software stack , all these protected with inherent security that comes out of the box from the platform.
+In this workshop, we have successfully carried out an end to end lifecycle delivery of a fraud detection application. OpenShift provides the enterprise container platform where models are created as images that are immutable, to cater to the reproducibility of results and ensure consistency of the software stack , all these protected with inherent security that comes out of the box from the platform.
 
 Additionally, the NVIDIA GPU Operator is part of the Red Hat Certified Operator Catalog to automate the management of all NVIDIA software components needed to provision the GPU required in the process. To complete the picture, Red Hat AMQ streams enable a high-performance delivery of data streams while Red Hat Decision Manager to handle any associated complex event processing.
 
