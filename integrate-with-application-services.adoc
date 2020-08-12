@@ -61,7 +61,7 @@ business rules management system (BRMS) that will decide whether a transaction i
 
 Red Hat Decision Manager 7 is a powerful, scalable open source business rules management system that includes business resource optimization and complex event processing (CEP) technology. It helps organizations capture business logic and develop applications that automate business decisions.
 
-image::decision-flow-chart.png[decision-flow-chart, 700w]
+image::decision-flow-chart.png[decision-flow-chart, 400w]
 
 
 == Future Enhancements
