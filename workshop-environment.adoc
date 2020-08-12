@@ -27,7 +27,7 @@ The goal of this workshop is the delivery of an end-to-end AI/ML solution for fr
  
 1) Create an AI/ML model that predicts fraud transactions using Jupyter Notebook.
  
-2) To productize the model. Using CodeReady Workspaces provided by Openshift to convert code into python, before delivering it into a pipeline for the process of building, testing and deploying code, mainly in three different environments:
+2) To productize the model. Using CodeReady Workspaces provided by OpenShift to convert code into python, before delivering it into a pipeline for the process of building, testing and deploying code, mainly in three different environments:
  
 * Development Environment: Created models will be converted into python code here via CodeReady Workspaces, where these models will be trained and tested with a mixture of fraudulent and non-fraudulent inputs. Versioning will be done to ensure reproducibility of the model.
 * Staging Environment: When the model has undergone all the relevant testing, an image will be created with Buildah and stored in Nexus
@@ -39,9 +39,9 @@ The goal of this workshop is the delivery of an end-to-end AI/ML solution for fr
  
 A pipeline in software development is an automated process that drives software through a path of building, testing, and deploying code. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is deployed. Tools that are included in the pipeline could include compiling code, unit tests, code analysis, security, and installer creation. For containerized environments, this pipeline would also include packaging the code into a container to be deployed across the hybrid cloud. A pipeline is critical in supporting continuous integration and continuous deployment (CI/CD) processes.
 
-In this workshop, the CI/CD experience is provided by a combination of Openshift Pipelines (based on Tekton) and Argo CD.
+In this workshop, the CI/CD experience is provided by a combination of OpenShift Pipelines (based on Tekton) and Argo CD.
 
-Openshift Pipelines is responsible for the CI process in which models are built and trained in the staging process, and pushed to a Nexus registry thereafter. Argo CD is used to deliver the CD process, responsible for monitoring the deployment and pushing any new changes in the deployment to Openshift.
+OpenShift Pipelines is responsible for the CI process in which models are built and trained in the staging process, and pushed to a Nexus registry thereafter. Argo CD is used to deliver the CD process, responsible for monitoring the deployment and pushing any new changes in the deployment to OpenShift.
 
 == GPU 
 
