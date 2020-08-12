@@ -99,11 +99,16 @@ Because Gogs has been configured with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REP
 Do not change the webhook.
 ====
 
-You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run^]. This will take about 10 minutes. 
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev~v1alpha1~PipelineRun[pipeline run^]. If you are accessing the Pipeline Run from the OpenShift console, [CONSOLE_URL], under the {{USER_ID}}-stage project namespace: You can select `Pipelines` (from the left panel) -> `Pipeline Runs`. 
 
-image::pipelineruns.png[pipelineruns]
+[NOTE]
+====
+The pipeline run is estimated to take about 10 minutes.
+====
 
-Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used.
+Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used. As depicted, the created image is tagged and is under user/lr/tags.
+
+image::docker-registry.png[docker-registry]
 
 ## Deploy to Staging
 

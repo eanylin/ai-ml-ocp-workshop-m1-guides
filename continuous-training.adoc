@@ -46,6 +46,11 @@ cd /projects/{{USER_MODEL_REPO_NAME}}/src/seldon/
 ./app.sh
 ----
 
+[NOTE]
+====
+Users may notice the `"Address already in use"` error message when running this command. To remedy this, enter the terminal running the original `app.sh` and press kbd:[CTRL+C] to stop the Flask server first, before running the command again. 
+====
+
 Now let's test the model. Open up a *new* terminal and run the following:
 
 [source,bash,role="copypaste"]
