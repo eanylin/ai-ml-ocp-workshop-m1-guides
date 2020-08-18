@@ -99,7 +99,7 @@ Because Gogs has been configured with a {{GIT_URL}}/{{USER_ID}}/{{USER_MODEL_REP
 Do not change the webhook.
 ====
 
-You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev~v1alpha1~PipelineRun[pipeline run^]. If you are accessing the Pipeline Run from the OpenShift console, [CONSOLE_URL], under the {{USER_ID}}-stage project namespace: You can select `Pipelines` (from the left panel) -> `Pipeline Runs`. 
+You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}}-stage/tekton.dev\~v1alpha1~PipelineRun[pipeline run^]. If you are accessing the Pipeline Run from the {{CONSOLE_URL}}[OpenShift Console^], under the {{USER_ID}}-stage project namespace: You can select `Pipelines` (from the left panel) -> `Pipeline Runs`. 
 
 [NOTE]
 ====
@@ -144,6 +144,11 @@ spec:
 
 Argo CD is configured to monitor your deployment for the `stage` and `prod` branch in your git 
 {{GIT_URL}}/{{USER_ID}}/{{USER_DEPLOY_REPO_NAME}}[repository^]. You can login to {{ARGOCD_URL}}/applications/{{USER_ID}}-stage[Argo CD^] with your `{{USER_ID}}/{{OPENSHIFT_USER_PASSWORD}}` credential.
+
+[NOTE]
+====
+Here, users are able to log in by clicking on the `Login via OpenShift` button 
+====
 
 Once the deployment has been pushed, Argo CD will be triggered via a webhook to push the deployment over to OpenShift. 
 
