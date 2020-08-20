@@ -110,6 +110,11 @@ Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL
 
 image::docker-registry.png[docker-registry]
 
+[WARNING]
+====
+Please ensure that the Pipeline above runs finish before proceeding to the next stage.
+====
+
 ## Deploy to Staging
 
 Argo CD follows the GitOps model of deployment, where desired configuration changes are first pushed to Git, and the cluster state then syncs to the desired state in git. 

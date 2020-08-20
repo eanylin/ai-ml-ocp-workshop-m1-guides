@@ -87,6 +87,11 @@ You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}
 
 Once the pipeline runs finish, we will modify the `SeldonDeployment` to do A/B testing in staging.
 
+[WARNING]
+====
+Please ensure that the Pipeline above runs finish before proceeding to the next stage.
+====
+
 [source,sh,role="copypaste"]
 ----
 cd /projects/{{USER_MODEL_REPO_NAME}}
