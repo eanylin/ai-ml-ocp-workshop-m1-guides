@@ -60,6 +60,11 @@ Now let's test the model. Open up a *new* terminal and run the following:
 /projects/{{USER_MODEL_REPO_NAME}}/bin/dev-test.sh
 ----
 
+[NOTE]
+====
+If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.
+====
+
 The code has been tested and we can now commit to development branch. 
 [source,sh,role="copypaste"]
 ----

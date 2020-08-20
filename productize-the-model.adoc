@@ -65,7 +65,7 @@ Within your workspace, click on *>_ New Terminal*.
 You can open a terminal
 window for any of the containers running in your Developer workspace.
 For the rest of these labs, anytime you need to run a command in a
-terminal, you can use the *>_ New Terminal* command on the right.
+terminal, you can use the *>_ New Terminal* command on the right. If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.
 ====
 
 image::che-terminal.png[che-terminal]
@@ -184,6 +184,11 @@ Now let's test the model. Open up a *new* terminal and run the following:
 ----
 /projects/{{USER_MODEL_REPO_NAME}}/bin/dev-test.sh
 ----
+
+[NOTE]
+====
+If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.
+====
 
 The script will send both fraud and non-fraud requests to the model. 
 
