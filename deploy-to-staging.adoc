@@ -110,7 +110,7 @@ Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL
 
 image::docker-registry.png[docker-registry]
 
-[NOTE]
+[WARNING]
 ====
 Please ensure that the Pipeline above runs finish before proceeding to the next stage.
 ====
