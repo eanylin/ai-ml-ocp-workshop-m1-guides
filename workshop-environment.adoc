@@ -96,8 +96,6 @@ image::setuser.png[Set User ID above, 900]
 
 This will customize the links and copy/paste code for this workshop. If you have accidentally typed the wrong username, just click the green recycle icon to reset it.
 
-Throughout this lab you'll discover how Quarkus can make your development of cloud native apps faster and more productive.
-
 == Click-to-Copy
 
 You will see various code and command blocks throughout these exercises which can be copy/pasted directly by clicking anywhere on the block of text. Simply click once and the whole block is copied to your clipboard, ready to be pasted with kbd:[CTRL+V] (or kbd:[Command+V] on Mac OS).
