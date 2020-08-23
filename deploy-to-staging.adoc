@@ -5,7 +5,7 @@ The model has been tested in the development environment and is now ready to be 
 Once we code is pushed to the git repository, the pipeline will run to build and train the image. We will also be using Argo CD as the GitOps tool to deploy the model to the staging environment.
 
 To get started, {{ECLIPSE_CHE_URL}}[access the
-CodeReady Workspaces instance], and log in using the username and
+CodeReady Workspaces instance^], and log in using the username and
 password you have been assigned
 (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
@@ -110,16 +110,17 @@ Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL
 
 image::docker-registry.png[docker-registry]
 
-[WARNING]
-====
-Please ensure that the Pipeline above runs finish before proceeding to the next stage.
-====
-
 ## Deploy to Staging
 
 Argo CD follows the GitOps model of deployment, where desired configuration changes are first pushed to Git, and the cluster state then syncs to the desired state in git. 
 
 We will now modify the `SeldonDeployment` to deploy our new image that is tagged with the git revision.
+
+[WARNING]
+====
+Please ensure that the Pipeline above runs finish before proceeding to the next stage.
+====
+
 [source,sh,role="copypaste"]
 ----
 cd /projects/{{USER_MODEL_REPO_NAME}}
