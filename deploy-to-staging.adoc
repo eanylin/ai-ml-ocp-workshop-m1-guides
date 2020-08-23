@@ -106,6 +106,20 @@ You can go to OpenShift Console to monitor the {{CONSOLE_URL}}/k8s/ns/{{USER_ID}
 The pipeline run is estimated to take about 10 minutes.
 ====
 
+If any error occurs during the pipeline run, we can stop the pipeline run from the OpenShift UI as shown below.
+ 
+image::pipeline-openshift-ui.png[pipeline-openshift-ui]
+ 
+To trigger a new pipeline run, we can do an empty git commit.
+ 
+[source,sh,role="copypaste"]
+----
+git checkout stage
+git commit --allow-empty -m "Empty commit to trigger pipeline run again"
+git push -u -v origin stage
+----
+This will trigger a new pipeline run which can be viewed in the OpenShift UI.
+
 Once the pipeline runs finish, the image would have been pushed into {{NEXUS_URL}}/#browse/browse:docker-registry[Nexus Registry^] and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used. As depicted, the created image is tagged and is under user/lr/tags.
 
 image::docker-registry.png[docker-registry]
