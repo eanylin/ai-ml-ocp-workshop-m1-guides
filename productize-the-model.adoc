@@ -72,7 +72,7 @@ image::che-terminal.png[che-terminal]
 
 [NOTE]
 ====
-To restart the workspace: On the CodeReady main page, click on the Workspaces you are using, and then click the "Stop" button (square shape) next to your new workspace. You may get an error popup which you can ignore. Then, click the "Start" button (Triangle shape) to restart the workspace, which should workaround the bug.
+To restart the workspace: On the CodeReady main page, click on the Workspaces you are using, and then click the "Stop" button next to your new workspace. You may get an error popup which you can ignore. Then, click the "Start" button to restart the workspace.
 ====
 
 image::start-stop-codeready-workspaces.png[start-stop-codeready-workspaces]
@@ -122,11 +122,10 @@ Note that in the lr.py file, there is a section on the version of the data used.
 The version of the data used is going to be committed together with source, thus allowing us to have reproducible results
 easily with dvc. 
 
-We will also use a bigger training set `creditcard-train.csv` during the training stage in the pipeline.
 
 [NOTE] 
 ====
-Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note of the versioning of the data as well as introduce the use of a bigger training set in the training stage of the pipeline.
+Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note of the versioning of the data.
 ====
 
 [source,python]
