@@ -11,7 +11,3 @@ Agenda
 * Model Improvement
 * Deploy to Production
 * Continuous Training
-
-Lab Instructions on OpenShift
-===
-TBD
