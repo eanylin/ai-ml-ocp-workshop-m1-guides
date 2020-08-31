@@ -1,0 +1,3180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="KiLc32h+hGd3G4dAkob8vqprusqaeTDkiZuuWnhPGGpC7Z3ffdqKKkyjrkPY/O/JoXD/pS9NPJGkqJDr/vWfJQ==" />
+  <link rel="stylesheet" media="all" href="../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#complete', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+        <h2>Kubernetes Overview</h2>
+        <div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kubernetes is an open source container orchestration engine for
+automating deployment, scaling, and management of containerized
+applications. It has a large and rapidly growing ecosystem.</p>
+</div>
+<div class="paragraph">
+<p>The name Kubernetes originates from Greek, meaning helmsman or pilot.
+Google open-sourced the Kubernetes project in 2014.</p>
+</div>
+<div class="paragraph">
+<p>This module provides a brief overview on the core concepts in
+Kubernetes, based on the documentation in
+<a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener">kubernetes.io</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kubernetes_control_plane">Kubernetes Control Plane</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kubernetes API objects are used to describe the <em>desired</em> state of the
+Kubernetes cluster. This includes describing the desired end state of
+the applications, workloads, container images, number of replicas,
+network, disk resources, etc.</p>
+</div>
+<div class="paragraph">
+<p>The Control Plane maintains a record of all of the Kubernetes Objects in
+the system and runs continuous control loops to manage the state of all
+the objects. At any given point in time, the control loops will respond
+to changes in the cluster and work to make the actual state of all the
+objects match the desired state.</p>
+</div>
+<div class="paragraph">
+<p>The Kubernetes Control Plane consists of a collection of processes
+running within the cluster:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/#overview" target="_blank" rel="noopener">Master</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A collection of 3 processes that run on a single node, designated as
+the master node in the cluster. The processes are
+<a href="https://kubernetes.io/docs/admin/kube-apiserver/" target="_blank" rel="noopener">kube-apiserver</a>,
+<a href="https://kubernetes.io/docs/admin/kube-controller-manager/" target="_blank" rel="noopener">kube-controller-manager</a>
+and <a href="https://kubernetes.io/docs/admin/kube-scheduler/" target="_blank" rel="noopener">kube-scheduler</a></p>
+</li>
+<li>
+<p>Responsible for maintaining the desired state of the cluster</p>
+</li>
+<li>
+<p>The master can also be replicated for availability and redundancy.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/architecture/nodes/" target="_blank" rel="noopener">Node</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Machines (VMs, physical servers, etc) that run the applications and
+cloud workflows</p>
+</li>
+<li>
+<p>Nodes are controlled by Kubernetes Master</p>
+</li>
+<li>
+<p>Runs 2 processes,
+i.e. <a href="https://kubernetes.io/docs/admin/kubelet/" target="_blank" rel="noopener">kubelet</a> and
+<a href="https://kubernetes.io/docs/admin/kube-proxy/" target="_blank" rel="noopener">kube-proxy</a></p>
+</li>
+<li>
+<p>kubelet allows the node to communicate with the Kubernetes Master</p>
+</li>
+<li>
+<p>kube-proxy is a network proxy which reflects Kubernetes networking
+services on each node</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kubernetes_objects">Kubernetes Objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The basic Kubernetes object include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/" target="_blank" rel="noopener">Pod</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A Pod is the smallest unit in the Kubernetes object model that can be
+created or deployed. It represents processes running on the cluster.</p>
+</li>
+<li>
+<p>A Pod encapsulates an application’s container(s), storages resources,
+unique network identity (IP address) as well as options that govern how
+the container(s) should run</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener">Service</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>An abstract way to expose an application running on a set of Pods as
+a network service</p>
+</li>
+<li>
+<p>An abstraction which defines a logical set of Pods and a policy by
+which to access them</p>
+</li>
+<li>
+<p>The set of Pods that are targeted by a Service is usually determined
+by a
+<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/" target="_blank" rel="noopener">selector</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/storage/volumes/" target="_blank" rel="noopener">Volume</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>On-disk files in a Container are ephemeral, which is not idea for
+non-trivial applications when running in Containers</p>
+</li>
+<li>
+<p>Kubernetes volume allows data to be preserved across Container
+restarts</p>
+</li>
+<li>
+<p>It has an explicit lifetime, i.e. the same as the Pod that encloses
+it</p>
+</li>
+<li>
+<p>There is support for different types of
+<a href="https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes" target="_blank" rel="noopener">Volumes</a>,
+such as awsElasticBlock, cephfs, etc</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/" target="_blank" rel="noopener">Namespace</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Kubernetes supports multiple virtual clusters backed by the same
+physical cluster</p>
+</li>
+<li>
+<p>These virtual clusters are called namespaces and are a way to divide
+cluster resources between multiple users via
+<a href="https://kubernetes.io/docs/concepts/policy/resource-quotas/">resource
+quota</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+<div class="paragraph">
+<p>Kubernetes also contains higher-level abstractions that rely on
+controllers to build upon the basic objects to provide additional
+functionality and convenience features. These include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/" target="_blank" rel="noopener">Deployment</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Provides declarative updates for Pods and ReplicaSets</p>
+</li>
+<li>
+<p>You can describe a desired state in a Deployment, and the Deployment
+Controller changes the actual state to the desired state at a controlled
+rate.</p>
+</li>
+<li>
+<p>Used in different scenarios, e.g.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a Deployment to rollout a ReplicaSet</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ReplicaSet creates Pods in the background and checks the status of
+the rollout to see if it succeeds or not</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Rollback to an earlier Deployment revision if the current state of
+the Deployment is not stable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each rollback updates the revision of the Deployment</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Scale up the Deployment to facilitate more load</p>
+</li>
+<li>
+<p>Clean up ReplicaSets</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/" target="_blank" rel="noopener">DaemonSet</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensures that all or some Nodes run a copy of the Pod</p>
+</li>
+<li>
+<p>Pods are added and garbage collected as nodes are added/removed from
+the cluster</p>
+</li>
+<li>
+<p>Deleting a DaemonSet will clean up all the Pods that it created</p>
+</li>
+<li>
+<p>Common use cases include the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Running cluster storage daemon on every node</p>
+</li>
+<li>
+<p>Running logs collection daemon on every node</p>
+</li>
+<li>
+<p>Running node monitoring daemon on every node</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/" target="_blank" rel="noopener">StatefulSet</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Workload API object used to manage stateful applications</p>
+</li>
+<li>
+<p>Manages deployment scaling of a set of Pods and provides <em>guarantees</em>
+about the ordering and <em>uniqueness</em> of these Pods</p>
+</li>
+<li>
+<p>Unlike a Deployment, a StatefulSet maintains a sticky identity for
+each of their Pods</p>
+</li>
+<li>
+<p>Pods are created from the same spec but are not interchangeable,
+i.e. each has a persistent identifier that it maintains across any
+rescheduling</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/" target="_blank" rel="noopener">ReplicaSet</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintain a stable set of replica Pods running at any given time</p>
+</li>
+<li>
+<p>It is used to guarantee the availability of a specified number of
+identical Pods</p>
+</li>
+<li>
+<p>A ReplicaSet is linked to its Pods via the Pods’
+<a href="https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/#owners-and-dependents" target="_blank" rel="noopener">metadata.ownerReferences</a>
+field, which specifies what resource the current object is owned by</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/job/" target="_blank" rel="noopener">Job</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Creates one or more Pods and ensures that a specified number of them
+successfully terminate</p>
+</li>
+<li>
+<p>Tracks successful completions of pods</p>
+</li>
+<li>
+<p>When a specified number of successful completions is reached, the
+task, i.e, Job is complete</p>
+</li>
+<li>
+<p>Deleting a Job will clean up the Pods it created</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kubernetes_cluster_architecture">Kubernetes Cluster Architecture</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/kubernetes-components.png" alt="k8s_architecture">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_containers">Containers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Containers are a technology for packaging the compiled code for an
+application along with the dependencies it needs at run time. The
+standardization from having dependencies included means that we will
+always get the same behavior for the container no matter where we run
+it. Containers decouple applications from the underlying infrastructure,
+which makes it easy to deploy in different private/public clouds or
+operating systems (OS).</p>
+</div>
+<div class="sect2">
+<h3 id="_container_images">Container Images</h3>
+<div class="paragraph">
+<p>A container image represents binary data that encapsulates an
+application and all its software dependencies. It is an executable
+software bundle that can run standalone and one that makes very well
+defined assumptions about its runtime environment.</p>
+</div>
+<div class="paragraph">
+<p>The container image of an application is typically pushed to a registry
+before it is referred to in a Pod.</p>
+</div>
+<div class="paragraph">
+<p>Containers are immutable by design, i.e. you cannot change the code of a
+container that is already running. If you have a containerized
+application and want to make changes, you need to build a new container
+that includes the change, then recreate the container to start from the
+updated image.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_container_runtimes">Container Runtimes</h3>
+<div class="paragraph">
+<p>The container runtime is the software that is responsible for running
+containers.</p>
+</div>
+<div class="paragraph">
+<p>Kubernetes supports several container runtimes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cri-o.io/#what-is-cri-o" target="_blank" rel="noopener">CRI-O</a></p>
+</li>
+<li>
+<p><a href="https://containerd.io/docs/" target="_blank" rel="noopener">containerd</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/" target="_blank" rel="noopener">Docker</a></p>
+</li>
+<li>
+<p>Any other implementation of the
+<a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-node/container-runtime-interface.md" target="_blank" rel="noopener">Kubernetes CRI</a> (Container Runtime Interface)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_containers_vs_virtual_machines">Containers vs Virtual Machines</h3>
+<div class="paragraph">
+<p>Linux containers and virtual machines (VMs) are packaged computing
+environments that combine various IT components and isolate them from
+the rest of the system. Their main differences are in terms of scale and
+portability.</p>
+</div>
+<div class="paragraph">
+<p>Containers are typically measured by the megabyte. They do not package
+anything bigger than an application and all the files necessary to run,
+and are often used to package single functions that perform specific
+tasks (known as a microservice). The lightweight nature of containers
+and their shared OS makes them very easy to move across multiple
+environments.</p>
+</div>
+<div class="paragraph">
+<p>VMs are typically measured by the gigabyte. They usually contain their
+own OS, allowing them to perform multiple resource-intensive functions
+at once. The increased resources available to VMs allow them to
+abstract, split, duplicate, and emulate entire servers, OSs, desktops,
+databases, and networks.</p>
+</div>
+<div class="paragraph">
+<p>Compared to VMs, containers are best used to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Build cloud-native apps</p>
+</li>
+<li>
+<p>Package microservices</p>
+</li>
+<li>
+<p>Instill DevOps or CI/CD practices</p>
+</li>
+<li>
+<p>Move scalable IT projects across a diverse IT footprint that shares
+the same OS</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Compared to containers, VMs are best used to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>House traditional, legacy, and monolithic workloads</p>
+</li>
+<li>
+<p>Isolate risky development cycles</p>
+</li>
+<li>
+<p>Provision infrastructural resources (such as networks, servers, and
+data)</p>
+</li>
+<li>
+<p>Run a different OS inside another OS (such as running Unix on Linux)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Navigating OpenShift Web Console</h2>
+        <div class="sect1">
+<h2 id="_navigating_openshift_web_console">Navigating OpenShift Web Console</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This module provides a brief overview of the OpenShift Web Console.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_into_an_openshift_cluster">Logging into An OpenShift Cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The OpenShift cluster web console url for our workshop will be
+<a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com</a>. The login page
+prompts users for their Username and Password.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-ui-login.png" alt="openshift_ui_login">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_new_project">Creating a New Project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Proceed to create a new project with the name <code>user1-myproject</code> by selecting <code>Create Project</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-create-new-project.png" alt="openshift_create_new_project">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon creating a project you will be brought to the overview page for the
+new project.</p>
+</div>
+<div class="paragraph">
+<p>If you want to get to a list of all the projects that are available, you
+can select <code>Home&#8594;Projects</code> from the side menu on the left. You can
+click on the hamburger menu item button on the top left corner of the
+web console if you do not see the side menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-project-list.png" alt="openshift_project_list">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_accessing_project">Accessing Project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Click on <code>user1-myproject</code> and we will get to the <code>Overview</code> page of the
+project</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/myproject-overview-page.png" alt="myproject_overview_page">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, select the <code>Developer</code> perspective for the project instead of the
+<code>Adminstrator</code> perspective from the left hand side menu</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-developer-view.png" alt="openshift_developer_view">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_application_using_web_console">Deploying Application Using Web Console</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Proceed to select <em>From Catalog</em>. This will bring us to the Developer
+Catalog.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-developer-catalog.png" alt="openshift_developer_catalog">
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, we will deploy a web application which is implemented
+using Python.</p>
+</div>
+<div class="paragraph">
+<p>Click on <em>Languages</em> and then select <em>Python</em>. We will see the options
+for deploying applications which are related to Python. Select the
+<em>Python</em> tile for the generic Python Source-to-Image (S2I) builder.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/developer-catalog-python.png" alt="developer_catalog_python">
+</div>
+</div>
+<div class="paragraph">
+<p>This will bring up a dialog with the details of the builder image. Click
+on <code>Create Application</code> in the dialog.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/python-s2i-create-app.png" alt="python_s2i_create_app">
+</div>
+</div>
+<div class="paragraph">
+<p>Under the <em>Git</em> settings, we will insert the Git Repo URL that we will
+be using for this example,
+i.e. <code><a href="https://github.com/openshift-katacoda/blog-django-py" class="bare">https://github.com/openshift-katacoda/blog-django-py</a></code>. This
+repository contains a sample implementation of a blog application,
+designed to show the various features of OpenShift. The blog application
+is implemented using Python and Django.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-git-repo-url.png" alt="django_git_repo_url">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we will scroll down to the <em>General</em> settings. We can see that the
+settings in the <em>Application Name</em> field have been pre-populated with
+values based on the Git repository name. We will need to select <code>Deployment Config</code>
+under the <code>Resources</code> section. Other changes can be made as needed.
+Proceed to hit the <code>Create</code> button at the bottom of the page after this.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-application-settings.png" alt="django_application_settings">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon hitting the <code>Create</code> button, we will get redirected to the
+<em>Topology</em> overview of the project.</p>
+</div>
+<div class="paragraph">
+<p>The topology overview provides a visual representation of the
+application you have deployed.</p>
+</div>
+<div class="paragraph">
+<p>The Git icon shown to the lower right of the ring can be clicked on to
+take us to the hosted Git repository from which the source code for the
+application was built.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-application-topology-view.png" alt="django_application_topology_view">
+</div>
+</div>
+<div class="paragraph">
+<p>The icon shown to the lower left represents the build of the
+application. The icon will change from showing an hour glass, indicating
+the build is starting, to a sync icon indicating the build is in
+progress, and finally to a tick or cross depending on whether the build
+was successful or failed. Clicking on this icon will take you to the
+details of the current build.</p>
+</div>
+<div class="paragraph">
+<p>The ring itself will progress from being white, indicating the
+deployment is pending, to light blue indicating the deployment is
+starting, and blue to indicate the application is running. The ring can
+also turn dark blue if the application is stopping.</p>
+</div>
+<div class="paragraph">
+<p>Once the build has started, click on the <em>View Logs</em> link shown on the
+Resources panel.</p>
+</div>
+<div class="paragraph">
+<p>This will allow you to monitor the progress of the build as it runs. The
+build will have completed successfully when you see a final message of
+<code>Push successful</code>. This indicates that the container image for the
+application was pushed to the OpenShift internal image registry.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-image-build.png" alt="django_image_build">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-image-build-logs.png" alt="django_image_build_logs">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the build of the application image has completed, it will be
+deployed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-app-deployment.png" alt="django_app_deployment">
+</div>
+</div>
+<div class="paragraph">
+<p>A <em>Route</em> is automatically created for the application upon successful
+creation of the Django application. The route will be exposed outside of
+the cluster. The URL which can be used to access the application from a
+web browser will be visible.</p>
+</div>
+<div class="paragraph">
+<p>Once the application is running, the icon shown to the upper right can
+be clicked to open the URL for the application route which was created.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-app-deployed.png" alt="django_app_deployed">
+</div>
+</div>
+<div class="paragraph">
+<p>Clicking on the URL link will bring us to the Django application that
+was just deployed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-app-webpage.png" alt="django_app_webpage">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_administrator_view">Administrator View</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Select the <code>Adminstrator</code> perspective for the project from the left hand
+side menu</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-administrator-view.png" alt="openshift_administrator_view">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pods">Pods</h3>
+<div class="paragraph">
+<p>OpenShift Container Platform leverages the Kubernetes concept of a pod,
+which is one or more containers deployed together on one host, and the
+smallest compute unit that can be defined, deployed, and managed.</p>
+</div>
+<div class="paragraph">
+<p>Pods are the rough equivalent of a machine instance (physical or
+virtual) to a container. Each pod is allocated its own internal IP
+address, therefore owning its entire port space, and containers within
+pods can share their local storage and networking.</p>
+</div>
+<div class="paragraph">
+<p>Pods have a lifecycle; they are defined, then they are assigned to run
+on a node, then they run until their container(s) exit or they are
+removed for some other reason. Pods, depending on policy and exit code,
+may be removed after exiting, or may be retained in order to enable
+access to the logs of their containers.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift Container Platform treats pods as largely immutable; changes
+cannot be made to a pod definition while it is running. OpenShift
+Container Platform implements changes by terminating an existing pod and
+recreating it with modified configuration, base image(s), or both. Pods
+are also treated as expendable, and do not maintain state when
+recreated. Therefore pods should usually be managed by higher-level
+controllers, rather than directly by users.</p>
+</div>
+<div class="paragraph">
+<p>Go to the <code>Workloads</code> tab and select <em>Pods</em> to view the pods in this
+project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-pods.png" alt="django_pods">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_services">Services</h3>
+<div class="paragraph">
+<p>A Kubernetes service serves as an internal load balancer. It identifies
+a set of replicated pods in order to proxy the connections it receives
+to them. Backing pods can be added to or removed from a service
+arbitrarily while the service remains consistently available, enabling
+anything that depends on the service to refer to it at a consistent
+address. The default service clusterIP addresses are from the OpenShift
+Container Platform internal network and they are used to permit pods to
+access each other.</p>
+</div>
+<div class="paragraph">
+<p>Services are assigned an IP address and port pair that, when accessed,
+proxy to an appropriate backing pod. A service uses a label selector to
+find all the containers running that provide a certain network service
+on a certain port.</p>
+</div>
+<div class="paragraph">
+<p>Like pods, services are REST objects. Go to the <code>Networking</code> tab and
+select <em>Services</em> to view the services in this project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-services.png" alt="django_services">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_routes">Routes</h3>
+<div class="paragraph">
+<p>An OpenShift route is a way to expose a service by giving it an
+externally-reachable hostname like <code>www.example.com</code>. A defined route
+and the endpoints identified by its service can be consumed by a router
+to provide named connectivity that allows external clients to reach your
+applications.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-routes.png" alt="django_routes">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deployments_and_deploymentconfigs">Deployments and DeploymentConfigs</h3>
+<div class="paragraph">
+<p>Deployments and DeploymentConfigs in OpenShift Container Platform are
+API objects that provide two similar but different methods for
+fine-grained management over common user applications. A
+DeploymentConfig or a Deployment describes the desired state of a
+particular component of the application as a Pod template.</p>
+</div>
+<div class="paragraph">
+<p>DeploymentConfigs involve one or more ReplicationControllers, which
+contain a point-in-time record of the state of a DeploymentConfig as a
+Pod template. Similarly, Deployments involve one or more ReplicaSets, a
+successor of ReplicationControllers.</p>
+</div>
+<div class="paragraph">
+<p>The DeploymentConfig deployment system provides the following
+capabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A DeploymentConfig, which is a template for running applications</p>
+</li>
+<li>
+<p>Triggers that drive automated deployments in response to events</p>
+</li>
+<li>
+<p>User-customizable deployment strategies to transition from the
+previous version to the new version. A strategy runs inside a Pod
+commonly referred as the deployment process.</p>
+</li>
+<li>
+<p>A set of hooks (lifecycle hooks) for executing custom behavior in
+different points during the lifecycle of a deployment</p>
+</li>
+<li>
+<p>Versioning of your application in order to support rollbacks either
+manually or automatically in case of deployment failure</p>
+</li>
+<li>
+<p>Manual replication scaling and autoscaling</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Go to the <code>Workloads</code> tab and select <em>Deployment Configs</em> to view the
+DeploymentConfig in this project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-deployment-configs.png" alt="django_deployment_configs">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-deployment-configs-yaml.png" alt="django_deployment_configs_yaml">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_replication_controllers">Replication Controllers</h3>
+<div class="paragraph">
+<p>A ReplicationController ensures that a specified number of replicas of a
+Pod are running at all times. If Pods exit or are deleted, the
+ReplicationController acts to instantiate more up to the defined number.
+Likewise, if there are more running than desired, it deletes as many as
+necessary to match the defined amount.</p>
+</div>
+<div class="paragraph">
+<p>A ReplicationController configuration consists of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The number of replicas desired (which can be adjusted at runtime)</p>
+</li>
+<li>
+<p>A Pod definition to use when creating a replicated Pod</p>
+</li>
+<li>
+<p>A selector for identifying managed Pods</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Go to the <code>Workloads</code> tab and select <em>Replication Controllers</em> to view
+the ReplicationController for this project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-replication-controllers.png" alt="django_replication_controllers">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-replication-controllers-overview.png" alt="django_replication_controllers_overview">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_secrets">Secrets</h3>
+<div class="paragraph">
+<p>The <code>Secret</code> object type provides a mechanism to hold sensitive
+information such as passwords, OpenShift Container Platform client
+configuration files, <code>dockercfg</code> files, private source repository
+credentials, and so on. Secrets decouple sensitive content from the
+pods. You can mount secrets into containers using a volume plug-in or
+the system can use secrets to perform actions on behalf of a pod.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-secrets.png" alt="django_secrets">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_config_maps">Config Maps</h3>
+<div class="paragraph">
+<p>Many applications require configuration using some combination of
+configuration files, command line arguments, and environment variables.
+These configuration artifacts should be decoupled from image content in
+order to keep containerized applications portable.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ConfigMap</code> object provides mechanisms to inject containers with
+configuration data while keeping containers agnostic of OpenShift
+Container Platform. A <code>ConfigMap</code> can be used to store fine-grained
+information like individual properties or coarse-grained information
+like entire configuration files or JSON blobs.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ConfigMap</code> API object holds key-value pairs of configuration data
+that can be consumed in pods or used to store configuration data for
+system components such as controllers. <code>ConfigMap</code> is similar to
+secrets, but designed to more conveniently support working with strings
+that do not contain sensitive information.</p>
+</div>
+<div class="paragraph">
+<p>Go to the <code>Workloads</code> tab and select <em>Config Maps</em> to view the Config
+Maps for this project. In this case, we can see the <em>CA certificates</em> as
+config maps.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/django-configmaps.png" alt="django_configmaps">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_persistent_volume_and_volume_claim">Persistent Volume and Volume Claim</h3>
+<div class="paragraph">
+<p>A <code>PersistentVolume</code> object is a storage resource in an OpenShift
+Container Platform cluster. Storage is provisioned by cluster
+administrator by creating <code>PersistentVolume</code> objects from sources such
+as GCE Persistent Disk, AWS Elastic Block Store (EBS), and NFS mounts.</p>
+</div>
+<div class="paragraph">
+<p>Storage can be made available by laying claims to the resource. We can
+make a request for storage resources using a <code>PersistentVolumeClaim</code>
+object; the claim is paired with a volume that generally matches our
+request.</p>
+</div>
+<div class="paragraph">
+<p>A <code>PersistentVolume</code> is a specific resource. A <code>PersistentVolumeClaim</code>
+is a request for a resource with specific attributes, such as storage
+size. In between the two is a process that matches a claim to an
+available volume and binds them together. This allows the claim to be
+used as a volume in a pod. OpenShift Container Platform finds the volume
+backing the claim and mounts it into the pod.</p>
+</div>
+<div class="paragraph">
+<p>A <code>PersistentVolumeClaim</code> is used by a pod as a volume. OpenShift
+Container Platform finds the claim with the given name in the same
+namespace as the pod, then uses the claim to find the corresponding
+volume to mount.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/openshift-pv-pvc-sample.png" alt="openshift_pv_pvc_sample">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this chapter, we learnt about deploying an application from source
+code using a Source-to-Image (S2I) builder. We have deployed the
+application from the web console from <code>Developer</code> perspective and looked
+at the different tabs under the <code>Administrator</code> perspective.</p>
+</div>
+<div class="paragraph">
+<p>The web application was implemented using the Python programming
+language. OpenShift provides S2I builders for a number of different
+programming languages/frameworks in addition to Python. These include
+Java, NodeJS, Perl, PHP and Ruby.</p>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Getting Started with MLOps</h2>
+        <div class="sect1">
+<h2 id="_getting_started_with_mlops">Getting Started with MLOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the next few modules you will look at how AI/ML workload on OpenShift
+(OCP) can be integrated with Red Hat Application Services portfolio, focusing on
+MLOps, which enables data science and IT teams to collaborate and
+increase the pace of model development and deployment.</p>
+</div>
+<div class="paragraph">
+<p>This workshop is for data scientists and ML engineers who want to apply
+DevOps Principles to MLOps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_automating_the_end_to_end_lifecycle_of_machine_learning_applications">Automating The End-To-End Lifecycle Of Machine Learning Applications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In reality, that intelligent application isn’t just one small deployed
+thing. It is an entire distributed system in and of itself with many
+moving parts that are all tied together in various ways. A data
+scientist’s model is just one small part of this large distributed
+system, but we’re going to focus on it for this workshop</p>
+</div>
+<div class="paragraph">
+<p>As shown in the following diagram, only a small fraction of a real-world
+ML system is composed of the ML code. The required surrounding elements
+are vast and complex.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png" alt="mlops_elements">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_mlops">What Is MLOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From <a href="https://en.wikipedia.org/wiki/MLOps" target="_blank" rel="noopener">Wikipedia</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>MLOps (a compound of <code>machine learning</code> and <code>operations</code>) is a
+practice for collaboration and communication between data scientists and
+operations professionals to help manage production ML (or deep learning)
+lifecycle. Similar to the DevOps or DataOps approaches, MLOps looks to
+increase automation and improve the quality of production ML while also
+focusing on business and regulatory requirements.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_differences_between_devops_and_mlops">Differences Between DevOps And MLOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unlike DevOps, MLOps is much more experimental in nature. Data
+scientists try different features, parameters and models. With all these
+changes, they must manage their code base and datasets, to create
+reproducible results.</p>
+</div>
+<div class="paragraph">
+<p>Unlike application developments, MLOps needs to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data/model versioning != code versioning: Model reuse has an entirely
+different meaning compared to software reuse, as models need tuning
+based on scenarios and data.</p>
+</li>
+<li>
+<p>Model monitoring. Models statistics needs to be monitored to ensure is
+performing within limits, so that it can be retrained when necessary
+(retraining needs to be on-demand)</p>
+</li>
+<li>
+<p>Testing. In addition to unit tests, models need to be validated for
+model quality, such as accuracy, AUC, ROC, confusion matrix, precision,
+recall, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As such:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Continuous integration (CI) for MLOps also involves validating the
+data and the schema in addition to testing code.</p>
+</li>
+<li>
+<p>Continuous deployment(CD) validating the performance of models in
+production – including the ability to deploy new models and rollback
+changes from a model.</p>
+</li>
+<li>
+<p>Continuous testing (CT) to retrain and serve models. CT is unique to ML systems because it allows us to keep our model updated.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_science_steps_for_mlops">Data Science Steps For MLOps</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/cd4ml-end-to-end.png" alt="cd4ml-end-to-end">
+</div>
+</div>
+<div class="paragraph">
+<p>Image Source:
+<a href="https://martinfowler.com/articles/cd4ml.html#TestingAndQualityInMachineLearning" target="_blank" rel="noopener">CD4ML</a></p>
+</div>
+<div class="sect2">
+<h3 id="_model_building">Model Building</h3>
+<div class="paragraph">
+<p>Once the data has been cleaned and is made available, we will start the
+iterative approach for model building.</p>
+</div>
+<div class="sect3">
+<h4 id="_feature_engineering_model_evaluation_and_experimentation">Feature Engineering, Model Evaluation and Experimentation</h4>
+<div class="paragraph">
+<p>As the ML process is very experimental in nature and you may have
+multiple experiments running in parallel, it is important to capture key
+model metrics. This helps in the decision whether the model can be
+promoted through the different stages, such as staging and finally to
+production.</p>
+</div>
+<div class="paragraph">
+<p>We will be using <a href="https://jupyter.org/hub" target="_blank" rel="noopener">JupyterHub</a> and
+<a href="https://www.mlflow.org/" target="_blank" rel="noopener">MLflow</a> to log the model and experiment results.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reproducible_dataset">Reproducible Dataset</h4>
+<div class="paragraph">
+<p>This allows the data scientists to reproduce the model results, but also
+allows them to share the work with fellow data scientists or machine
+learning engineers who need to deploy the model.</p>
+</div>
+<div class="paragraph">
+<p>We will be using <a href="https://dvc.org/" target="_blank" rel="noopener">dvc</a> in this workshop.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_productize_model">Productize Model</h3>
+<div class="paragraph">
+<p>Once a model has been chosen, we will begin to productize the model from
+a notebook to source code. This allows better source revision control
+compared to having a notebook in a Source Code Management (SCM).</p>
+</div>
+<div class="paragraph">
+<p>We will be using
+<a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F" target="_blank" rel="noopener">Git</a> to
+version control the source code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing">Testing</h3>
+<div class="paragraph">
+<p>As part of the pipeline, the model will be validated and tested.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_model_deployment">Model Deployment</h3>
+<div class="paragraph">
+<p>Once the model has been built, the model will be packaged into a
+container image and deployed onto OpenShift by the pipeline.</p>
+</div>
+<div class="sect3">
+<h4 id="_model_serving">Model Serving</h4>
+<div class="paragraph">
+<p>The model will be served using <a href="https://www.seldon.io/" target="_blank" rel="noopener">Seldon</a>. The
+pipeline will build an image using Source-to-Image
+(<a href="https://github.com/openshift/source-to-image" target="_blank" rel="noopener">S2I</a>) and deploy the model
+onto OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_model_monitoring_and_observability">Model Monitoring and Observability</h3>
+<div class="paragraph">
+<p>Seldon models can expose prometheus endpoints which we will use to
+monitor key model metrics using the Grafana dashboard.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_continuous_delivery">Continuous Delivery</h3>
+<div class="paragraph">
+<p><a href="https://tekton.dev/" target="_blank" rel="noopener">Tekton</a> CI/CD pipeline will be used in the workshop
+to automate the different stages, such as building, testing, deployment
+and promotion of the model onto OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started!</p>
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Your Workshop Environment</h2>
+        <div class="sect1">
+<h2 id="_the_workshop_environment_you_are_using">The Workshop Environment You Are Using</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your workshop environment consists of several components which have been pre-installed and are ready to use. Depending on which parts of the
+workshop you are doing, you will use one or more of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.openshift.com/" target="_blank" rel="noopener">Red Hat OpenShift</a> - You will use one or more <em>projects</em> (Kubernetes namespaces) that are your own and are isolated from other workshop students</p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/products/codeready-workspaces/overview" target="_blank" rel="noopener">Red Hat CodeReady Workspaces</a> - based on <strong>Eclipse Che</strong>, it is a cloud-based, in-browser IDE (similar to IntelliJ IDEA, VSCode, Eclipse IDE). You’ve been provisioned your own personal workspace for use with this workshop. You will write, test, and deploy code from here.</p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/en/technologies/jboss-middleware/amq" target="_blank" rel="noopener">Red Hat AMQ Streams</a> - streaming data platform based on <strong>Apache Kafka</strong></p>
+</li>
+<li>
+<p><a href="https://buildah.io/" target="_blank" rel="noopener">Buildah</a> - Buildah is a tool that facilitates building Open Container Initiative (OCI) container images. We will be using Buildah in this workshop to create models from constructed images.</p>
+</li>
+<li>
+<p><a href="https://jupyter.org/" target="_blank" rel="noopener">Jupyter Notebook</a> - An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Jupyter Notebook will be used to build, train and test models in this workshop.</p>
+</li>
+<li>
+<p><a href="https://jupyterhub.readthedocs.io/en/stable/" target="_blank" rel="noopener">JupyterHub</a> - A multi-user Hub that spawns, manages, and proxies multiple instances of the single-user Jupyter notebook server. In this workshop we will be logging into this environment to provision instances of Jupyter Notebook.</p>
+</li>
+<li>
+<p><a href="https://www.openshift.com/learn/topics/pipelines" target="_blank" rel="noopener">Tekton</a> - An open source project that provides a framework to create cloud-native CI/CD pipelines quickly. We will be creating pipelines based on Tekton in this workshop.</p>
+</li>
+<li>
+<p><a href="https://argoproj.github.io/argo-cd/" target="_blank" rel="noopener">Argo CD</a> - Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.</p>
+</li>
+<li>
+<p><a href="https://www.openshift.com/blog/configure-openshift-metrics-with-prometheus-backed-by-openshift-container-storage" target="_blank" rel="noopener">Prometheus</a> - An open-source systems monitoring toolkit for event monitoring and alerting. Prometheus will be collating the metrics from the produced models in this workshop.</p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4" target="_blank" rel="noopener">Grafana</a> - An open-source visualization and analytics software. In this workshop Grafana allows you to query, visualize, alert on, and explore the metrics collected by Prometheus.</p>
+</li>
+<li>
+<p><a href="https://github.com/gogs/gogs" target="_blank" rel="noopener">Gogs</a> - Gogs is a simple, stable and extensible self-hosted Git service which will be created for the purposes of this workshop.</p>
+</li>
+<li>
+<p><a href="https://www.seldon.io/" target="_blank" rel="noopener">Seldon</a> - Provides a set of tools for deploying machine learning models at scale. In this workshop, Seldon will be used for a variety of purposes including providing endpoints for metric collection and allows us to provide feedback to the created models.</p>
+</li>
+<li>
+<p><a href="https://www.sonatype.com/nexus-repository-oss" target="_blank" rel="noopener">Nexus</a> - Nexus Repository OSS is an open source repository that supports many artifact formats, including Docker, Java™, and npm.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workshop_flow">Workshop Flow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The goal of this workshop is the delivery of an end-to-end AI/ML solution for fraud detection based on the respective software components and their processes. The main steps are as follows:</p>
+</div>
+<div class="paragraph">
+<p>1) Create an AI/ML model that predicts fraud transactions using Jupyter Notebook.</p>
+</div>
+<div class="paragraph">
+<p>2) To productize the model. Using CodeReady Workspaces provided by OpenShift to convert code into python, before delivering it into a pipeline for the process of building, testing and deploying code, mainly in three different environments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Development Environment: Created models will be converted into python code here via CodeReady Workspaces, where these models will be trained and tested with a mixture of fraudulent and non-fraudulent inputs. Versioning will be done to ensure reproducibility of the model.</p>
+</li>
+<li>
+<p>Staging Environment: When the model has undergone all the relevant testing, an image will be created with Buildah and stored in Nexus</p>
+</li>
+<li>
+<p>Production Environment: Once the model has been verified to be in proper working condition, it will be promoted to the production environment, where approved images are deployed into the environment.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>3) Monitoring provided by Prometheus/Grafana provides insight into the credibility of the fraud detection model as well as account for any sanity check on the results derived from the associated data. The visualized metrics reflect any performance degradation of the model, which preempts us to decide on either starting on new experiment iterations or retraining the model with new data, considering the regular evolution of fraud practices in the real world.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pipeline">Pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A pipeline in software development is an automated process that drives software through a path of building, testing, and deploying code. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is deployed. Tools that are included in the pipeline could include compiling code, unit tests, code analysis, security, and installer creation. For containerized environments, this pipeline would also include packaging the code into a container to be deployed across the hybrid cloud. A pipeline is critical in supporting continuous integration and continuous deployment (CI/CD) processes.</p>
+</div>
+<div class="paragraph">
+<p>In this workshop, the CI/CD experience is provided by a combination of OpenShift Pipelines (based on Tekton) and Argo CD.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift Pipelines is responsible for the CI process in which models are built and trained in the staging process, and pushed to a Nexus registry thereafter. Argo CD is used to deliver the CD process, responsible for monitoring the deployment and pushing any new changes in the deployment to OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gpu">GPU</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this workshop, we will not be using GPU to train the models.</p>
+</div>
+<div class="paragraph">
+<p>GPU is supported on OpenShift via the <a href="https://github.com/NVIDIA/gpu-operator" target="_blank" rel="noopener">Nvidia GPU Operator</a> and Node Feature Discovery (NFD) Operator. The NFD operator identifies hardware device features in nodes. It solves the general problem of identifying and cataloging hardware resources in the infrastructure nodes so they can be made available to OpenShift.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/nvdia-gpu-operator-manual-install.png" alt="nvdia-gpu-operator-manual-install">
+</div>
+</div>
+<div class="paragraph">
+<p>The NFD operator uses vendor PCI IDs to identify hardware in a node and Nivdia uses the PCI ID <code>10de</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">$ oc describe node ip-10-0-132-138.us-east-2.compute.internal | egrep 'Roles|10de'
+
+Roles: worker
+feature.node.kubernetes.io/pci-10de.present=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>10de</code> appears in the node feature list for the GPU-enabled node we defined. These labels created by the NFD operator are what the GPU Operator uses in order to determine where to deploy the driver containers for the GPU(s).</p>
+</div>
+<div class="paragraph">
+<p>You can then consume these GPUs from your containers by <a href="https://github.com/openshift-psap/blog-artifacts/blob/master/gpu-operator-pt1/0004-rapids_template.yaml#L67-L71" target="_blank" rel="noopener">requesting</a> <code>nvidia.com/gpu</code> just like you request cpu or memory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">resources</span>:
+  <span class="key">requests</span>:
+    <span class="key">nvidia.com/gpu</span>: <span class="string"><span class="content">1</span></span> <span class="comment"># Num of GPUs</span>
+  <span class="key">limits</span>:
+    <span class="key">nvidia.com/gpu</span>: <span class="string"><span class="content">1</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_training_and_serving_frameworks">Model Training And Serving Frameworks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will be using Seldon to package the trained model into a Flask app.</p>
+</div>
+<div class="paragraph">
+<p>In Kubernetes, there are other Custom Resources (CR) such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TensorFlow. <a href="https://www.kubeflow.org/docs/components/training/tftraining/" target="_blank" rel="noopener">TFJob</a> provided by <a href="https://www.kubeflow.org" target="_blank" rel="noopener">Kubeflow</a>. You can serve the model directly from S3 or use <a href="https://github.com/AICoE/tensorflow-serving-s2i" target="_blank" rel="noopener">S2I</a>.</p>
+</li>
+<li>
+<p>Kubeflow XGBoost <a href="https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html" target="_blank" rel="noopener">operator</a></p>
+</li>
+<li>
+<p>PyTorch <a href="https://www.kubeflow.org/docs/components/training/pytorch/" target="_blank" rel="noopener">jobs</a> to run distributed training.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_first_step_confirm_your_username">First Step: Confirm Your Username!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Look in the box at the top of your screen. Is your username set already? If so it will look like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/alreadyset.png" alt="Set User ID above" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>If your username is properly set, then you can move on. <strong>If not, in the above box, enter the user ID you were assigned</strong> like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/setuser.png" alt="Set User ID above" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>This will customize the links and copy/paste code for this workshop. If you have accidentally typed the wrong username, just click the green recycle icon to reset it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_click_to_copy">Click-to-Copy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will see various code and command blocks throughout these exercises which can be copy/pasted directly by clicking anywhere on the block of text. Simply click once and the whole block is copied to your clipboard, ready to be pasted with <span class="keyseq"><kbd>CTRL</kbd>+<kbd>V</kbd></span> (or <span class="keyseq"><kbd>Command</kbd>+<kbd>V</kbd></span> on Mac OS).</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">echo &quot;This is a bash shell command that you can copy/paste by clicking&quot;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_your_environment">Your Environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your user id is <code>user1</code></p>
+</div>
+<div class="paragraph">
+<p>OpenShift Console url is <code><a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com</a></code>. Username/password is <code>user1/r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>CodeReady Workspaces url is <code><a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com</a></code>. Username/password is <code>user1/r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>Git url is <code><a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com</a></code>. Username/password is <code>user1/r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>JupyterHub url is <code><a href="https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com</a></code></p>
+</div>
+<div class="paragraph">
+<p>Grafana url is <code><a href="https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics" class="bare">https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics</a></code></p>
+</div>
+<div class="paragraph">
+<p>Argo CD url is <code><a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com</a></code></p>
+</div>
+<div class="paragraph">
+<p>Nexus url is <code><a href="https://nexus-labs-nexus.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://nexus-labs-nexus.apps.cluster-844c.844c.example.opentlc.com</a></code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_complete_this_workshop">How to complete this workshop</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Simply follow these instructions end-to-end. <strong>You will need to do quite a bit of copy/paste for Linux commands and source code modifications</strong>, as
+well as clicking around on various consoles used in the labs. When you get to the end of each section, you can click the <code>Next &gt;</code> button at
+the bottom to advance to the next topic. You can also use the menu on the left to move around the instructions at will.</p>
+</div>
+<div class="paragraph">
+<p>The entire workshop is split into one or more <em>modules</em> - Look at the top of the screen in the header to see which module you are on. After
+you complete this module, your instructor may have additional modules to complete.</p>
+</div>
+<div class="paragraph">
+<p>Good luck, and let’s get started!</p>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Exploring Data</h2>
+        <div class="sect1">
+<h2 id="_exploring_data">Exploring Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will be using Jupyter notebooks from
+<a href="https://opendatahub.io/" target="_blank" rel="noopener">OpenDataHub</a> to explore credit card fraud
+<a href="https://www.kaggle.com/mlg-ulb/creditcardfraud" target="_blank" rel="noopener">data</a>, using tools such
+as <a href="https://dvc.org/" target="_blank" rel="noopener">dvc</a> and <a href="https://pandas.pydata.org/" target="_blank" rel="noopener">Pandas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_opendatahub">About OpenDataHub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open Data Hub is a blueprint for building an AI as a service platform on
+Red Hat’s Kubernetes-based OpenShift® Container Platform and Ceph Object
+Storage. It inherits from upstream efforts such as Kafka/Strimzi and
+Kubeflow, and is the foundation for Red Hat’s internal data science and
+AI platform. Data scientists can create models using Jupyter notebooks,
+and select from popular tools such as TensorFlow™, scikit-learn, Apache
+Spark™ and more for developing models. Teams can spend more time solving
+critical business needs and less on installing and maintaining
+infrastructure with the Open Data Hub.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_jupyterhub">About JupyterHub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JupyterHub from ODH allows OpenShift users to access Jupyter notebooks.
+It gives users access to computational environments and resources
+without burdening the users with installation and maintenance tasks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_dvc">About DVC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data Version Control (DVC) keeps metafiles in Git to describe and version control your datasets and models. DVC supports a variety of external storage types as a
+remote cache for large files.</p>
+</div>
+<div class="paragraph">
+<p>Data management is the core part of DVC for large files, datasets, ML
+models versioning and efficient sharing. In this workshop, you will be
+using DVC to retrieve the dataset from a S3 bucket provided by Red Hat OpenShift Container Storage (OCS).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/dvc-model-versioning-diagram.png" alt="dvc-model-versioning-diagram" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>The repository has been <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/creditcard/src/master/.dvc/config" target="_blank" rel="noopener">configured</a> to use S3 that comes from OCS. The S3 bucket will contain the actual training data. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="ini">[core]
+    remote = myremote
+['remote &quot;myremote&quot;']
+    url = s3://mlflow-obc-9cebe5a6-303b-49ba-9e75-2224fa2313f9/dvcf4g2
+    endpointurl = https://s3-openshift-storage.apps.cluster-844c.844c.example.opentlc.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can view your <code>.dvc</code> files in your <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/creditcard/src/master/creditcard.csv.dvc" target="_blank" rel="noopener">repository</a>. <code>.dvc</code> files contains metadata such as filename and md5sum. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">md5</span>: <span class="string"><span class="content">cbd842a1ee4036fb7399d2dc568b5e50</span></span>
+<span class="key">outs</span>:
+- <span class="string"><span class="content">md5: e90efcb83d69faf99fcab8b0255024de</span></span>
+  <span class="key">path</span>: <span class="string"><span class="content">creditcard.csv</span></span>
+  <span class="key">cache</span>: <span class="string"><span class="content">true</span></span>
+  <span class="key">metric</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">persist</span>: <span class="string"><span class="content">false</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We then tagged the repository as <code>v1.0</code>, thus allowing us to retrieve consistent training data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_in">Logging in</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Begin by logging into <a href="https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">JupyterHub</a>.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code>.
+You may see a notification on authorizing access, select “Allow selected permissions” and proceed.</p>
+</div>
+<div class="paragraph">
+<p>Upon logging in, start a new notebook by choosing
+<code>rh-mlops-workshop-notebook:3.6</code> image in the drop down box and then click on
+<code>Spawn</code>. Leave the rest of the options as default.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the notebook page did not appear, try refreshing the page or
+reach out to your instructor.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the notebook page is up and running, there is a notebook <code>"rh-mlops-workshop/notebooks/0 intro to juypyter.ipynb"</code> to help you get started on familiarizing with the Jupyter interface.</p>
+</div>
+<div class="paragraph">
+<p>After you have acquainted yourself with how to edit and run Jupyter Notebooks, click on <code>"rh-mlops-workshop/notebooks/1 data exploration.ipynb"</code> to load the notebook. Run the individual code blocks contained in this notebook and observe the output.</p>
+</div>
+<div class="paragraph">
+<p>After running notebook “1 data exploration”, the output would be similar to the example below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/jupyternotebook-1-data-exploration.png" alt="jupyter-1-data-exploration">
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Build the First Model</h2>
+        <div class="sect1">
+<h2 id="_build_your_first_model">Build Your First Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this module, you will begin to use Jupyter Notebook to build, train
+and test the model.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_in">Logging in</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Begin by logging into <a href="https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">JupyterHub</a>.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>Upon logging in, start a new notebook by choosing
+<code>rh-mlops-workshop-notebook:3.6</code> image in the drop down box and then click on
+<code>Spawn</code>. Leave the rest of the options as default.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the notebook page did not appear, try refreshing the page or reach
+out to your instructor.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the notebook page is up and running, click on
+<code>rh-mlops-workshop/notebooks/2 building the first model.ipynb</code> to load the notebook.</p>
+</div>
+<div class="paragraph">
+<p>After running notebook “2 building the first model”, the output would be similar to the example below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/jupyternotebook-2-build-first-model.png" alt="jupyternotebook-2-build-first-model">
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Productize the Model</h2>
+        <div class="sect1">
+<h2 id="_productize_the_model">Productize The Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now the model has been created, we will now begin to productize the model in the development environment.</p>
+</div>
+<div class="paragraph">
+<p>We will be using CodeReady Workspaces and <code>juyptext</code> to convert
+the notebook to python code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_into_codeready_workspaces">Logging Into CodeReady Workspaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will be using Red Hat CodeReady Workspaces, an online IDE based on
+Eclipse Che. Built on the open Eclipse Che project, Red Hat CodeReady
+Workspaces uses Kubernetes and containers to provide any member of the
+development or IT team with a consistent, secure, and zero-configuration
+development environment. The user experience is as fast and familiar as
+an integrated development environment (IDE) on their laptop.</p>
+</div>
+<div class="paragraph">
+<p>CodeReady Workspaces is included in OpenShift® and is available in the
+OpenShift Operator Hub. Once deployed, CodeReady Workspaces provides
+development teams a faster and more reliable foundation on which to
+work, and it gives operations centralized control and peace of mind.</p>
+</div>
+<div class="paragraph">
+<p>To get started, <a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">access the
+CodeReady Workspaces instance</a>, and log in using the username and
+password you’ve been assigned
+(e.g. <code>user1/r3dh4t1!</code>):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/che-login.png" alt="che-login">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you log in, you’ll be placed on your personal dashboard. Click on
+the name of the pre-created user1-workspace on the bottom left, as shown below (the
+name will be different depending on your assigned number).</p>
+</div>
+<div class="paragraph">
+<p>After a minute or two, you’ll be placed in the workspace:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/che-workspace.png" alt="che-workspace">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If things get weird or your browser appears, you can simply reload the
+browser tab to refresh the view.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This IDE is based on Eclipse Che (which is in turn based on MicroSoft VS
+Code editor).</p>
+</div>
+<div class="paragraph">
+<p>You can see icons on the left for navigating between project explorer,
+search, version control (e.g. Git), debugging, and other plugins. You’ll
+use these during the course of this workshop. Feel free to click on them
+and see what they do:</p>
+</div>
+<div class="paragraph">
+<p>Your git repositories will be cloned to <code>/projects</code> automatically for you:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>rh-mlops-workshop: Source repository for the model</p>
+</li>
+<li>
+<p>rh-mlops-model-deploy: Kubernetes deployment artifacts</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Changes to files are auto-saved every few seconds</em>, so you don’t need
+to explicitly save changes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_converting_a_notebook_to_python_code">Converting A Notebook To Python Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Within your workspace, click on <strong>&gt;_ New Terminal</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can open a terminal
+window for any of the containers running in your Developer workspace.
+For the rest of these labs, anytime you need to run a command in a
+terminal, you can use the <strong>&gt;_ New Terminal</strong> command on the right. If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/che-terminal.png" alt="che-terminal">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To restart the workspace: On the CodeReady main page, click on the Workspaces you are using, and then click the "Stop" button next to your new workspace. You may get an error popup which you can ignore. Then, click the "Start" button to restart the workspace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/start-stop-codeready-workspaces.png" alt="start-stop-codeready-workspaces">
+</div>
+</div>
+<div class="paragraph">
+<p>Run the following commands to convert a notebook into a python code.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">pip install jupytext
+cd /projects/rh-mlops-workshop/notebooks/
+jupytext &quot;2 building the first model.ipynb&quot;  -o ../src/train/lr.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To inspect the newly converted file, the user can navigate from the file explorer under "Open File"</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/codeready-file-explorer.png" alt="codeready-file-explorer">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can ignore the pylint warning</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/che-pylint.png" alt="che-pylint">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_refactor_the_new_model">Refactor the New Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, we will then modify the code into a format that the pipeline can
+run to train and build the image with the model. The pipeline will call
+<code>train-stage.sh</code> and expects the model to be written to a folder at
+<code>/workspace/model</code>.</p>
+</div>
+<div class="paragraph">
+<p>We have prepared the refactored model at <code>/projects/rh-mlops-workshop/src/train/lr.ans.py</code>. Copy it to <code>/projects/rh-mlops-workshop/src/train/lr.py</code>. The python code generated from the notebook has been refactored into a python class and visualization removed.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cp /projects/rh-mlops-workshop/src/train/lr.ans.py /projects/rh-mlops-workshop/src/train/lr.py</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Copying the file will override the jupytertext converted lr.py.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that in the lr.py file, there is a section on the version of the data used.
+The version of the data used is going to be committed together with source, thus allowing us to have reproducible results
+easily with dvc.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note of the versioning of the data.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="python">DATA_VERSION = <span class="string"><span class="delimiter">'</span><span class="content">v1.0</span><span class="delimiter">'</span></span>
+
+<span class="comment"># PIPELINERUN will be set when run from the pipeline</span>
+<span class="keyword">if</span> os.environ.get(<span class="string"><span class="delimiter">'</span><span class="content">PIPELINERUN</span><span class="delimiter">'</span></span>, <span class="predefined-constant">None</span>):
+    CSV_FILE = <span class="string"><span class="delimiter">'</span><span class="content">creditcard-train.csv</span><span class="delimiter">'</span></span>
+<span class="keyword">else</span>:
+    CSV_FILE = <span class="string"><span class="delimiter">'</span><span class="content">creditcard.csv</span><span class="delimiter">'</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_train_and_test_the_model">Train And Test The Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To train the model, run the following script:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cd /projects/rh-mlops-workshop
+src/train/train-dev.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The model would have been written to <code>/opt/app-root/src/model</code>.</p>
+</div>
+<div class="paragraph">
+<p>As part of the training, the metrics and model will be logged at <a href="https://mlflow-user1-dev.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">MLflow server</a>.</p>
+</div>
+<div class="paragraph">
+<p>Now start serving the model using REST. A model wrapper has been written to serve the model using Seldon. The model will be loaded and the <code>predict_proba</code> method will be called. Seldon will wrap the model using Flask and expose the port <code>5000</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note that the code directly below this statement is not meant to be run but serves as an illustration of the model wrapper.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="python"><span class="keyword">class</span> <span class="class">LRModel</span>(Base):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="predefined-constant">self</span>):
+        <span class="comment"># Load the model</span>
+    <span class="keyword">def</span> <span class="function">predict</span>(<span class="predefined-constant">self</span>, X, features_names):
+        <span class="comment"># Calls the model predict_proba method</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Serve the model by running <code>app.sh</code>.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cd /projects/rh-mlops-workshop/src/seldon/
+./app.sh</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can ignore this popup box because we are not exposing the route.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/che-exposed-route.png" alt="che-exposed-route">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s test the model. Open up a <strong>new</strong> terminal and run the following:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/dev-test.sh</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The script will send both fraud and non-fraud requests to the model.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commit_the_code">Commit the Code</h2>
+<div class="sectionbody">
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop/src/train
+git add *
+git commit -a -m 'my lr training code'
+git push -v origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop" target="_blank" rel="noopener">your</a> git
+repository on the <code>master/devel</code> branch.</p>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Deploy The Model To Staging</h2>
+        <div class="sect1">
+<h2 id="_deploy_the_model_to_staging">Deploy The Model To Staging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The model has been tested in the development environment and is now ready to be deployed to the staging environment.</p>
+</div>
+<div class="paragraph">
+<p>Once we code is pushed to the git repository, the pipeline will run to build and train the image. We will also be using Argo CD as the GitOps tool to deploy the model to the staging environment.</p>
+</div>
+<div class="paragraph">
+<p>To get started, <a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">access the
+CodeReady Workspaces instance</a>, and log in using the username and
+password you have been assigned
+(e.g. <code>user1/r3dh4t1!</code>):</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_openshift_pipelines">OpenShift Pipelines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenShift Pipelines is a Kubernetes-style CI/CD solution based on Tekton. It builds on the Tekton building blocks and provides a CI/CD experience through tight integration with OpenShift and Red Hat developer tools.</p>
+</div>
+<div class="paragraph">
+<p>A Tekton <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/tekton.dev~v1alpha1~Pipeline" target="_blank" rel="noopener">pipeline</a>
+has been created for you.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Here, users are able to explore the different stages of the pipeline</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="asset/images/pipeline.png" alt="pipeline"></span></p>
+</div>
+<div class="paragraph">
+<p>The pipeline consists of the following stages</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Git clone the source code</p>
+</li>
+<li>
+<p>Run <code>train-stage.sh</code> to train the model</p>
+</li>
+<li>
+<p>Build the image using S2I (Source-to-Image)</p>
+</li>
+<li>
+<p>Push the image into Nexus registry</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_argo_cd">Argo CD</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Argo CD is a declarative continuous delivery tool that leverages GitOps to maintain cluster resources. Argo CD is implemented as a controller that continuously monitors application definitions and configurations defined in a Git repository and compares the specified state of those configurations with their live state on the cluster. Configurations that deviate from their specified state in the Git repository are classified as OutOfSync. Argo CD reports these differences and allows administrators to automatically or manually resync configurations to the defined state.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_training_script">Training script</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>train-stage.sh</code> has been written to be used in the pipeline to call your python script and saves the model into the pipeline workspace. <code>train-stage.sh</code> can be found in your <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/" target="_blank" rel="noopener">Gogs</a> repository. The training script uses a <code>config.sh</code> that allows you to define the model to be trained.</p>
+</div>
+<div class="paragraph">
+<p>Under /projects/rh-mlops-workshop/workshop/src/train/config.sh:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note that the code directly below this statement is not meant to be run but serves as an illustration for the user to take note that the python script used is lr.py and the associated run name is lr.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">PYTHON_SCRIPT=lr.py
+RUN_NAME=lr</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_the_image">Building The Image</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the model has been saved into the pipeline workspace, the building stage will begin to assemble the image by calling <code>S2I</code> and <code>buildah</code>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://developers.redhat.com/blog/2019/02/21/podman-and-buildah-for-docker-users/" target="_blank" rel="noopener">Buildah</a> is a tool that facilitates building Open Container Initiative (OCI) container images.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/buildah.png" alt="buildah" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>S2I follows a well <a href="https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#images-create-s2i-build_build-strategie" target="_blank" rel="noopener">defined</a> repository <a href="https://github.com/sclorg/s2i-python-container/tree/master/3.6" target="_blank" rel="noopener">layout</a>, which includes the following files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>requirements.txt</code>, for python dependencies</p>
+</li>
+<li>
+<p><code>.s2i/bin/assemble</code>, to customize image assembling</p>
+</li>
+<li>
+<p><code>.s2i/environment</code>, custom environment variables</p>
+</li>
+<li>
+<p><code>app.py</code>, python script to launch the application</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In our workshop, we have overridden the <code>APP_SCRIPT</code> environment variable to use <code>app.sh</code> to launch the model.</p>
+</div>
+<div class="paragraph">
+<p>The source code is available <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/src/master/src/seldon" target="_blank" rel="noopener">here</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment">Deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the image has been pushed to Nexus, we will deploy the model using Seldon&#8217;s operator by creating a <code>SeldonDeployment</code> resource.</p>
+</div>
+<div class="paragraph">
+<p>Seldon Core, an open-source framework, makes it easier and faster to deploy your machine learning models and experiments at scale on Kubernetes. Seldon Core extends Kubernetes with its own custom resource <code>SeldonDeployment</code> where you can define your runtime inference graph made up of models and other components that Seldon will manage.</p>
+</div>
+<div class="paragraph">
+<p>A <code>SeldonDeployment</code> is a JSON or YAML file that allows you to define your graph of component images and the resources each of those images will need to run (using a Kubernetes PodTemplateSpec). The parts of a SeldonDeployment are shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/seldon-inf-graph.png" alt="seldon-inf-graph">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_push_to_staging_branch">Push To Staging Branch</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now let&#8217;s push the code to the staging branch so that the pipeline will run.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">git checkout -b stage
+git push -u -v origin stage</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/gogs-staging-branch.png" alt="gogs-staging-branch" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>Because Gogs has been configured with a <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/settings/hooks" target="_blank" rel="noopener">webhook</a>, a git push will trigger our pipeline.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Do not change the webhook.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can go to OpenShift Console to monitor the <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/tekton.dev~v1alpha1~PipelineRun" target="_blank" rel="noopener">pipeline run</a>. If you are accessing the Pipeline Run from the <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">OpenShift Console</a>, under the user1-stage project namespace: You can select <code>Pipelines</code> (from the left panel) &#8594; <code>Pipeline Runs</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The pipeline run is estimated to take about 10 minutes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If any error occurs during the pipeline run, we can stop the pipeline run from the OpenShift UI as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/pipeline-openshift-ui.png" alt="pipeline-openshift-ui">
+</div>
+</div>
+<div class="paragraph">
+<p>To trigger a new pipeline run, we can do an empty git commit.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">git checkout stage
+git commit --allow-empty -m &quot;Empty commit to trigger pipeline run again&quot;
+git push -u -v origin stage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will trigger a new pipeline run which can be viewed in the OpenShift UI.</p>
+</div>
+<div class="paragraph">
+<p>Once the pipeline runs finish, the image would have been pushed into <a href="https://nexus-labs-nexus.apps.cluster-844c.844c.example.opentlc.com/#browse/browse:docker-registry" target="_blank" rel="noopener">Nexus Registry</a> and is tagged with the git revision number. This allows us to provide model provenance by tracking the source code, data version used and the image being used. As depicted, the created image is tagged and is under user/lr/tags.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/docker-registry.png" alt="docker-registry">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_to_staging">Deploy to Staging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Argo CD follows the GitOps model of deployment, where desired configuration changes are first pushed to Git, and the cluster state then syncs to the desired state in git.</p>
+</div>
+<div class="paragraph">
+<p>We will now modify the <code>SeldonDeployment</code> to deploy our new image that is tagged with the git revision.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Please ensure that the Pipeline above runs finish before proceeding to the next stage.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout stage
+GIT_REV=`git rev-parse --short HEAD`
+echo &quot;GIT REVISION: $GIT_REV&quot;
+. src/seldon/config.sh
+
+cd /projects/rh-mlops-model-deploy
+git checkout master
+sed -e &quot;s/_USER_/user1/g&quot; -e &quot;s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g&quot; -e &quot;s/_IMAGE_NAME_/$IMAGE_NAME/g&quot; -e &quot;s/_GIT_REV_/$GIT_REV/g&quot; seldon-model.yaml.tmpl &gt; seldon.yaml
+git add *.yaml
+git commit -a -m &quot;Update image tag to $IMAGE_NAME:$GIT_REV&quot;
+
+git checkout -b stage
+git merge master
+git push -u -v origin stage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>View the <code>seldon.yaml</code> in the IDE and notice that image name has been updated with the specific tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">spec</span>:
+  <span class="key">containers</span>:
+    - <span class="string"><span class="content">image: nexus-docker-labs-nexus.apps.cluster-844c.844c.example.opentlc.com/user1/lr:1234</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Argo CD is configured to monitor your deployment for the <code>stage</code> and <code>prod</code> branch in your git
+<a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-model-deploy" target="_blank" rel="noopener">repository</a>. You can login to <a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com/applications/user1-stage" target="_blank" rel="noopener">Argo CD</a> with your <code>user1/r3dh4t1!</code> credential.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Here, users are able to log in by clicking on the <code>Login via OpenShift</code> button</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the deployment has been pushed, Argo CD will be triggered via a webhook to push the deployment over to OpenShift.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/argocd-deploy.png" alt="argocd-deploy">
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>Deployment</code> resource will be created. The pods should be running and in a ready state. You can view them under <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/deployments" target="_blank" rel="noopener">OpenShift Console</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/seldon-deploy.png" alt="seldon-deploy">
+</div>
+</div>
+<div class="paragraph">
+<p>You will notice there is a Seldon service orchestrator pod running. The service orchestrator is a component that is added to your inference graph to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Correctly manage the request/response paths described by your inference graph</p>
+</li>
+<li>
+<p>Expose Prometheus metrics</p>
+</li>
+<li>
+<p>Provide Tracing via Open Tracing</p>
+</li>
+<li>
+<p>Add CloudEvent based payload logging</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/seldon-svc-orch.png" alt="seldon-svc-orch">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_testing">Model Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the model has been deployed and is running, you can now run some simple tests. The test will send sample data to the prediction endpoint.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">/projects/rh-mlops-workshop/bin/stage-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Promote to Production</h2>
+        <div class="sect1">
+<h2 id="_promote_to_production">Promote To Production</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The model is working properly in staging and can now be deployed to production. The production environment will be under the <code>user1-prod</code> namespace.</p>
+</div>
+<div class="paragraph">
+<p>Using container images allows us to have consistency across environments. Containers allows us to package our model and its dependencies into an image and will run the same regardless of their deployment environment.</p>
+</div>
+<div class="paragraph">
+<p>We will be using <a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener"> CodeReady Workspaces</a>, and log in using the username and
+password you’ve been assigned (e.g. <code>user1/r3dh4t1!</code>):</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_image_promotion">Image Promotion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To promote the image from staging to production environment, we are going to merge our <code>stage</code> to <code>prod</code> deployment branch. If there is a need for an approval process, Red Hat Process Automation Manager can be used to approve the Pull Request before the changes are merged.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-model-deploy
+git checkout -b prod
+git merge stage
+git push -u -v origin prod</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now login to <a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com/applications/user1-prod" target="_blank" rel="noopener">Argo CD</a> with your <code>user1/r3dh4t1!</code> credential to view the changes that Argo CD is making to the production environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_testing">Model Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the model has been deployed and is running, you can now run some simple tests. The test will send sample data to the prediction endpoint.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">/projects/rh-mlops-workshop/bin/prod-mon-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tag_it">Tag it!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now the model has been tested in production, we now can tag it as <code>v1.0</code>.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout stage
+git tag -a v1.0 -m &quot;v1.0&quot;
+git push -v origin v1.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tag has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/src/v1.0" target="_blank" rel="noopener">your</a> git
+repository.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/git-tag-1_0.png" alt="git-tag-1_0">
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Model Monitoring and Observability</h2>
+        <div class="sect1">
+<h2 id="_model_monitoring_and_observability">Model Monitoring and Observability</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Monitoring has been configured in this workshop. Prometheus will be scraping the metrics from the model and Grafana will be the interactive visualization web dashboard.</p>
+</div>
+<div class="paragraph">
+<p>Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, many companies and organizations have adopted Prometheus, and the project has a very active developer and user community. It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project&#8217;s governance structure, Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.</p>
+</div>
+<div class="paragraph">
+<p>Grafana is open source visualization and analytics software. It allows you to query, visualize, alert on, and explore your metrics no matter where they are stored. In plain English, it provides you with tools to turn your time-series database (TSDB) data into beautiful graphs and visualizations.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_looking_at_metrics">Looking At Metrics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Grafana dashboard has been <a href="https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics" target="_blank" rel="noopener">configured</a>.</p>
+</div>
+<div class="paragraph">
+<p>Go to Home and find the <code>Prediction Analytics</code> dashboard.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/grafana-home.png" alt="grafana-home" width="200">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/grafana-dashboard.png" alt="grafana-dashboard" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>The dashboard has been configured to look at several metrics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Requests/second</p>
+</li>
+<li>
+<p>Latency</p>
+</li>
+<li>
+<p>True/False and Positive/Negative count</p>
+</li>
+<li>
+<p>Accuracy</p>
+</li>
+<li>
+<p>Precision</p>
+</li>
+<li>
+<p>Recall</p>
+</li>
+<li>
+<p>F1</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Choose your image and namespace <code>user1-prod</code> and view the metrics from your model.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/grafana-dropdown.png" alt="grafana-dropdown" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>We are interested in the recall score of the model, which is the ratio TP / (TP + FN). Recall is a good metric to use when the cost associated with false negative (FN) is high. In this classification problem there is a high cost for the bank when a fraud transaction is predicted as non-fraud, since no actions can be taken. Thus, recall is one important metric to pay attention to.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/grafana-recall.png" alt="grafana-recall" width="400">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exposing_metrics_to_prometheus">Exposing Metrics to Prometheus</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Seldon models expose a prometheus <code>/prometheus</code> endpoint and we have configured Prometheus <code>ServiceMonitor</code> to scrape these endpoints.</p>
+</div>
+<div class="paragraph">
+<p>A ServiceMonitor describes the set of targets to be monitored by Prometheus, which declaratively specifies how groups of Kubernetes services should be monitored. The Prometheus Operator automatically generates Prometheus scrape configuration based on the current state of the objects in the API server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">apiVersion</span>: <span class="string"><span class="content">monitoring.coreos.com/v1</span></span>
+<span class="key">kind</span>: <span class="string"><span class="content">ServiceMonitor</span></span>
+<span class="key">metadata</span>:
+  <span class="key">name</span>: <span class="string"><span class="content">odh-seldon</span></span>
+  <span class="key">namespace</span>: <span class="string"><span class="content">userX-prod</span></span>
+<span class="key">spec</span>:
+  <span class="key">endpoints</span>:
+    - <span class="string"><span class="content">interval: 30s</span></span>
+      <span class="key">path</span>: <span class="string"><span class="content">/prometheus</span></span>
+      <span class="key">port</span>: <span class="string"><span class="content">http</span></span>
+      <span class="key">scheme</span>: <span class="string"><span class="content">http</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Seldon service orchestrator exposes core metrics such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>seldon_api_executor_server_requests_seconds_(bucket,count,sum)</p>
+</li>
+<li>
+<p>seldon_api_executor_client_requests_seconds_(bucket,count,sum)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>, and custom metrics added to the model class via the <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop"><code>Base</code></a> class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="python"><span class="keyword">class</span> <span class="class">Base</span>(<span class="predefined">object</span>):
+  <span class="keyword">def</span> <span class="function">metrics</span>(<span class="predefined-constant">self</span>):
+    <span class="keyword">pass</span>
+  <span class="keyword">def</span> <span class="function">send_feedback</span>(<span class="predefined-constant">self</span>, features, feature_names, reward, truth, routing):
+    <span class="keyword">pass</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_feedback_endpoint">Feedback endpoint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Seldon model provides a <code>/api/v1.0/feedback</code> endpoint that allows you to send back feedback to the model, which allows us to calculate various scores.</p>
+</div>
+<div class="paragraph">
+<p>This is extremely useful when multi-armed bandits are used for reinforced learning, so as to maximize a numerical reward signal.</p>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Continuous Training With A/B Testing</h2>
+        <div class="sect1">
+<h2 id="_continuous_training_with_ab_testing">Continuous Training With A/B Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is important for us to actively monitor the quality of your model in production. Monitoring allows us to detect performance degradation, thus allowing us to decide whether we should start new experiment iterations or retrain the model with new data.</p>
+</div>
+<div class="paragraph">
+<p>In this chapter, you will build a new model, test it in staging and deploy it to production with A/B testing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_the_new_model">Exploring The New Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Go to JupyterHub and launch the notebook <code>rh-mlops-workshop/notebooks/3 using xgboost.ipynb</code>. The new model will be based on XGBoost.</p>
+</div>
+<div class="paragraph">
+<p>XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solves many data science problems in a fast and accurate way.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_and_test_a_new_model">Build and Test A New Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will be using <a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener"> CodeReady Workspaces</a>, and log in using the username and
+password you’ve been assigned (e.g. <code>user1/r3dh4t1!</code>):</p>
+</div>
+<div class="paragraph">
+<p>The model has already been converted for you using <code>jupytext</code> and modified to run in the pipeline.</p>
+</div>
+<div class="paragraph">
+<p>Run the following script to use the new model:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout master
+cp /projects/rh-mlops-workshop/src/train/boost.ans.py \
+    /projects/rh-mlops-workshop/src/train/boost.py
+
+cat &lt;&lt; EOF &gt; /projects/rh-mlops-workshop/src/train/config.sh
+PYTHON_SCRIPT=boost.py
+RUN_NAME=xgboost
+EOF
+
+/projects/rh-mlops-workshop/src/train/train-dev.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the model:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cat &lt;&lt; EOF &gt; /projects/rh-mlops-workshop/src/seldon/config.sh
+MODEL_NAME=XGBoostModel
+IMAGE_NAME=xgboost
+EOF
+
+cd /projects/rh-mlops-workshop/src/seldon/
+./app.sh</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Users may notice the <code>"Address already in use"</code> error message when running this command. To remedy this, enter the terminal running the original <code>app.sh</code> and press <span class="keyseq"><kbd>CTRL</kbd>+<kbd>C</kbd></span> to stop the Flask server first, before running the command again.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s test the model. Open up a <strong>new</strong> terminal and run the following:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/dev-test.sh</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The code has been tested and we can now commit to development branch.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh"> cd /projects/rh-mlops-workshop/src/train
+ git add *.py
+ git commit -a -m &quot;my xgboost model&quot;
+ git push -v origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop" target="_blank" rel="noopener">your</a> git
+repository.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_to_staging_with_ab_testing">Deploy to Staging With A/B Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will now build the image for staging. Once the code is pushed to the <code>stage</code> branch, the pipeline will run.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh"> cd /projects/rh-mlops-workshop
+ git checkout stage
+ git merge master
+ git push -v origin stage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can go to OpenShift Console to monitor the <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/tekton.dev~v1alpha1~PipelineRun" target="_blank" rel="noopener">pipeline run</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once the pipeline runs finish, we will modify the <code>SeldonDeployment</code> to do A/B testing in staging.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Please ensure that the Pipeline above runs finish before proceeding to the next stage.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout tags/v1.0 -b v1.0
+GIT_REV=`git rev-parse --short HEAD`
+echo &quot;GIT REVISION: $GIT_REV&quot;
+. src/seldon/config.sh
+
+PREV_IMAGE_NAME=$IMAGE_NAME
+PREV_GIT_REV=$GIT_REV
+
+git checkout stage
+GIT_REV=`git rev-parse --short HEAD`
+. src/seldon/config.sh
+
+cd /projects/rh-mlops-model-deploy
+git checkout master
+
+sed -e &quot;s/_USER_/user1/g&quot; \
+-e &quot;s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g&quot; \
+-e &quot;s/_PREV_IMAGE_NAME_/$PREV_IMAGE_NAME/g&quot; \
+-e &quot;s/_PREV_GIT_REV_/$PREV_GIT_REV/g&quot; \
+-e &quot;s/_IMAGE_NAME_/$IMAGE_NAME/g&quot; \
+-e &quot;s/_GIT_REV_/$GIT_REV/g&quot; \
+seldon-model-ab.yaml.tmpl &gt; seldon.yaml
+
+git commit -a -m &quot;a/b testing with $PREV_IMAGE_NAME:$PREV_GIT_REV and $IMAGE_NAME:$GIT_REV&quot;
+git checkout stage
+git merge master
+
+git push -v origin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can login to <a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com/applications/user1-stage" target="_blank" rel="noopener">Argo CD</a> with your <code>user1/r3dh4t1!</code> credential to monitor the deployment.</p>
+</div>
+<div class="paragraph">
+<p>There will be 2 classifier pods deployed in your <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/pods/" target="_blank" rel="noopener">user1-stage project</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/seldon-ab.png" alt="seldon-ab">
+</div>
+</div>
+<div class="paragraph">
+<p>After the new model has been deployed to OpenShift, you can now run some basic tests</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/stage-test.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now go to <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/pods" target="_blank" rel="noopener">OpenShift Console</a> to view the pod logs. Observe that credit card transactions have been sent to both pods by calling the <code>/predict</code> endpoints.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/seldon-ab-logs.png" alt="seldon-ab-logs">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_to_production_with_ab_testing">Deploy To Production With A/B Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will now promote this new image to the Production environment and run some tests.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-model-deploy
+git checkout prod
+git merge stage
+git push -u -v origin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the new model has been deployed to OpenShift, you can run some basic tests.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/prod-mon-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Deploy The Chosen One</h2>
+        <div class="sect1">
+<h2 id="_observing_the_performance_of_both_models">Observing The Performance Of Both Models</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run the following script to send sufficient transactions to the models.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">/projects/rh-mlops-workshop/bin/prod-mon-test.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now look at the Grafana <a href="https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics" target="_blank" rel="noopener">dashboard</a>, and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression.</p>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left text-center">
+<div class="content">
+<img src="asset/images/lr-classification.png" alt="lr-classification" width="300">
+</div>
+<div class="title">Logistic Regression</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="asset/images/xgboost-classification.png" alt="xgboost-classification" width="300">
+</div>
+<div class="title">XGBoost</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_chosen_one">Deploying The Chosen One</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s quickly change the <code>SeldonDeployment</code> to use XGBoost, deploy to staging and promote it to Production.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout master
+GIT_REV=`git rev-parse --short HEAD`
+echo &quot;GIT REVISION: $GIT_REV&quot;
+. src/seldon/config.sh
+
+cd /projects/rh-mlops-model-deploy
+git checkout master
+sed -e &quot;s/_USER_/user1/g&quot; -e &quot;s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g&quot; -e &quot;s/_IMAGE_NAME_/$IMAGE_NAME/g&quot; -e &quot;s/_GIT_REV_/$GIT_REV/g&quot; seldon-model.yaml.tmpl &gt; seldon.yaml
+git commit -a -m &quot;Update image tag to $IMAGE_NAME:$GIT_REV&quot;
+
+git checkout stage
+git merge master
+
+git checkout prod
+git merge stage
+
+git push -u -v origin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Observe that only a single classifier has been deployed.</p>
+</div>
+<div class="paragraph">
+<p>After the final model has been deployed to OpenShift, you can run some basic tests.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/prod-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tag_it">Tag It!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Great! The new XGBoost model is working better and we now can tag it as <code>v2.0</code></p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout stage
+git tag -a v2.0 -m &quot;v2.0&quot;
+git push -v origin v2.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tag has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/src/v2.0" target="_blank" rel="noopener">your</a> git
+repository.</p>
+</div>
+</div>
+</div>
+        <hr>
+        <h2>Completing the Solution with Red Hat Application Services</h2>
+        <div class="sect1">
+<h2 id="_completing_the_solution_with_red_hat_application_services">Completing the Solution with Red Hat Application Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a recap from what we have covered earlier in the workshop, only a small fraction of a real-world ML system is composed of the ML code. The required surrounding elements are vast and complex. In this section, the inclusion of Red Hat’s Application Services offerings will complete the solution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png" alt="mlops_elements" width="700w">
+</div>
+</div>
+<div class="paragraph">
+<p>We have deployed our final model based on XGBoost, but this itself is insufficient in the considerations of a comprehensive AI/ML solution. To complete the picture, we need to consider other critical aspects relevant to any AI/ML application, such as streaming data and a rules engine. In this regard, the introduction of Red Hat Application Services portfolio provides the runtime for running applications to consume incoming data streams, as well as providing integration of different software components alongside streaming to cater to data collection and a rules engine as an integral part of process management.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_red_hat_application_services_portfolio">Red Hat Application Services Portfolio</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/application-services-portfolio-overview.png" alt="application-services-portfolio-overview" width="700w">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_runtimes">Red Hat Runtimes</h3>
+<div class="paragraph">
+<p>For organizations looking to keep and modernize existing applications, or create net­ new ones, Red Hat Runtimes provide the integrated and optimized products and components necessary to deliver modern applications. IT teams can containerize applications through adoption of a microservices ­based architecture, improve data access performance and resilience with in­ memory data caching models, improve service ­to ­service communication with messaging, or adopt cloud­ native application development using modern development patterns and technologies. For the purposes of this workshop, the runtimes provided will host the consumer application created from SpringBoot.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_integration_suite">Red Hat Integration suite</h3>
+<div class="paragraph">
+<p>For organizations interested in adopting highly distributed integration deployments, Red Hat Integration provides the products and components necessary to adopt an API ­first approach. This allows enterprise ­wide visibility and control of APIs, creation of APIs to allow orchestration of services on newly developed applications or existing ones, and fast and reliable messaging which lets you to build low­ latency messaging and streaming solutions based on proven messaging patterns. In this workshop, Kafka streams responsible for streaming transaction data are handled by Red Hat AMQ Streams. Additionally, Camel Routing capabilities as an integration piece between different software components will be provided by Red Hat Fuse.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_process_automation_suite">Red Hat Process Automation suite</h3>
+<div class="paragraph">
+<p>For organizations looking to improve business agility, operational efficiency, and time to market, Red Hat Process Automation provides the tools and components necessary to deliver applications that automate business processes and decisions to rapidly adapt to a changing environment. Collaboration between IT and business teams enables the capture and enforcement of policies and procedures, automation of business operations, and measure. Decision making is critical in meeting business objectives, and in this workshop Red Hat Decision Manager will take charge of business rules which determine whether a transaction is a fraud or not.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_streaming_integration_and_business_rules">Data Streaming, Integration and Business Rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data streaming to ensure the nature of data stays current, integration piecing different software components, business rules to accomplish business objectives, all these are crucial in any enterprise AI/ML setup, and in this section we will be covering how all these fit into the workshop we have been working on till now and how having the right middleware solution is centerpiece to ensuring all these separate components work cohesively.</p>
+</div>
+<div class="sect2">
+<h3 id="_middleware_workflow">Middleware Workflow</h3>
+<div class="paragraph">
+<p>In this workshop, transactions are kept in a CSV format which is streamed over to Kafka. To determine the authenticity of the conducted transactions. we are interested as to how many of these transactions are fraudulent. Consumer application contains a Camel Router which routes the data as messages around to different components for processing and eventual output.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/middleware-workflow.png" alt="middleware-workflow" width="700w">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Credit card transactions will be streamed to Kafka</p>
+</li>
+<li>
+<p>The Camel router will consume the transactions from Kafka broker.</p>
+</li>
+<li>
+<p>The first stop the transaction data is routed to is the Python Model, which outputs a probability score as an indication of the transaction being fraudulent or not. The probability score is returned back to the consumer application.</p>
+</li>
+<li>
+<p>Next, the consumer application routes the probability score to Red Hat Decision Manager, based on a threshold which determines whether the transaction is a fraud or not and returns an outcome (Fraud/No Fraud) to the consumer application.</p>
+</li>
+<li>
+<p>The consumer application will route the outcome (Fraud/No Fraud) to a Web application to display the results so that users will be able to view.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sending_data_to_kafka">Sending Data To Kafka</h3>
+<div class="paragraph">
+<p>We will use Jupyter Notebook <code>rh-mlops-workshop/notebooks/4 kafka.ipyb</code> to send transactions to Kafka.</p>
+</div>
+<div class="paragraph">
+<p>Begin by logging into JupyterHub.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>After sending the transactions, you can now go to the <a href="http://webnotifications-user1-prod.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">notification</a> page to see the end results.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/notifications.png" alt="notifications" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Based on the probability score returned from the model, Red Hat Decision Manager is a
+business rules management system (BRMS) that will decide whether a transaction is a fraud or not.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Decision Manager 7 is a powerful, scalable open source business rules management system that includes business resource optimization and complex event processing (CEP) technology. It helps organizations capture business logic and develop applications that automate business decisions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/decision-flow-chart.png" alt="decision-flow-chart" width="400w">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_future_enhancements">Future Enhancements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far what we have seen is how Red Hat AMQ reliably delivers a high-performance streaming of data, whereas Decision Manager configures the business rules to determine whether a transaction is deemed to be fraudulent or not. While this may suffice for certain operations in reality, there is also scope for enhancements to cater to business requirements taking on a more sophisticated nature.</p>
+</div>
+<div class="sect2">
+<h3 id="_decision_making">Decision Making</h3>
+<div class="paragraph">
+<p>Decision Manager can be used to by introducing individual business processes for handling different kinds of potential fraudulent transactions</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="asset/images/business-process-demo.png" alt="business-process-demo" width="700w">
+</div>
+</div>
+<div class="paragraph">
+<p>Image source: <a href="https://github.com/ruivieira/ccfd-demo/" target="_blank" rel="noopener">ruivieria-ccfd-demo</a></p>
+</div>
+<div class="paragraph">
+<p>Here, a process is instantiated with the transaction&#8217;s data and it is consumed by the CustomerNotification node. The CustomerNotification node sends a message to the &lt;CUSTOMER-OUTGOING&gt; Kafka topic with the customer&#8217;s id and the transaction&#8217;s id. This message is picked by the notification service, which will send an appropriate notification (email, SMS, etc)</p>
+</div>
+<div class="paragraph">
+<p>In the event where a customer response is not received, there is the potential of a fraudulent transaction, which will be determined after the process of a fraud investigation. In the event where verification is done by the customer, the request is deemed to be non fraudulent, though further customization can be done to investigate any fraud even if the transaction is being approved. The customer’s response determines whether a transaction is fraudulent or not, which means the outcome does not only depend on the output generated from the system, an enhancement from what we have done so far in the workshop.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback_loop">Feedback loop</h3>
+<div class="paragraph">
+<p>The customer’s response can be retained to provide a feedback loop to the training data set to further improve the quality of existing models and address any change in the environment of the data we are collecting from.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kubernetes_native_java_runtime">Kubernetes-native Java Runtime</h3>
+<div class="paragraph">
+<p>Quarkus: Quarkus is a Kubernetes-native Java stack that combines some of the best and most widely-used existing Java libraries with new techniques and technologies that result in Java applications that are extremely small and fast to start. Quarkus-based applications can consume &lt;1/10th the memory and start 300x faster compared with those on traditional Java stacks and can be potentially adopted as part of software setup to significantly bolster its capabilities.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrap_up">Wrap Up</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this workshop, we have successfully carried out an end to end lifecycle delivery of a fraud detection application. OpenShift provides the enterprise container platform where models are created as images that are immutable, to cater to the reproducibility of results and ensure consistency of the software stack , all these protected with inherent security that comes out of the box from the platform.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the NVIDIA GPU Operator is part of the Red Hat Certified Operator Catalog to automate the management of all NVIDIA software components needed to provision the GPU required in the process. To complete the picture, Red Hat AMQ streams enable a high-performance delivery of data streams while Red Hat Decision Manager to handle any associated complex event processing.</p>
+</div>
+<div class="paragraph">
+<p>We used tools such as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JupyterHub from OpenDataHub to provision instances of JupyterNotebooks to create source code and visualize data, as well as building, training and testing models.</p>
+</li>
+<li>
+<p>CodeReady Workspaces to develop the model and deploy code.</p>
+</li>
+<li>
+<p>OpenShift Pipelines to build container images from models which have been developed and trained, and push them to Nexus registry after for eventual deployment.</p>
+</li>
+<li>
+<p>Using Seldon to deploy the model onto OpenShift using GitOps(ArgoCD) methodology</p>
+</li>
+<li>
+<p>For the purposes of monitoring and observability, metric collection is done by Prometheus, which uses Grafana to help users visualize and explore the metrics collected.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Getting all these tools to work cohesively together help to bring about the principles of Continuous Integration (validation of datasets and code base), Continuous Delivery (ensuring that models backed by quality assurance are constantly available in production) and Continuous Testing (retraining and serving models), practices essential to driving MLOps in any environment. With all the appropriate tooling in place, we are offered a view of how the application of DevOps principles in the realm of MLOps helps to increase automation in an environment traditionally fraught with manual processes and difficulty with getting different systems to work cohesively, and subsequently primed to increase the quality of production ML.</p>
+</div>
+<div class="paragraph">
+<p>While data science models play a critical role in modern businesses, we have seen how it is part of a larger picture consisting of many other important moving parts, and the cohesive integration of all involved components deterministic to the successful delivery of business objectives. With the right infrastructure and practice in place, MLOps empowers Data Science and IT teams to collaborate seamlessly in ways previously thought to be impossible and builds the foundation for agile practices that improve the quality of ML productions while addressing business and regulatory requirements.</p>
+</div>
+</div>
+</div>
+        <hr>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="yyI2ki/RiA/UXQcMo0MOn1Sq1bgd30ZdL+COIMFaa+Gj7XeSOnWGQu/lLg/pOR3oX7GQ16jrSigC07CRR+Dsrg==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Your Workshop Environment</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#workshop-environment', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <li class="list-group-item active">
+              <span>4. Your Workshop Environment</span>
+            </li>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action">
+              5. Exploring Data
+            </a>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action">
+              11. Continuous Training With A/B Testing
+            </a>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action">
+              12. Deploy The Chosen One
+            </a>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">4</span>
+            <span class="pull-left ml-2">Your Workshop Environment</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_the_workshop_environment_you_are_using">The Workshop Environment You Are Using</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your workshop environment consists of several components which have been pre-installed and are ready to use. Depending on which parts of the
+workshop you are doing, you will use one or more of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.openshift.com/" target="_blank" rel="noopener">Red Hat OpenShift</a> - You will use one or more <em>projects</em> (Kubernetes namespaces) that are your own and are isolated from other workshop students</p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/products/codeready-workspaces/overview" target="_blank" rel="noopener">Red Hat CodeReady Workspaces</a> - based on <strong>Eclipse Che</strong>, it is a cloud-based, in-browser IDE (similar to IntelliJ IDEA, VSCode, Eclipse IDE). You’ve been provisioned your own personal workspace for use with this workshop. You will write, test, and deploy code from here.</p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/en/technologies/jboss-middleware/amq" target="_blank" rel="noopener">Red Hat AMQ Streams</a> - streaming data platform based on <strong>Apache Kafka</strong></p>
+</li>
+<li>
+<p><a href="https://buildah.io/" target="_blank" rel="noopener">Buildah</a> - Buildah is a tool that facilitates building Open Container Initiative (OCI) container images. We will be using Buildah in this workshop to create models from constructed images.</p>
+</li>
+<li>
+<p><a href="https://jupyter.org/" target="_blank" rel="noopener">Jupyter Notebook</a> - An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Jupyter Notebook will be used to build, train and test models in this workshop.</p>
+</li>
+<li>
+<p><a href="https://jupyterhub.readthedocs.io/en/stable/" target="_blank" rel="noopener">JupyterHub</a> - A multi-user Hub that spawns, manages, and proxies multiple instances of the single-user Jupyter notebook server. In this workshop we will be logging into this environment to provision instances of Jupyter Notebook.</p>
+</li>
+<li>
+<p><a href="https://www.openshift.com/learn/topics/pipelines" target="_blank" rel="noopener">Tekton</a> - An open source project that provides a framework to create cloud-native CI/CD pipelines quickly. We will be creating pipelines based on Tekton in this workshop.</p>
+</li>
+<li>
+<p><a href="https://argoproj.github.io/argo-cd/" target="_blank" rel="noopener">Argo CD</a> - Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.</p>
+</li>
+<li>
+<p><a href="https://www.openshift.com/blog/configure-openshift-metrics-with-prometheus-backed-by-openshift-container-storage" target="_blank" rel="noopener">Prometheus</a> - An open-source systems monitoring toolkit for event monitoring and alerting. Prometheus will be collating the metrics from the produced models in this workshop.</p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4" target="_blank" rel="noopener">Grafana</a> - An open-source visualization and analytics software. In this workshop Grafana allows you to query, visualize, alert on, and explore the metrics collected by Prometheus.</p>
+</li>
+<li>
+<p><a href="https://github.com/gogs/gogs" target="_blank" rel="noopener">Gogs</a> - Gogs is a simple, stable and extensible self-hosted Git service which will be created for the purposes of this workshop.</p>
+</li>
+<li>
+<p><a href="https://www.seldon.io/" target="_blank" rel="noopener">Seldon</a> - Provides a set of tools for deploying machine learning models at scale. In this workshop, Seldon will be used for a variety of purposes including providing endpoints for metric collection and allows us to provide feedback to the created models.</p>
+</li>
+<li>
+<p><a href="https://www.sonatype.com/nexus-repository-oss" target="_blank" rel="noopener">Nexus</a> - Nexus Repository OSS is an open source repository that supports many artifact formats, including Docker, Java™, and npm.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will be provided clickable URLs throughout the workshop to access the services that have been installed for you.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workshop_flow">Workshop Flow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The goal of this workshop is the delivery of an end-to-end AI/ML solution for fraud detection based on the respective software components and their processes. The main steps are as follows:</p>
+</div>
+<div class="paragraph">
+<p>1) Create an AI/ML model that predicts fraud transactions using Jupyter Notebook.</p>
+</div>
+<div class="paragraph">
+<p>2) To productize the model. Using CodeReady Workspaces provided by OpenShift to convert code into python, before delivering it into a pipeline for the process of building, testing and deploying code, mainly in three different environments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Development Environment: Created models will be converted into python code here via CodeReady Workspaces, where these models will be trained and tested with a mixture of fraudulent and non-fraudulent inputs. Versioning will be done to ensure reproducibility of the model.</p>
+</li>
+<li>
+<p>Staging Environment: When the model has undergone all the relevant testing, an image will be created with Buildah and stored in Nexus</p>
+</li>
+<li>
+<p>Production Environment: Once the model has been verified to be in proper working condition, it will be promoted to the production environment, where approved images are deployed into the environment.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>3) Monitoring provided by Prometheus/Grafana provides insight into the credibility of the fraud detection model as well as account for any sanity check on the results derived from the associated data. The visualized metrics reflect any performance degradation of the model, which preempts us to decide on either starting on new experiment iterations or retraining the model with new data, considering the regular evolution of fraud practices in the real world.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pipeline">Pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A pipeline in software development is an automated process that drives software through a path of building, testing, and deploying code. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is deployed. Tools that are included in the pipeline could include compiling code, unit tests, code analysis, security, and installer creation. For containerized environments, this pipeline would also include packaging the code into a container to be deployed across the hybrid cloud. A pipeline is critical in supporting continuous integration and continuous deployment (CI/CD) processes.</p>
+</div>
+<div class="paragraph">
+<p>In this workshop, the CI/CD experience is provided by a combination of OpenShift Pipelines (based on Tekton) and Argo CD.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift Pipelines is responsible for the CI process in which models are built and trained in the staging process, and pushed to a Nexus registry thereafter. Argo CD is used to deliver the CD process, responsible for monitoring the deployment and pushing any new changes in the deployment to OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gpu">GPU</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this workshop, we will not be using GPU to train the models.</p>
+</div>
+<div class="paragraph">
+<p>GPU is supported on OpenShift via the <a href="https://github.com/NVIDIA/gpu-operator" target="_blank" rel="noopener">Nvidia GPU Operator</a> and Node Feature Discovery (NFD) Operator. The NFD operator identifies hardware device features in nodes. It solves the general problem of identifying and cataloging hardware resources in the infrastructure nodes so they can be made available to OpenShift.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/nvdia-gpu-operator-manual-install.png" alt="nvdia-gpu-operator-manual-install">
+</div>
+</div>
+<div class="paragraph">
+<p>The NFD operator uses vendor PCI IDs to identify hardware in a node and Nivdia uses the PCI ID <code>10de</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">$ oc describe node ip-10-0-132-138.us-east-2.compute.internal | egrep 'Roles|10de'
+
+Roles: worker
+feature.node.kubernetes.io/pci-10de.present=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>10de</code> appears in the node feature list for the GPU-enabled node we defined. These labels created by the NFD operator are what the GPU Operator uses in order to determine where to deploy the driver containers for the GPU(s).</p>
+</div>
+<div class="paragraph">
+<p>You can then consume these GPUs from your containers by <a href="https://github.com/openshift-psap/blog-artifacts/blob/master/gpu-operator-pt1/0004-rapids_template.yaml#L67-L71" target="_blank" rel="noopener">requesting</a> <code>nvidia.com/gpu</code> just like you request cpu or memory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">resources</span>:
+  <span class="key">requests</span>:
+    <span class="key">nvidia.com/gpu</span>: <span class="string"><span class="content">1</span></span> <span class="comment"># Num of GPUs</span>
+  <span class="key">limits</span>:
+    <span class="key">nvidia.com/gpu</span>: <span class="string"><span class="content">1</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_training_and_serving_frameworks">Model Training And Serving Frameworks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will be using Seldon to package the trained model into a Flask app.</p>
+</div>
+<div class="paragraph">
+<p>In Kubernetes, there are other Custom Resources (CR) such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TensorFlow. <a href="https://www.kubeflow.org/docs/components/training/tftraining/" target="_blank" rel="noopener">TFJob</a> provided by <a href="https://www.kubeflow.org" target="_blank" rel="noopener">Kubeflow</a>. You can serve the model directly from S3 or use <a href="https://github.com/AICoE/tensorflow-serving-s2i" target="_blank" rel="noopener">S2I</a>.</p>
+</li>
+<li>
+<p>Kubeflow XGBoost <a href="https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html" target="_blank" rel="noopener">operator</a></p>
+</li>
+<li>
+<p>PyTorch <a href="https://www.kubeflow.org/docs/components/training/pytorch/" target="_blank" rel="noopener">jobs</a> to run distributed training.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_first_step_confirm_your_username">First Step: Confirm Your Username!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Look in the box at the top of your screen. Is your username set already? If so it will look like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/alreadyset.png" alt="Set User ID above" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>If your username is properly set, then you can move on. <strong>If not, in the above box, enter the user ID you were assigned</strong> like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/setuser.png" alt="Set User ID above" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>This will customize the links and copy/paste code for this workshop. If you have accidentally typed the wrong username, just click the green recycle icon to reset it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_click_to_copy">Click-to-Copy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will see various code and command blocks throughout these exercises which can be copy/pasted directly by clicking anywhere on the block of text. Simply click once and the whole block is copied to your clipboard, ready to be pasted with <span class="keyseq"><kbd>CTRL</kbd>+<kbd>V</kbd></span> (or <span class="keyseq"><kbd>Command</kbd>+<kbd>V</kbd></span> on Mac OS).</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">echo &quot;This is a bash shell command that you can copy/paste by clicking&quot;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_your_environment">Your Environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your user id is <code>user1</code></p>
+</div>
+<div class="paragraph">
+<p>OpenShift Console url is <code><a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com</a></code>. Username/password is <code>user1/r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>CodeReady Workspaces url is <code><a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com</a></code>. Username/password is <code>user1/r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>Git url is <code><a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com</a></code>. Username/password is <code>user1/r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>JupyterHub url is <code><a href="https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com</a></code></p>
+</div>
+<div class="paragraph">
+<p>Grafana url is <code><a href="https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics" class="bare">https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics</a></code></p>
+</div>
+<div class="paragraph">
+<p>Argo CD url is <code><a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com</a></code></p>
+</div>
+<div class="paragraph">
+<p>Nexus url is <code><a href="https://nexus-labs-nexus.apps.cluster-844c.844c.example.opentlc.com" class="bare">https://nexus-labs-nexus.apps.cluster-844c.844c.example.opentlc.com</a></code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_complete_this_workshop">How to complete this workshop</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Simply follow these instructions end-to-end. <strong>You will need to do quite a bit of copy/paste for Linux commands and source code modifications</strong>, as
+well as clicking around on various consoles used in the labs. When you get to the end of each section, you can click the <code>Next &gt;</code> button at
+the bottom to advance to the next topic. You can also use the menu on the left to move around the instructions at will.</p>
+</div>
+<div class="paragraph">
+<p>The entire workshop is split into one or more <em>modules</em> - Look at the top of the screen in the header to see which module you are on. After
+you complete this module, your instructor may have additional modules to complete.</p>
+</div>
+<div class="paragraph">
+<p>Good luck, and let’s get started!</p>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="getting-started-mlops.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Getting Started with MLOps
+            </a>
+            <a href="exploring-data.html" class="btn btn-primary btn-sm pull-right">
+              Exploring Data <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

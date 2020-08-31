@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="XTxUk7jkgzm5yvcxB1gbRkl/xLmFEF6dVz6e98ozurc18xWTrUCNdIJy3jJNIggxQmSB1jAkUuh6DaBGTIk9+A==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Getting Started with MLOps</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#getting-started-mlops', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <li class="list-group-item active">
+              <span>3. Getting Started with MLOps</span>
+            </li>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action">
+              4. Your Workshop Environment
+            </a>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action">
+              5. Exploring Data
+            </a>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action">
+              11. Continuous Training With A/B Testing
+            </a>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action">
+              12. Deploy The Chosen One
+            </a>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">3</span>
+            <span class="pull-left ml-2">Getting Started with MLOps</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_getting_started_with_mlops">Getting Started with MLOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the next few modules you will look at how AI/ML workload on OpenShift
+(OCP) can be integrated with Red Hat Application Services portfolio, focusing on
+MLOps, which enables data science and IT teams to collaborate and
+increase the pace of model development and deployment.</p>
+</div>
+<div class="paragraph">
+<p>This workshop is for data scientists and ML engineers who want to apply
+DevOps Principles to MLOps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_automating_the_end_to_end_lifecycle_of_machine_learning_applications">Automating The End-To-End Lifecycle Of Machine Learning Applications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In reality, that intelligent application isn’t just one small deployed
+thing. It is an entire distributed system in and of itself with many
+moving parts that are all tied together in various ways. A data
+scientist’s model is just one small part of this large distributed
+system, but we’re going to focus on it for this workshop</p>
+</div>
+<div class="paragraph">
+<p>As shown in the following diagram, only a small fraction of a real-world
+ML system is composed of the ML code. The required surrounding elements
+are vast and complex.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png" alt="mlops_elements">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_mlops">What Is MLOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From <a href="https://en.wikipedia.org/wiki/MLOps" target="_blank" rel="noopener">Wikipedia</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>MLOps (a compound of <code>machine learning</code> and <code>operations</code>) is a
+practice for collaboration and communication between data scientists and
+operations professionals to help manage production ML (or deep learning)
+lifecycle. Similar to the DevOps or DataOps approaches, MLOps looks to
+increase automation and improve the quality of production ML while also
+focusing on business and regulatory requirements.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_differences_between_devops_and_mlops">Differences Between DevOps And MLOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unlike DevOps, MLOps is much more experimental in nature. Data
+scientists try different features, parameters and models. With all these
+changes, they must manage their code base and datasets, to create
+reproducible results.</p>
+</div>
+<div class="paragraph">
+<p>Unlike application developments, MLOps needs to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data/model versioning != code versioning: Model reuse has an entirely
+different meaning compared to software reuse, as models need tuning
+based on scenarios and data.</p>
+</li>
+<li>
+<p>Model monitoring. Models statistics needs to be monitored to ensure is
+performing within limits, so that it can be retrained when necessary
+(retraining needs to be on-demand)</p>
+</li>
+<li>
+<p>Testing. In addition to unit tests, models need to be validated for
+model quality, such as accuracy, AUC, ROC, confusion matrix, precision,
+recall, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As such:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Continuous integration (CI) for MLOps also involves validating the
+data and the schema in addition to testing code.</p>
+</li>
+<li>
+<p>Continuous deployment(CD) validating the performance of models in
+production – including the ability to deploy new models and rollback
+changes from a model.</p>
+</li>
+<li>
+<p>Continuous testing (CT) to retrain and serve models. CT is unique to ML systems because it allows us to keep our model updated.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_science_steps_for_mlops">Data Science Steps For MLOps</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/cd4ml-end-to-end.png" alt="cd4ml-end-to-end">
+</div>
+</div>
+<div class="paragraph">
+<p>Image Source:
+<a href="https://martinfowler.com/articles/cd4ml.html#TestingAndQualityInMachineLearning" target="_blank" rel="noopener">CD4ML</a></p>
+</div>
+<div class="sect2">
+<h3 id="_model_building">Model Building</h3>
+<div class="paragraph">
+<p>Once the data has been cleaned and is made available, we will start the
+iterative approach for model building.</p>
+</div>
+<div class="sect3">
+<h4 id="_feature_engineering_model_evaluation_and_experimentation">Feature Engineering, Model Evaluation and Experimentation</h4>
+<div class="paragraph">
+<p>As the ML process is very experimental in nature and you may have
+multiple experiments running in parallel, it is important to capture key
+model metrics. This helps in the decision whether the model can be
+promoted through the different stages, such as staging and finally to
+production.</p>
+</div>
+<div class="paragraph">
+<p>We will be using <a href="https://jupyter.org/hub" target="_blank" rel="noopener">JupyterHub</a> and
+<a href="https://www.mlflow.org/" target="_blank" rel="noopener">MLflow</a> to log the model and experiment results.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reproducible_dataset">Reproducible Dataset</h4>
+<div class="paragraph">
+<p>This allows the data scientists to reproduce the model results, but also
+allows them to share the work with fellow data scientists or machine
+learning engineers who need to deploy the model.</p>
+</div>
+<div class="paragraph">
+<p>We will be using <a href="https://dvc.org/" target="_blank" rel="noopener">dvc</a> in this workshop.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_productize_model">Productize Model</h3>
+<div class="paragraph">
+<p>Once a model has been chosen, we will begin to productize the model from
+a notebook to source code. This allows better source revision control
+compared to having a notebook in a Source Code Management (SCM).</p>
+</div>
+<div class="paragraph">
+<p>We will be using
+<a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F" target="_blank" rel="noopener">Git</a> to
+version control the source code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing">Testing</h3>
+<div class="paragraph">
+<p>As part of the pipeline, the model will be validated and tested.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_model_deployment">Model Deployment</h3>
+<div class="paragraph">
+<p>Once the model has been built, the model will be packaged into a
+container image and deployed onto OpenShift by the pipeline.</p>
+</div>
+<div class="sect3">
+<h4 id="_model_serving">Model Serving</h4>
+<div class="paragraph">
+<p>The model will be served using <a href="https://www.seldon.io/" target="_blank" rel="noopener">Seldon</a>. The
+pipeline will build an image using Source-to-Image
+(<a href="https://github.com/openshift/source-to-image" target="_blank" rel="noopener">S2I</a>) and deploy the model
+onto OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_model_monitoring_and_observability">Model Monitoring and Observability</h3>
+<div class="paragraph">
+<p>Seldon models can expose prometheus endpoints which we will use to
+monitor key model metrics using the Grafana dashboard.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_continuous_delivery">Continuous Delivery</h3>
+<div class="paragraph">
+<p><a href="https://tekton.dev/" target="_blank" rel="noopener">Tekton</a> CI/CD pipeline will be used in the workshop
+to automate the different stages, such as building, testing, deployment
+and promotion of the model onto OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started!</p>
+</div>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="navigating-openshift-ui.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Navigating OpenShift Web Console
+            </a>
+            <a href="workshop-environment.html" class="btn btn-primary btn-sm pull-right">
+              Your Workshop Environment <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

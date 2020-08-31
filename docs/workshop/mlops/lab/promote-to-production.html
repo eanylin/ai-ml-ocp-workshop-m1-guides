@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="w5Ek01IQw1UdhQxDqYsFq0Gfc6Dz3xXxRIt0YNwqPA+rXmXTR7TNGCY9JUDj8RbcSoQ2z0brGYRpuErRWpC7QA==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Promote to Production</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#promote-to-production', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action list-group-item-success">
+              4. Your Workshop Environment
+            </a>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action list-group-item-success">
+              5. Exploring Data
+            </a>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action list-group-item-success">
+              8. Deploy The Model To Staging
+            </a>
+            <li class="list-group-item active">
+              <span>9. Promote to Production</span>
+            </li>
+            <a href="model-observability.html" class="list-group-item list-group-item-action">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action">
+              11. Continuous Training With A/B Testing
+            </a>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action">
+              12. Deploy The Chosen One
+            </a>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">9</span>
+            <span class="pull-left ml-2">Promote to Production</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_promote_to_production">Promote To Production</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The model is working properly in staging and can now be deployed to production. The production environment will be under the <code>user1-prod</code> namespace.</p>
+</div>
+<div class="paragraph">
+<p>Using container images allows us to have consistency across environments. Containers allows us to package our model and its dependencies into an image and will run the same regardless of their deployment environment.</p>
+</div>
+<div class="paragraph">
+<p>We will be using <a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener"> CodeReady Workspaces</a>, and log in using the username and
+password you’ve been assigned (e.g. <code>user1/r3dh4t1!</code>):</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_image_promotion">Image Promotion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To promote the image from staging to production environment, we are going to merge our <code>stage</code> to <code>prod</code> deployment branch. If there is a need for an approval process, Red Hat Process Automation Manager can be used to approve the Pull Request before the changes are merged.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-model-deploy
+git checkout -b prod
+git merge stage
+git push -u -v origin prod</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now login to <a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com/applications/user1-prod" target="_blank" rel="noopener">Argo CD</a> with your <code>user1/r3dh4t1!</code> credential to view the changes that Argo CD is making to the production environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_testing">Model Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the model has been deployed and is running, you can now run some simple tests. The test will send sample data to the prediction endpoint.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">/projects/rh-mlops-workshop/bin/prod-mon-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tag_it">Tag it!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now the model has been tested in production, we now can tag it as <code>v1.0</code>.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout stage
+git tag -a v1.0 -m &quot;v1.0&quot;
+git push -v origin v1.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tag has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/src/v1.0" target="_blank" rel="noopener">your</a> git
+repository.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/git-tag-1_0.png" alt="git-tag-1_0">
+</div>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="deploy-to-staging.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Deploy The Model To Staging
+            </a>
+            <a href="model-observability.html" class="btn btn-primary btn-sm pull-right">
+              Model Monitoring and Observability <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>
