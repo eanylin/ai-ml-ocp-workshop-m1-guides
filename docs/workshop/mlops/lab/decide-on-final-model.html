@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="WtVPYOE1E8EGicRqdSeke9F5fQ+EownMtjjbSmZFAdcyGg5g9JEdjD0x7Wk/XbcM2mI4YDGXBbmbC+X74P+GmA==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Deploy The Chosen One</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#decide-on-final-model', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action list-group-item-success">
+              4. Your Workshop Environment
+            </a>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action list-group-item-success">
+              5. Exploring Data
+            </a>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action list-group-item-success">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action list-group-item-success">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action list-group-item-success">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action list-group-item-success">
+              11. Continuous Training With A/B Testing
+            </a>
+            <li class="list-group-item active">
+              <span>12. Deploy The Chosen One</span>
+            </li>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">12</span>
+            <span class="pull-left ml-2">Deploy The Chosen One</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_observing_the_performance_of_both_models">Observing The Performance Of Both Models</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run the following script to send sufficient transactions to the models.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">/projects/rh-mlops-workshop/bin/prod-mon-test.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now look at the Grafana <a href="https://grafana-route-labs-grafana.apps.cluster-844c.844c.example.opentlc.com//d/U1cSDzyZz/prediction-analytics" target="_blank" rel="noopener">dashboard</a>, and see that the Recall score, TP / (TP + FN), for XGBoost is better compared to Logistic Regression.</p>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left text-center">
+<div class="content">
+<img src="../asset/images/lr-classification.png" alt="lr-classification" width="300">
+</div>
+<div class="title">Logistic Regression</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="../asset/images/xgboost-classification.png" alt="xgboost-classification" width="300">
+</div>
+<div class="title">XGBoost</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_chosen_one">Deploying The Chosen One</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s quickly change the <code>SeldonDeployment</code> to use XGBoost, deploy to staging and promote it to Production.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout master
+GIT_REV=`git rev-parse --short HEAD`
+echo &quot;GIT REVISION: $GIT_REV&quot;
+. src/seldon/config.sh
+
+cd /projects/rh-mlops-model-deploy
+git checkout master
+sed -e &quot;s/_USER_/user1/g&quot; -e &quot;s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g&quot; -e &quot;s/_IMAGE_NAME_/$IMAGE_NAME/g&quot; -e &quot;s/_GIT_REV_/$GIT_REV/g&quot; seldon-model.yaml.tmpl &gt; seldon.yaml
+git commit -a -m &quot;Update image tag to $IMAGE_NAME:$GIT_REV&quot;
+
+git checkout stage
+git merge master
+
+git checkout prod
+git merge stage
+
+git push -u -v origin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Observe that only a single classifier has been deployed.</p>
+</div>
+<div class="paragraph">
+<p>After the final model has been deployed to OpenShift, you can run some basic tests.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/prod-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tag_it">Tag It!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Great! The new XGBoost model is working better and we now can tag it as <code>v2.0</code></p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout stage
+git tag -a v2.0 -m &quot;v2.0&quot;
+git push -v origin v2.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tag has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop/src/v2.0" target="_blank" rel="noopener">your</a> git
+repository.</p>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="continuous-training.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Continuous Training With A/B Testing
+            </a>
+            <a href="integrate-with-application-services.html" class="btn btn-primary btn-sm pull-right">
+              Completing the Solution with Red Hat Application Services <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>
