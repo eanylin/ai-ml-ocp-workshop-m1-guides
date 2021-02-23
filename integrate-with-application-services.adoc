@@ -41,7 +41,13 @@ image::middleware-workflow.png[middleware-workflow, 700w]
 
 . Next, the consumer application routes the probability score to Red Hat Decision Manager, based on a threshold which determines whether the transaction is a fraud or not and returns an outcome (Fraud/No Fraud) to the consumer application.
 
-. The consumer application will route the outcome (Fraud/No Fraud) to a Web application to display the results so that users will be able to view.
+. The consumer application will only route any fraud outcome to a Web application to display the results so that users will be able to view.
+
+[NOTE]
+====
+Since the consumer application only routes fraud outcomes to the Web application, any outcome determined to be a non-fraud will not be displayed.
+This is reflective of a real world scenario where users receive notifications when a suspected fraud case might have occured in their accounts.
+====
 
 === Sending Data To Kafka
 
