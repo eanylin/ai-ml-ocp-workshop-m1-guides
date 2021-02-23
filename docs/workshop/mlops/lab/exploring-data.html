@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="4Q8UZmbEXJdaZ87g2/mZqPybBdjSpZZ3hwKMJ1s5HjOJwFVmc2BS2mHf5+ORg4rf94BAt2eRmgKqMbKW3YOZfA==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Exploring Data</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#exploring-data', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action list-group-item-success">
+              4. Your Workshop Environment
+            </a>
+            <li class="list-group-item active">
+              <span>5. Exploring Data</span>
+            </li>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action">
+              11. Continuous Training With A/B Testing
+            </a>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action">
+              12. Deploy The Chosen One
+            </a>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">5</span>
+            <span class="pull-left ml-2">Exploring Data</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_exploring_data">Exploring Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will be using Jupyter notebooks from
+<a href="https://opendatahub.io/" target="_blank" rel="noopener">OpenDataHub</a> to explore credit card fraud
+<a href="https://www.kaggle.com/mlg-ulb/creditcardfraud" target="_blank" rel="noopener">data</a>, using tools such
+as <a href="https://dvc.org/" target="_blank" rel="noopener">dvc</a> and <a href="https://pandas.pydata.org/" target="_blank" rel="noopener">Pandas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_opendatahub">About OpenDataHub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open Data Hub is a blueprint for building an AI as a service platform on
+Red Hat’s Kubernetes-based OpenShift® Container Platform and Ceph Object
+Storage. It inherits from upstream efforts such as Kafka/Strimzi and
+Kubeflow, and is the foundation for Red Hat’s internal data science and
+AI platform. Data scientists can create models using Jupyter notebooks,
+and select from popular tools such as TensorFlow™, scikit-learn, Apache
+Spark™ and more for developing models. Teams can spend more time solving
+critical business needs and less on installing and maintaining
+infrastructure with the Open Data Hub.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_jupyterhub">About JupyterHub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JupyterHub from ODH allows OpenShift users to access Jupyter notebooks.
+It gives users access to computational environments and resources
+without burdening the users with installation and maintenance tasks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_dvc">About DVC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data Version Control (DVC) keeps metafiles in Git to describe and version control your datasets and models. DVC supports a variety of external storage types as a
+remote cache for large files.</p>
+</div>
+<div class="paragraph">
+<p>Data management is the core part of DVC for large files, datasets, ML
+models versioning and efficient sharing. In this workshop, you will be
+using DVC to retrieve the dataset from a S3 bucket provided by Red Hat OpenShift Container Storage (OCS).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/dvc-model-versioning-diagram.png" alt="dvc-model-versioning-diagram" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>The repository has been <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/creditcard/src/master/.dvc/config" target="_blank" rel="noopener">configured</a> to use S3 that comes from OCS. The S3 bucket will contain the actual training data. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="ini">[core]
+    remote = myremote
+['remote &quot;myremote&quot;']
+    url = s3://mlflow-obc-9cebe5a6-303b-49ba-9e75-2224fa2313f9/dvcf4g2
+    endpointurl = https://s3-openshift-storage.apps.cluster-844c.844c.example.opentlc.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can view your <code>.dvc</code> files in your <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/creditcard/src/master/creditcard.csv.dvc" target="_blank" rel="noopener">repository</a>. <code>.dvc</code> files contains metadata such as filename and md5sum. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">md5</span>: <span class="string"><span class="content">cbd842a1ee4036fb7399d2dc568b5e50</span></span>
+<span class="key">outs</span>:
+- <span class="string"><span class="content">md5: e90efcb83d69faf99fcab8b0255024de</span></span>
+  <span class="key">path</span>: <span class="string"><span class="content">creditcard.csv</span></span>
+  <span class="key">cache</span>: <span class="string"><span class="content">true</span></span>
+  <span class="key">metric</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">persist</span>: <span class="string"><span class="content">false</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We then tagged the repository as <code>v1.0</code>, thus allowing us to retrieve consistent training data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_in">Logging in</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Begin by logging into <a href="https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">JupyterHub</a>.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code>.
+You may see a notification on authorizing access, select “Allow selected permissions” and proceed.</p>
+</div>
+<div class="paragraph">
+<p>Upon logging in, start a new notebook by choosing
+<code>rh-mlops-workshop-notebook:3.6</code> image in the drop down box and then click on
+<code>Spawn</code>. Leave the rest of the options as default.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the notebook page did not appear, try refreshing the page or
+reach out to your instructor.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the notebook page is up and running, there is a notebook <code>"rh-mlops-workshop/notebooks/0 intro to juypyter.ipynb"</code> to help you get started on familiarizing with the Jupyter interface.</p>
+</div>
+<div class="paragraph">
+<p>After you have acquainted yourself with how to edit and run Jupyter Notebooks, click on <code>"rh-mlops-workshop/notebooks/1 data exploration.ipynb"</code> to load the notebook. Run the individual code blocks contained in this notebook and observe the output.</p>
+</div>
+<div class="paragraph">
+<p>After running notebook “1 data exploration”, the output would be similar to the example below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/jupyternotebook-1-data-exploration.png" alt="jupyter-1-data-exploration">
+</div>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="workshop-environment.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Your Workshop Environment
+            </a>
+            <a href="building-the-first-model.html" class="btn btn-primary btn-sm pull-right">
+              Build the First Model <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

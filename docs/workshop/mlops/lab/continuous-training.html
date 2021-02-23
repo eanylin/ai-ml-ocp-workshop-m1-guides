@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="5tYG7shmnX5bL6CWWNRU6UVIWQ+aYuaU4WQ+XcexaueOGUfu3cKTM2CXiZUSrkeeTlMcYC9W6uHMVwDsQQvtqA==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Continuous Training With A/B Testing</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#continuous-training', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action list-group-item-success">
+              4. Your Workshop Environment
+            </a>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action list-group-item-success">
+              5. Exploring Data
+            </a>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action list-group-item-success">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action list-group-item-success">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action list-group-item-success">
+              10. Model Monitoring and Observability
+            </a>
+            <li class="list-group-item active">
+              <span>11. Continuous Training With A/B Testing</span>
+            </li>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action">
+              12. Deploy The Chosen One
+            </a>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">11</span>
+            <span class="pull-left ml-2">Continuous Training With A/B Testing</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_continuous_training_with_ab_testing">Continuous Training With A/B Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is important for us to actively monitor the quality of your model in production. Monitoring allows us to detect performance degradation, thus allowing us to decide whether we should start new experiment iterations or retrain the model with new data.</p>
+</div>
+<div class="paragraph">
+<p>In this chapter, you will build a new model, test it in staging and deploy it to production with A/B testing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_the_new_model">Exploring The New Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Go to JupyterHub and launch the notebook <code>rh-mlops-workshop/notebooks/3 using xgboost.ipynb</code>. The new model will be based on XGBoost.</p>
+</div>
+<div class="paragraph">
+<p>XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solves many data science problems in a fast and accurate way.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_and_test_a_new_model">Build and Test A New Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will be using <a href="https://codeready-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener"> CodeReady Workspaces</a>, and log in using the username and
+password you’ve been assigned (e.g. <code>user1/r3dh4t1!</code>):</p>
+</div>
+<div class="paragraph">
+<p>The model has already been converted for you using <code>jupytext</code> and modified to run in the pipeline.</p>
+</div>
+<div class="paragraph">
+<p>Run the following script to use the new model:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout master
+cp /projects/rh-mlops-workshop/src/train/boost.ans.py \
+    /projects/rh-mlops-workshop/src/train/boost.py
+
+cat &lt;&lt; EOF &gt; /projects/rh-mlops-workshop/src/train/config.sh
+PYTHON_SCRIPT=boost.py
+RUN_NAME=xgboost
+EOF
+
+/projects/rh-mlops-workshop/src/train/train-dev.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the model:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cat &lt;&lt; EOF &gt; /projects/rh-mlops-workshop/src/seldon/config.sh
+MODEL_NAME=XGBoostModel
+IMAGE_NAME=xgboost
+EOF
+
+cd /projects/rh-mlops-workshop/src/seldon/
+./app.sh</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Users may notice the <code>"Address already in use"</code> error message when running this command. To remedy this, enter the terminal running the original <code>app.sh</code> and press <span class="keyseq"><kbd>CTRL</kbd>+<kbd>C</kbd></span> to stop the Flask server first, before running the command again.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s test the model. Open up a <strong>new</strong> terminal and run the following:</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/dev-test.sh</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the new terminal takes too long to launch or the user interface freezes, try refreshing the browser or restarting the workspace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The code has been tested and we can now commit to development branch.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh"> cd /projects/rh-mlops-workshop/src/train
+ git add *.py
+ git commit -a -m &quot;my xgboost model&quot;
+ git push -v origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code has now been pushed to <a href="https://gogs-labs-infra.apps.cluster-844c.844c.example.opentlc.com/user1/rh-mlops-workshop" target="_blank" rel="noopener">your</a> git
+repository.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_to_staging_with_ab_testing">Deploy to Staging With A/B Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will now build the image for staging. Once the code is pushed to the <code>stage</code> branch, the pipeline will run.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh"> cd /projects/rh-mlops-workshop
+ git checkout stage
+ git merge master
+ git push -v origin stage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can go to OpenShift Console to monitor the <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/tekton.dev~v1alpha1~PipelineRun" target="_blank" rel="noopener">pipeline run</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once the pipeline runs finish, we will modify the <code>SeldonDeployment</code> to do A/B testing in staging.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Please ensure that the Pipeline above runs finish before proceeding to the next stage.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-workshop
+git checkout tags/v1.0 -b v1.0
+GIT_REV=`git rev-parse --short HEAD`
+echo &quot;GIT REVISION: $GIT_REV&quot;
+. src/seldon/config.sh
+
+PREV_IMAGE_NAME=$IMAGE_NAME
+PREV_GIT_REV=$GIT_REV
+
+git checkout stage
+GIT_REV=`git rev-parse --short HEAD`
+. src/seldon/config.sh
+
+cd /projects/rh-mlops-model-deploy
+git checkout master
+
+sed -e &quot;s/_USER_/user1/g&quot; \
+-e &quot;s/_CONTAINER_REGISTRY_/$NEXUS_DOCKER_REGISTRY/g&quot; \
+-e &quot;s/_PREV_IMAGE_NAME_/$PREV_IMAGE_NAME/g&quot; \
+-e &quot;s/_PREV_GIT_REV_/$PREV_GIT_REV/g&quot; \
+-e &quot;s/_IMAGE_NAME_/$IMAGE_NAME/g&quot; \
+-e &quot;s/_GIT_REV_/$GIT_REV/g&quot; \
+seldon-model-ab.yaml.tmpl &gt; seldon.yaml
+
+git commit -a -m &quot;a/b testing with $PREV_IMAGE_NAME:$PREV_GIT_REV and $IMAGE_NAME:$GIT_REV&quot;
+git checkout stage
+git merge master
+
+git push -v origin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can login to <a href="https://argocd-server-labs-argocd.apps.cluster-844c.844c.example.opentlc.com/applications/user1-stage" target="_blank" rel="noopener">Argo CD</a> with your <code>user1/r3dh4t1!</code> credential to monitor the deployment.</p>
+</div>
+<div class="paragraph">
+<p>There will be 2 classifier pods deployed in your <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/pods/" target="_blank" rel="noopener">user1-stage project</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/seldon-ab.png" alt="seldon-ab">
+</div>
+</div>
+<div class="paragraph">
+<p>After the new model has been deployed to OpenShift, you can now run some basic tests</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/stage-test.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now go to <a href="https://console-openshift-console.apps.cluster-844c.844c.example.opentlc.com/k8s/ns/user1-stage/pods" target="_blank" rel="noopener">OpenShift Console</a> to view the pod logs. Observe that credit card transactions have been sent to both pods by calling the <code>/predict</code> endpoints.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/seldon-ab-logs.png" alt="seldon-ab-logs">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_to_production_with_ab_testing">Deploy To Production With A/B Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will now promote this new image to the Production environment and run some tests.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">cd /projects/rh-mlops-model-deploy
+git checkout prod
+git merge stage
+git push -u -v origin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the new model has been deployed to OpenShift, you can run some basic tests.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/projects/rh-mlops-workshop/bin/prod-mon-test.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="model-observability.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Model Monitoring and Observability
+            </a>
+            <a href="decide-on-final-model.html" class="btn btn-primary btn-sm pull-right">
+              Deploy The Chosen One <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

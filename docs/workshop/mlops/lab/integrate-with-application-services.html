@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="CWOSPmChbv0bW8NBO8E/9jkiNPqOrMyWmIYJlLGA81NhrNM+dQVgsCDj6kJxuyyBMjlxlTuYwOO1tTclNzp0HA==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Completing the Solution with Red Hat Application Services</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#integrate-with-application-services', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action list-group-item-success">
+              4. Your Workshop Environment
+            </a>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action list-group-item-success">
+              5. Exploring Data
+            </a>
+            <a href="building-the-first-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              6. Build the First Model
+            </a>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action list-group-item-success">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action list-group-item-success">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action list-group-item-success">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action list-group-item-success">
+              11. Continuous Training With A/B Testing
+            </a>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action list-group-item-success">
+              12. Deploy The Chosen One
+            </a>
+            <li class="list-group-item active">
+              <span>13. Completing the Solution with Red Hat Application Services</span>
+            </li>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">13</span>
+            <span class="pull-left ml-2">Completing the Solution with Red Hat Application Services</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_completing_the_solution_with_red_hat_application_services">Completing the Solution with Red Hat Application Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a recap from what we have covered earlier in the workshop, only a small fraction of a real-world ML system is composed of the ML code. The required surrounding elements are vast and complex. In this section, the inclusion of Red Hat’s Application Services offerings will complete the solution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-elements.png" alt="mlops_elements" width="700w">
+</div>
+</div>
+<div class="paragraph">
+<p>We have deployed our final model based on XGBoost, but this itself is insufficient in the considerations of a comprehensive AI/ML solution. To complete the picture, we need to consider other critical aspects relevant to any AI/ML application, such as streaming data and a rules engine. In this regard, the introduction of Red Hat Application Services portfolio provides the runtime for running applications to consume incoming data streams, as well as providing integration of different software components alongside streaming to cater to data collection and a rules engine as an integral part of process management.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_red_hat_application_services_portfolio">Red Hat Application Services Portfolio</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/application-services-portfolio-overview.png" alt="application-services-portfolio-overview" width="700w">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_runtimes">Red Hat Runtimes</h3>
+<div class="paragraph">
+<p>For organizations looking to keep and modernize existing applications, or create net­ new ones, Red Hat Runtimes provide the integrated and optimized products and components necessary to deliver modern applications. IT teams can containerize applications through adoption of a microservices ­based architecture, improve data access performance and resilience with in­ memory data caching models, improve service ­to ­service communication with messaging, or adopt cloud­ native application development using modern development patterns and technologies. For the purposes of this workshop, the runtimes provided will host the consumer application created from SpringBoot.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_integration_suite">Red Hat Integration suite</h3>
+<div class="paragraph">
+<p>For organizations interested in adopting highly distributed integration deployments, Red Hat Integration provides the products and components necessary to adopt an API ­first approach. This allows enterprise ­wide visibility and control of APIs, creation of APIs to allow orchestration of services on newly developed applications or existing ones, and fast and reliable messaging which lets you to build low­ latency messaging and streaming solutions based on proven messaging patterns. In this workshop, Kafka streams responsible for streaming transaction data are handled by Red Hat AMQ Streams. Additionally, Camel Routing capabilities as an integration piece between different software components will be provided by Red Hat Fuse.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_process_automation_suite">Red Hat Process Automation suite</h3>
+<div class="paragraph">
+<p>For organizations looking to improve business agility, operational efficiency, and time to market, Red Hat Process Automation provides the tools and components necessary to deliver applications that automate business processes and decisions to rapidly adapt to a changing environment. Collaboration between IT and business teams enables the capture and enforcement of policies and procedures, automation of business operations, and measure. Decision making is critical in meeting business objectives, and in this workshop Red Hat Decision Manager will take charge of business rules which determine whether a transaction is a fraud or not.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_streaming_integration_and_business_rules">Data Streaming, Integration and Business Rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data streaming to ensure the nature of data stays current, integration piecing different software components, business rules to accomplish business objectives, all these are crucial in any enterprise AI/ML setup, and in this section we will be covering how all these fit into the workshop we have been working on till now and how having the right middleware solution is centerpiece to ensuring all these separate components work cohesively.</p>
+</div>
+<div class="sect2">
+<h3 id="_middleware_workflow">Middleware Workflow</h3>
+<div class="paragraph">
+<p>In this workshop, transactions are kept in a CSV format which is streamed over to Kafka. To determine the authenticity of the conducted transactions. we are interested as to how many of these transactions are fraudulent. Consumer application contains a Camel Router which routes the data as messages around to different components for processing and eventual output.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/middleware-workflow.png" alt="middleware-workflow" width="700w">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Credit card transactions will be streamed to Kafka</p>
+</li>
+<li>
+<p>The Camel router will consume the transactions from Kafka broker.</p>
+</li>
+<li>
+<p>The first stop the transaction data is routed to is the Python Model, which outputs a probability score as an indication of the transaction being fraudulent or not. The probability score is returned back to the consumer application.</p>
+</li>
+<li>
+<p>Next, the consumer application routes the probability score to Red Hat Decision Manager, based on a threshold which determines whether the transaction is a fraud or not and returns an outcome (Fraud/No Fraud) to the consumer application.</p>
+</li>
+<li>
+<p>The consumer application will route the outcome (Fraud/No Fraud) to a Web application to display the results so that users will be able to view.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sending_data_to_kafka">Sending Data To Kafka</h3>
+<div class="paragraph">
+<p>We will use Jupyter Notebook <code>rh-mlops-workshop/notebooks/4 kafka.ipyb</code> to send transactions to Kafka.</p>
+</div>
+<div class="paragraph">
+<p>Begin by logging into JupyterHub.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>After sending the transactions, you can now go to the <a href="http://webnotifications-user1-prod.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">notification</a> page to see the end results.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/notifications.png" alt="notifications" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Based on the probability score returned from the model, Red Hat Decision Manager is a
+business rules management system (BRMS) that will decide whether a transaction is a fraud or not.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Decision Manager 7 is a powerful, scalable open source business rules management system that includes business resource optimization and complex event processing (CEP) technology. It helps organizations capture business logic and develop applications that automate business decisions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/decision-flow-chart.png" alt="decision-flow-chart" width="400w">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_future_enhancements">Future Enhancements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far what we have seen is how Red Hat AMQ reliably delivers a high-performance streaming of data, whereas Decision Manager configures the business rules to determine whether a transaction is deemed to be fraudulent or not. While this may suffice for certain operations in reality, there is also scope for enhancements to cater to business requirements taking on a more sophisticated nature.</p>
+</div>
+<div class="sect2">
+<h3 id="_decision_making">Decision Making</h3>
+<div class="paragraph">
+<p>Decision Manager can be used to by introducing individual business processes for handling different kinds of potential fraudulent transactions</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/business-process-demo.png" alt="business-process-demo" width="700w">
+</div>
+</div>
+<div class="paragraph">
+<p>Image source: <a href="https://github.com/ruivieira/ccfd-demo/" target="_blank" rel="noopener">ruivieria-ccfd-demo</a></p>
+</div>
+<div class="paragraph">
+<p>Here, a process is instantiated with the transaction&#8217;s data and it is consumed by the CustomerNotification node. The CustomerNotification node sends a message to the &lt;CUSTOMER-OUTGOING&gt; Kafka topic with the customer&#8217;s id and the transaction&#8217;s id. This message is picked by the notification service, which will send an appropriate notification (email, SMS, etc)</p>
+</div>
+<div class="paragraph">
+<p>In the event where a customer response is not received, there is the potential of a fraudulent transaction, which will be determined after the process of a fraud investigation. In the event where verification is done by the customer, the request is deemed to be non fraudulent, though further customization can be done to investigate any fraud even if the transaction is being approved. The customer’s response determines whether a transaction is fraudulent or not, which means the outcome does not only depend on the output generated from the system, an enhancement from what we have done so far in the workshop.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback_loop">Feedback loop</h3>
+<div class="paragraph">
+<p>The customer’s response can be retained to provide a feedback loop to the training data set to further improve the quality of existing models and address any change in the environment of the data we are collecting from.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kubernetes_native_java_runtime">Kubernetes-native Java Runtime</h3>
+<div class="paragraph">
+<p>Quarkus: Quarkus is a Kubernetes-native Java stack that combines some of the best and most widely-used existing Java libraries with new techniques and technologies that result in Java applications that are extremely small and fast to start. Quarkus-based applications can consume &lt;1/10th the memory and start 300x faster compared with those on traditional Java stacks and can be potentially adopted as part of software setup to significantly bolster its capabilities.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrap_up">Wrap Up</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this workshop, we have successfully carried out an end to end lifecycle delivery of a fraud detection application. OpenShift provides the enterprise container platform where models are created as images that are immutable, to cater to the reproducibility of results and ensure consistency of the software stack , all these protected with inherent security that comes out of the box from the platform.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the NVIDIA GPU Operator is part of the Red Hat Certified Operator Catalog to automate the management of all NVIDIA software components needed to provision the GPU required in the process. To complete the picture, Red Hat AMQ streams enable a high-performance delivery of data streams while Red Hat Decision Manager to handle any associated complex event processing.</p>
+</div>
+<div class="paragraph">
+<p>We used tools such as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JupyterHub from OpenDataHub to provision instances of JupyterNotebooks to create source code and visualize data, as well as building, training and testing models.</p>
+</li>
+<li>
+<p>CodeReady Workspaces to develop the model and deploy code.</p>
+</li>
+<li>
+<p>OpenShift Pipelines to build container images from models which have been developed and trained, and push them to Nexus registry after for eventual deployment.</p>
+</li>
+<li>
+<p>Using Seldon to deploy the model onto OpenShift using GitOps(ArgoCD) methodology</p>
+</li>
+<li>
+<p>For the purposes of monitoring and observability, metric collection is done by Prometheus, which uses Grafana to help users visualize and explore the metrics collected.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Getting all these tools to work cohesively together help to bring about the principles of Continuous Integration (validation of datasets and code base), Continuous Delivery (ensuring that models backed by quality assurance are constantly available in production) and Continuous Testing (retraining and serving models), practices essential to driving MLOps in any environment. With all the appropriate tooling in place, we are offered a view of how the application of DevOps principles in the realm of MLOps helps to increase automation in an environment traditionally fraught with manual processes and difficulty with getting different systems to work cohesively, and subsequently primed to increase the quality of production ML.</p>
+</div>
+<div class="paragraph">
+<p>While data science models play a critical role in modern businesses, we have seen how it is part of a larger picture consisting of many other important moving parts, and the cohesive integration of all involved components deterministic to the successful delivery of business objectives. With the right infrastructure and practice in place, MLOps empowers Data Science and IT teams to collaborate seamlessly in ways previously thought to be impossible and builds the foundation for agile practices that improve the quality of ML productions while addressing business and regulatory requirements.</p>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="decide-on-final-model.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Deploy The Chosen One
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

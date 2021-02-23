@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      The MLOps Workshop
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="sZmRRJrzJLZ1a8VpOPXBI20FFnTBDyIjjo6WUok5VXLZVtBEj1cq+07T7Gpyj9JUZh5TG3Q7LlajvajjD4PSPQ==" />
+  <link rel="stylesheet" media="all" href="../../../assets/application-dcf5640dabe7c086c5db76b2e378b4def3309902bc32af61ab63094a23e1730b.css" data-turbolinks-track="reload" />
+  <script src="../../../assets/application-1763c4134299cf1911a383dd8d9b23b574b429196c500fbba1a010629fc4c558.js" data-turbolinks-track="reload"></script>
+</head>
+
+<script type="text/javascript">
+function gowithuser() {
+    window.location.search = ('&userid=' + document.getElementById('useridfield').value);
+}
+function recycle() {
+  window.location.search = ('&userid=reset');
+}
+</script>
+
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid d-flex justify-content-start">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="navbar-brand mb-0 h1" href="../../mlops.html" id="workshopName">The MLOps Workshop</a>
+        <span class="navbar-text" style="margin-right: 1rem;">|</span>
+        <span class="navbar-text">Build the First Model</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+        <span class="navbar-text">User ID: user1</span>
+        <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+  </div>
+</nav>
+
+<script type="application/javascript">
+    if (App.hasOwnProperty('subscription_id')) {
+        App.cable.subscriptions.remove(App.subscription_id);
+    }
+
+    App.subscription_id = App.report_page_view('mlops#building-the-first-model', 'd9172ed7-510d-408a-b653-5c241996eae0');
+</script>
+
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" id="labs-menu">
+            <a href="../../mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              1. Kubernetes Overview
+            </a>
+            <a href="navigating-openshift-ui.html" class="list-group-item list-group-item-action list-group-item-success">
+              2. Navigating OpenShift Web Console
+            </a>
+            <a href="getting-started-mlops.html" class="list-group-item list-group-item-action list-group-item-success">
+              3. Getting Started with MLOps
+            </a>
+            <a href="workshop-environment.html" class="list-group-item list-group-item-action list-group-item-success">
+              4. Your Workshop Environment
+            </a>
+            <a href="exploring-data.html" class="list-group-item list-group-item-action list-group-item-success">
+              5. Exploring Data
+            </a>
+            <li class="list-group-item active">
+              <span>6. Build the First Model</span>
+            </li>
+            <a href="productize-the-model.html" class="list-group-item list-group-item-action">
+              7. Productize the Model
+            </a>
+            <a href="deploy-to-staging.html" class="list-group-item list-group-item-action">
+              8. Deploy The Model To Staging
+            </a>
+            <a href="promote-to-production.html" class="list-group-item list-group-item-action">
+              9. Promote to Production
+            </a>
+            <a href="model-observability.html" class="list-group-item list-group-item-action">
+              10. Model Monitoring and Observability
+            </a>
+            <a href="continuous-training.html" class="list-group-item list-group-item-action">
+              11. Continuous Training With A/B Testing
+            </a>
+            <a href="decide-on-final-model.html" class="list-group-item list-group-item-action">
+              12. Deploy The Chosen One
+            </a>
+            <a href="integrate-with-application-services.html" class="list-group-item list-group-item-action">
+              13. Completing the Solution with Red Hat Application Services
+            </a>
+        <a href="../complete.html" class="list-group-item list-group-item-action list-group-item-warning">
+          <i class="fa fa-print"></i> All labs in one page
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card" id="lab-content">
+        <div class="card-header">
+          <h6>
+            <span class="pull-left badge badge-pill badge-primary">6</span>
+            <span class="pull-left ml-2">Build the First Model</span>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="sect1">
+<h2 id="_build_your_first_model">Build Your First Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this module, you will begin to use Jupyter Notebook to build, train
+and test the model.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_in">Logging in</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Begin by logging into <a href="https://jupyterhub-labs-infra.apps.cluster-844c.844c.example.opentlc.com" target="_blank" rel="noopener">JupyterHub</a>.</p>
+</div>
+<div class="paragraph">
+<p>Your user name will be <code>user1</code> and password is
+<code>r3dh4t1!</code>.</p>
+</div>
+<div class="paragraph">
+<p>Upon logging in, start a new notebook by choosing
+<code>rh-mlops-workshop-notebook:3.6</code> image in the drop down box and then click on
+<code>Spawn</code>. Leave the rest of the options as default.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the notebook page did not appear, try refreshing the page or reach
+out to your instructor.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the notebook page is up and running, click on
+<code>rh-mlops-workshop/notebooks/2 building the first model.ipynb</code> to load the notebook.</p>
+</div>
+<div class="paragraph">
+<p>After running notebook “2 building the first model”, the output would be similar to the example below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../asset/images/jupyternotebook-2-build-first-model.png" alt="jupyternotebook-2-build-first-model">
+</div>
+</div>
+</div>
+</div>
+        </div>
+        <div class="card-footer">
+            <a href="exploring-data.html" class="btn btn-primary btn-sm pull-left">
+              <i class="fa fa-arrow-left"></i> Exploring Data
+            </a>
+            <a href="productize-the-model.html" class="btn btn-primary btn-sm pull-right">
+              Productize the Model <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>
